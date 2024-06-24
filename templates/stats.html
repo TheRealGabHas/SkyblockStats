@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+	<meta charset="UTF-8">
+	<title>{{ player_name }} | SBStats</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="{{ skin_link }}">
+	<link href="{{ url_for('style', path='style.css') }}" rel="stylesheet">
+	<link href="{{ url_for('style', path='animation.css') }}" rel="stylesheet">
+</head>
+<body>
+<a href="http://127.0.0.1:8000/" target="_self">Home</a>
+<div id="head-section" class="red-border">
+	<div class="flex-wrapper">
+		<img id="main-skin-img" src="{{ skin_link }}" width="128" height="128" alt="{{ player_name }}">
+	</div>
+	<h2 class="center">{{ player_name }}</h2>
+{% if misc_data != None %}
+	<p class="to-hover center"><strong>First joined:</strong> {{ misc_data["First Join"] }}</p>
+	<p class="center"><strong>Purse:</strong> {{ misc_data["Purse"] }}</p>
+{% else %}
+	<p class="to-hover center"><strong>First joined:</strong> -</p>
+	<p class="center"><strong>Purse:</strong> -</p>
+{% endif %}
+{% if leveling_data != None %}
+	<p class="center"><strong>Skyblock Level:</strong> {{ leveling_data["Global"] / 100 }}</p>
+{% else %}
+	<p class="center"><strong>Skyblock Level:</strong> -</p>
+{% endif %}
+</div>
+
+<h2 class="section-title center">Skills & Level</h2>
+{% if leveling_data != None %}
+<div id="skills-stats" class="red-border stats-div">
+	<h2 id="sb-level" class="title">Skyblock Level: {{ leveling_data["Global"] / 100 }}</h2>
+	{% for skill in leveling_data %}
+		{% if skill != "Global" %}
+			<p id="{{ skill.lower() }}-info" class="skills-info">
+				<strong>{{ skill | replace("2", "") }} :</strong> {{ leveling_data[skill] }} EXP</p>
+		{% endif %}
+	{% endfor %}
+</div>
+{% else %}
+	<h3 class="center">Skills data not found for this player.</h3>
+{% endif %}
+
+<h2 class="section-title center">Slayer</h2>
+{% if slayer_data != None %}
+<div id="slayer-stats" class="red-border stats-div">
+	{% for boss in slayer_data %}
+		<div id="{{ boss.lower() }}" class="slayer-boss-div">
+			<h3 class="{{ boss.lower() }}-boss-level boss-title"><strong>{{ boss }} -
+				LVL {{ slayer_data[boss]["current_level"] }}</strong></h3>
+			<p class="{{ boss.lower() }}-boss-xp boss-xp">{{ slayer_data[boss]["xp"] }} EXP
+				/ {{ slayer_data[boss]["next_lvl_xp"] }}</p>
+			<hr class="slayer-separator">
+			<div id="{{ boss.lower() }}-boss-killed" class="slayer-boss-killed">
+				{% for kill in slayer_data[boss]["boss_kills"] %}
+					<p id="{{ boss.lower() }}-{{ kill.keys() | first | lower | replace(" ", "-") }}-kills"
+					   class="slayer-boss-tier-killed">{{ kill.keys() | first }} : {{ kill.values() | first }}</p>
+				{% endfor %}
+			</div>
+		</div>
+	{% endfor %}
+</div>
+{% else %}
+	<h3 class="center">Slayer data not found for this player.</h3>
+{% endif %}
+
+<h2 class="section-title center">Rift</h2>
+{% if rift_data != None %}
+<div id="rift-stats" class="red-border stats-div">
+	<div id="rift-trophies" class="red-border">
+		{% if rift_data['trophies'] | length > 0 %}
+			<h3 class="center">Unlocked Timecharms</h3>
+			<div id="unlocked-timecharms" class="red-border">
+				{% for trophy in rift_data['trophies'] %}
+					<div class="rift-trophy">
+						<strong>{{ trophy[0] }}</strong>
+						<p>Unlocked after {{ trophy[1] }} visits</p>
+					</div>
+				{% endfor %}
+			</div>
+		{% endif %}
+		{% if rift_data['missing_trophies'] | length > 0 %}
+			<div id="missing-timecharm" class="red-border">
+				<h3>Missing Timecharms</h3>
+				{% for trophy in rift_data['missing_trophies'] %}
+					<div class="rift-missing-trophy">
+						<strong>{{ trophy }}</strong>
+					</div>
+				{% endfor %}
+			</div>
+		{% endif %}
+	</div>
+	<div id="rift-misc" class="red-border">
+		<p><strong>Enigma Souls found:</strong> {{ rift_data['souls'] }}/42</p>
+		<p><strong>Montezuma fragments:</strong> {{ rift_data['montezuma'] }}/9</p>
+		<p><strong>McGrubber's Burger eaten :</strong> {{ rift_data['burger'] }}/5</p>
+		<p><strong>Time spent
+			sitting:</strong> {{ rift_data['time_sitting'][0] }}min {{ rift_data['time_sitting'][0] }}sec</p>
+	</div>
+	<div id="rift-motes" class="red-border">
+		<p><strong>Motes purse:</strong> {{ rift_data['motes'] }}</p>
+		<p><strong>Lifetime earned motes:</strong> {{ rift_data['lifetime_motes'] }}</p>
+		<p><strong>Orb picked-up:</strong> {{ rift_data['orbs'] }}</p>
+	</div>
+</div>
+{% else %}
+	<h3 class="center">Rift data not found for this player.</h3>
+{% endif %}
+
+<h2 class="section-title center">Miscellaneous</h2>
+{% if misc_data != None %}
+<div id="misc-stats" class="red-border stats-div">
+	<div class="red-border">
+		{% for stats in misc_data %}
+			<p class="misc-data"><strong>{{ stats }}:</strong> {{ misc_data[stats] }}</p>
+		{% endfor %}
+	</div>
+</div>
+{% else %}
+	<h3 class="center">Misc data not found for this player.</h3>
+{% endif %}
+
+<h2 class="section-title center">Trophy Fishing</h2>
+{% if trophy_data != None %}
+<div id="trophy-stats" class="red-border stats-div">
+	<div id="trophy-fish-misc" class="red-border">
+		{% for element in trophy_data[1] %}
+			<p><strong>{{ element }}</strong>: {{ trophy_data[1][element] }}</p>
+		{% endfor %}
+	</div>
+
+	<div id="trophy-fish-count" class="red-border">
+		{% for trophy in trophy_data[0] %}
+			<div id="{{ trophy.keys() | first }}-summary" class="red-border fish-card">
+				<h3 id="{{ trophy.keys() | first }}-title">{{ trophy.keys() | first }}</h3>
+				<div class="trophy-count">
+					{% for fish_rarity in trophy[trophy.keys() | first] %}
+						<p><strong>{{ fish_rarity}}</strong>: {{ trophy[trophy.keys() | first][fish_rarity] }}</p>
+					{% endfor %}
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+{% else %}
+	<h3 class="center">Trophy fishing data not found for this player.</h3>
+{% endif %} 
+</body>
+</html>

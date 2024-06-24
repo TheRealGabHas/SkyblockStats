@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+	<meta charset="UTF-8">
+	<title>SBStats | Home</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="{{ url_for('images', path='favicon.png') }}">
+	<link href="{{ url_for('style', path='style.css') }}" rel="stylesheet">
+	<link href="{{ url_for('style', path='animation.css') }}" rel="stylesheet">
+	<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById("player-form").addEventListener("submit", () => {
+                const myForm = document.getElementById('player-form');
+                const field = document.getElementById('player-name-input');
+
+                myForm.action = '/p/' + field.value.toString();
+            });
+        });
+	</script>
+</head>
+<body>
+<div class="flex-wrapper">
+	<div class="grid-container">
+		<div id="title-div">
+			<h1 class="center">Skyblock Stats Viewer</h1>
+			<h3 class="center">By <a href="https://gabhas.fr/">GabHas</a></h3>
+			{% if message != None %}
+				<p style="color: red">{{ message }}</p>
+			{% endif %}
+		</div>
+
+		<form method="get" id="player-form">
+			<label for="player-name-input" class="center">Enter an username</label>
+			<input id="player-name-input" type="text" placeholder="Minecraft username..." maxlength="16">
+			<button id="send-player" type="submit">Submit</button>
+		</form>
+	</div>
+</div>
+<footer>
+	<div class="flex-wrapper">
+		<a href="">About your data</a>
+	</div>
+</footer>
+</body>
+</html>
