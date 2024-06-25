@@ -1,3 +1,17 @@
+@font-face {
+    font-family: Minecraft;
+    src: url("../font/minecraftia-regular.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Enchant;
+    src: url("../font/minecraft-enchantment.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -28,6 +42,11 @@ html, body {
     text-align: center;
 }
 
+.error-message {
+    color: #DA373C;
+    overflow-wrap: break-word;
+}
+
 #player-form {
     display: grid;
     grid-template-rows: repeat(3, 1fr);
@@ -42,6 +61,75 @@ html, body {
     border: 1px solid red;
 }
 
+#home-form {
+    padding: 10px;
+    border-radius: 5px;
+
+    box-shadow: 6px 4px 20px -4px rgba(96,96,96,0.75);
+    -webkit-box-shadow: 6px 4px 20px -4px rgba(96,96,96,0.75);
+    -moz-box-shadow: 6px 4px 20px -4px rgba(96,96,96,0.75);
+
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+}
+
+#player-form {
+    display: grid;
+    grid-template-columns: .8fr .1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#player-form > * {
+    height: 50px;
+    font-family: Minecraft, sans-serif;
+}
+
+label[for="player-name-input"] {
+    display: none;
+}
+
+#player-name-input {
+    height: 50px;
+    width: 100%;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 6px 4px 20px -4px rgba(96,96,96,0.75);
+    -webkit-box-shadow: 6px 4px 20px -4px rgba(96,96,96,0.75);
+    -moz-box-shadow: 6px 4px 20px -4px rgba(96,96,96,0.75);
+    text-align: center;
+    font-size: 14pt;
+    font-family: "Courier New", sans-serif;
+}
+
+@media screen and (max-width: 378px) {
+    #player-name-input::placeholder {
+        content: "Username";
+    }
+}
+
+#search-bar-container, #search-btn {
+    display: flex;
+    width: 100%;
+    text-align: center;
+}
+
+#send-player {
+    height: 50px;
+    width: 50px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3cd040;
+    color: white;
+    font-size: 12pt;
+    transform: translateY(-3px);
+}
+
+#send-player:hover {
+    background-color: #42e342;
+    cursor: pointer;
+}
 
 /* Stats page */
 .stats-div {

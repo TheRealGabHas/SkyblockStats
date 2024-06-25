@@ -7,32 +7,36 @@
 	<link rel="icon" href="{{ url_for('images', path='favicon.png') }}">
 	<link href="{{ url_for('style', path='style.css') }}" rel="stylesheet">
 	<link href="{{ url_for('style', path='animation.css') }}" rel="stylesheet">
-	<script>
-        document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById("player-form").addEventListener("submit", () => {
-                const myForm = document.getElementById('player-form');
-                const field = document.getElementById('player-name-input');
-
-                myForm.action = '/p/' + field.value.toString();
-            });
-        });
-	</script>
 </head>
 <body>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("player-form").addEventListener("submit", () => {
+            const myForm = document.getElementById('player-form');
+            const field = document.getElementById('player-name-input');
+
+            myForm.action = '/p/' + field.value.toString();
+        });
+    });
+</script>
 <div class="flex-wrapper">
-	<div class="grid-container">
+	<div id="home-form" class="grid-container">
 		<div id="title-div">
 			<h1 class="center">Skyblock Stats Viewer</h1>
-			<h3 class="center">By <a href="https://gabhas.fr/">GabHas</a></h3>
+			<h3 class="center">by <a href="https://gabhas.fr/">GabHas</a></h3>
 			{% if message != None %}
-				<p style="color: red">{{ message }}</p>
+				<p class="center error-message">{{ message }}</p>
 			{% endif %}
 		</div>
 
 		<form method="get" id="player-form">
-			<label for="player-name-input" class="center">Enter an username</label>
-			<input id="player-name-input" type="text" placeholder="Minecraft username..." maxlength="16">
-			<button id="send-player" type="submit">Submit</button>
+			<div id="search-bar-container">
+				<label for="player-name-input" class="center">Enter an username</label> <!-- Pleasing the W3C -->
+				<input id="player-name-input" autofocus required type="search" placeholder="Username..." maxlength="16">
+			</div>
+			<div id="search-btn">
+				<button id="send-player" type="submit">🔍</button>
+			</div>
 		</form>
 	</div>
 </div>

@@ -14,6 +14,7 @@ from stats_gather import data_pickup
 app = FastAPI()
 app.mount("/style", StaticFiles(directory="./assets/stylesheet"), name="style")
 app.mount("/images", StaticFiles(directory="./assets/images"), name="images")
+app.mount("/font", StaticFiles(directory="./assets/font"), name="font")
 
 templates = Jinja2Templates(directory="templates")
 
