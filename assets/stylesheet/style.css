@@ -18,9 +18,30 @@
     padding: 0;
 }
 
+*::selection {
+    background-color: transparent;
+    color: currentColor;
+}
+
 html, body {
     width: 100%;
     height: 100%;
+    font-family: Minecraft, sans-serif;
+
+    /* Background image in case the video is blocked */
+    background-image: url("../images/background-image.png");
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+#background-video {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    overflow: hidden;
 }
 
 .flex-wrapper {
@@ -57,10 +78,6 @@ html, body {
     margin-top: 5%;
 }
 
-.red-border {
-    border: 1px solid red;
-}
-
 #home-form {
     padding: 10px;
     border-radius: 5px;
@@ -69,8 +86,30 @@ html, body {
     -webkit-box-shadow: 6px 4px 20px -4px rgba(96,96,96,0.75);
     -moz-box-shadow: 6px 4px 20px -4px rgba(96,96,96,0.75);
 
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+#title-div {
+    color: white;
+    text-shadow: #000000 1px 0 10px;
+}
+
+a {
+    text-decoration: none;
+    color: #08ffae;
+    --clr1: #50a15f;
+    --clr2: #42b232;
+    --clr3: #2fc73a;
+
+    text-shadow: 0 0 5px var(--clr1),
+        0 0 15px var(--clr1), 0 0 20px var(--clr1),
+        0 0 40px var(--clr1), 0 0 60px var(--clr2),
+        0 0 10px var(--clr3), 0 0 98px var(--clr2);
+}
+
+a:hover {
+    color: #7affc8;
 }
 
 #player-form {
@@ -94,19 +133,20 @@ label[for="player-name-input"] {
     height: 50px;
     width: 100%;
     border: none;
-    border-radius: 3px;
-    box-shadow: 6px 4px 20px -4px rgba(96,96,96,0.75);
-    -webkit-box-shadow: 6px 4px 20px -4px rgba(96,96,96,0.75);
-    -moz-box-shadow: 6px 4px 20px -4px rgba(96,96,96,0.75);
+    border-radius: 5px;
+    --bg-clr: rgba(40, 40, 40, 0.75);
+    box-shadow: 6px 4px 20px -4px var(--bg-clr);
+    -webkit-box-shadow: 6px 4px 20px -4px var(--bg-clr);
+    -moz-box-shadow: 6px 4px 20px -4px var(--bg-clr);
     text-align: center;
     font-size: 14pt;
     font-family: "Courier New", sans-serif;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
 }
 
-@media screen and (max-width: 378px) {
-    #player-name-input::placeholder {
-        content: "Username";
-    }
+#player-name-input:focus {
+    outline: none;
 }
 
 #search-bar-container, #search-btn {
@@ -123,30 +163,59 @@ label[for="player-name-input"] {
     background-color: #3cd040;
     color: white;
     font-size: 12pt;
-    transform: translateY(-3px);
+}
+
+@keyframes smooth-zoom {
+    0% { transform: scale(1); }
+    25% { transform: scale(1.04); }
+    50% { transform: scale(1.08); }
+    75% { transform: scale(1.12); }
+    100% { transform: scale(1.16); }
 }
 
 #send-player:hover {
     background-color: #42e342;
     cursor: pointer;
+    transform: scale(1.1);
+    animation: smooth-zoom 1.2s linear infinite alternate;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
 
 /* Stats page */
-.stats-div {
-    margin-left: 2.5%;
-    margin-right: 2.5%;
+#core-content {
+    position: absolute;
+    width: 100%;
+    max-height: 100%;
+    overflow-y: scroll;
+    padding: 10px;
+
+    margin-inside: 2.5%;
+}
+
+.white-text, .section-title,
+.stats-div > * {
+    color: white;
+    text-shadow: #000000 1px 0 10px;
 }
 
 #skills-stats {
     text-align: center;
 }
 
-#slayer-stats, .slayer-boss-killed{
+#slayer-stats, .slayer-boss-killed {
     display: grid;
     grid-template-rows: repeat(2, 1fr);
     grid-template-columns: repeat(3, 1fr);
     grid-row-gap: 10px;
     grid-column-gap: 10px;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
 .slayer-boss-div {
@@ -208,5 +277,3 @@ label[for="player-name-input"] {
     grid-template-columns: repeat(2, 1fr);
     text-align: center;
 }
-
-

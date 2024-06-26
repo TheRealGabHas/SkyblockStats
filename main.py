@@ -11,10 +11,13 @@ from fastapi.responses import RedirectResponse
 # Project
 from stats_gather import data_pickup
 
-app = FastAPI()
+# Disabling the default routes
+app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None, swagger_ui_oauth2_redirect_url=None)
+
 app.mount("/style", StaticFiles(directory="./assets/stylesheet"), name="style")
 app.mount("/images", StaticFiles(directory="./assets/images"), name="images")
 app.mount("/font", StaticFiles(directory="./assets/font"), name="font")
+app.mount("/video", StaticFiles(directory="./assets/video"), name="video")
 
 templates = Jinja2Templates(directory="templates")
 

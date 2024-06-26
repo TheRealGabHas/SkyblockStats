@@ -6,15 +6,23 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="icon" href="{{ skin_link }}">
 	<link href="{{ url_for('style', path='style.css') }}" rel="stylesheet">
-	<link href="{{ url_for('style', path='animation.css') }}" rel="stylesheet">
 </head>
 <body>
-<a href="http://127.0.0.1:8000/" target="_self">Home</a>
-<div id="head-section" class="red-border">
+
+{#<div id="video-container">#}
+{#	<video id="background-video" playsinline autoplay muted loop>#}
+{#		<source src="/video/background.mp4" type="video/webm">#}
+{#		Your browser does not support the video tag.#}
+{#	</video>#}
+{#</div>#}
+
+<div id="core-content">
+<a href="/" target="_self">Home</a>
+<div id="head-section" class="red-border stats-div">
 	<div class="flex-wrapper">
 		<img id="main-skin-img" src="{{ skin_link }}" width="128" height="128" alt="{{ player_name }}">
 	</div>
-	<h2 class="center">{{ player_name }}</h2>
+	<h2 class="center white-text">{{ player_name }}</h2>
 {% if misc_data != None %}
 	<p class="to-hover center"><strong>First joined:</strong> {{ misc_data["First Join"] }}</p>
 	<p class="center"><strong>Purse:</strong> {{ misc_data["Purse"] }}</p>
@@ -147,6 +155,7 @@
 </div>
 {% else %}
 	<h3 class="center">Trophy fishing data not found for this player.</h3>
-{% endif %} 
+{% endif %}
+</div>
 </body>
 </html>

@@ -6,7 +6,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="icon" href="{{ url_for('images', path='favicon.png') }}">
 	<link href="{{ url_for('style', path='style.css') }}" rel="stylesheet">
-	<link href="{{ url_for('style', path='animation.css') }}" rel="stylesheet">
 </head>
 <body>
 <script>
@@ -19,6 +18,12 @@
         });
     });
 </script>
+<div id="video-container">
+	<video id="background-video" playsinline autoplay muted loop>
+		<source src="/video/background.mp4" type="video/mp4">
+		Your browser does not support the video tag.
+	</video>
+</div>
 <div class="flex-wrapper">
 	<div id="home-form" class="grid-container">
 		<div id="title-div">
@@ -27,6 +32,9 @@
 			{% if message != None %}
 				<p class="center error-message">{{ message }}</p>
 			{% endif %}
+			<noscript>
+				<p class="center error-message">Javascript must be enabled for this website to work properly.</p>
+			</noscript>
 		</div>
 
 		<form method="get" id="player-form">
