@@ -24,7 +24,8 @@
 	<p class="center"><strong>Purse:</strong> -</p>
 {% endif %}
 {% if leveling_data != None %}
-	<p class="center"><strong>Skyblock Level:</strong> {{ leveling_data["Global"] / 100 }}</p>
+
+	<p class="center"><img src="{{ leveling_data["Global"]["icon_path"] }}" alt="{{ skill }} Icon" width="30" height="30"><strong>Skyblock Level:</strong> {{ leveling_data["Global"]["xp"] / 100 }}</p>
 {% else %}
 	<p class="center"><strong>Skyblock Level:</strong> -</p>
 {% endif %}
@@ -33,11 +34,13 @@
 <div id="skills-stats" class="red-border stats-div">
 	<h2 class="section-title center">Skills & Level</h2>
 {% if leveling_data != None %}
-	<h2 id="sb-level" class="title">Skyblock Level: {{ leveling_data["Global"] / 100 }}</h2>
+	<img src="{{ leveling_data["Global"]["icon_path"] }}" alt="{{ skill }} Icon" width="30" height="30">
+	<h2 id="sb-level" class="title">Skyblock Level: {{ leveling_data["Global"]["xp"] / 100 }}</h2>
 	{% for skill in leveling_data %}
 		{% if skill != "Global" %}
+			<img src="{{ leveling_data[skill]["icon_path"] }}" alt="{{ skill }} Icon" width="30" height="30">
 			<p id="{{ skill.lower() }}-info" class="skills-info">
-				<strong>{{ skill | replace("2", "") }} :</strong> {{ leveling_data[skill] }} EXP
+				<strong>{{ skill | replace("2", "") }} :</strong> {{ leveling_data[skill]["xp"] }} EXP
 			</p>
 		{% endif %}
 	{% endfor %}

@@ -66,13 +66,19 @@ class Profile:
         xp_data: dict = {}
 
         global_level = self.get_profile_data("leveling", profile=profile)['experience']
-        xp_data['Global'] = global_level
+        xp_data['Global'] = {
+            "xp": global_level,
+            "icon_path": "/images/Skyblock_Levels.webp"
+        }
 
         for skill in SKILLS:
             key = skill.lower().capitalize()
             value = self.get_selected_profile().get(f'experience_skill_{skill.lower()}', 0)
 
-            xp_data[key] = f"{round(value):,}"
+            xp_data[key] = {
+                "xp": f"{round(value):,}",
+                "icon_path": f"/images/{key}.webp"
+            }
 
         return xp_data
 
