@@ -9,13 +9,6 @@
 </head>
 <body>
 
-{#<div id="video-container">#}
-{#	<video id="background-video" playsinline autoplay muted loop>#}
-{#		<source src="/video/background.mp4" type="video/webm">#}
-{#		Your browser does not support the video tag.#}
-{#	</video>#}
-{#</div>#}
-
 <div id="core-content">
 <a href="/" target="_self">Home</a>
 <div id="head-section" class="red-border stats-div">
@@ -37,29 +30,35 @@
 {% endif %}
 </div>
 
-<h2 class="section-title center">Skills & Level</h2>
-{% if leveling_data != None %}
 <div id="skills-stats" class="red-border stats-div">
+	<h2 class="section-title center">Skills & Level</h2>
+{% if leveling_data != None %}
 	<h2 id="sb-level" class="title">Skyblock Level: {{ leveling_data["Global"] / 100 }}</h2>
 	{% for skill in leveling_data %}
 		{% if skill != "Global" %}
 			<p id="{{ skill.lower() }}-info" class="skills-info">
-				<strong>{{ skill | replace("2", "") }} :</strong> {{ leveling_data[skill] }} EXP</p>
+				<strong>{{ skill | replace("2", "") }} :</strong> {{ leveling_data[skill] }} EXP
+			</p>
 		{% endif %}
 	{% endfor %}
-</div>
 {% else %}
 	<h3 class="center">Skills data not found for this player.</h3>
 {% endif %}
+</div>
 
-<h2 class="section-title center">Slayer</h2>
-{% if slayer_data != None %}
 <div id="slayer-stats" class="red-border stats-div">
+	<h2 class="section-title center">Slayer</h2>
+{% if slayer_data != None %}
+	<div id="slayer-cards">
 	{% for boss in slayer_data %}
-		<div id="{{ boss.lower() }}" class="slayer-boss-div">
-			<h3 class="{{ boss.lower() }}-boss-level boss-title"><strong>{{ boss }} -
-				LVL {{ slayer_data[boss]["current_level"] }}</strong></h3>
-			<p class="{{ boss.lower() }}-boss-xp boss-xp">{{ slayer_data[boss]["xp"] }} EXP
+		<div id="{{ boss.lower() }}" class="slayer-boss-div center">
+			<div id="slayer-title-container">
+				<img src="" alt="{{ boss.lower().capitalize() }} Icon" width="30" height="30">
+				<h3 class="{{ boss.lower() }}-boss-level boss-title center">
+					{{ boss }} - LVL {{ slayer_data[boss]["current_level"] }}
+				</h3>
+			</div>
+			<p class="{{ boss.lower() }}-boss-xp boss-xp center">{{ slayer_data[boss]["xp"] }} EXP
 				/ {{ slayer_data[boss]["next_lvl_xp"] }}</p>
 			<hr class="slayer-separator">
 			<div id="{{ boss.lower() }}-boss-killed" class="slayer-boss-killed">
@@ -70,14 +69,15 @@
 			</div>
 		</div>
 	{% endfor %}
-</div>
+	</div>
 {% else %}
 	<h3 class="center">Slayer data not found for this player.</h3>
 {% endif %}
+</div>
 
-<h2 class="section-title center">Rift</h2>
-{% if rift_data != None %}
 <div id="rift-stats" class="red-border stats-div">
+	<h2 class="section-title center">Rift</h2>
+{% if rift_data != None %}
 	<div id="rift-trophies" class="red-border">
 		{% if rift_data['trophies'] | length > 0 %}
 			<h3 class="center">Unlocked Timecharms</h3>
@@ -92,7 +92,7 @@
 		{% endif %}
 		{% if rift_data['missing_trophies'] | length > 0 %}
 			<div id="missing-timecharm" class="red-border">
-				<h3>Missing Timecharms</h3>
+				<h3 class="center">Missing Timecharms</h3>
 				{% for trophy in rift_data['missing_trophies'] %}
 					<div class="rift-missing-trophy">
 						<strong>{{ trophy }}</strong>
@@ -113,27 +113,27 @@
 		<p><strong>Lifetime earned motes:</strong> {{ rift_data['lifetime_motes'] }}</p>
 		<p><strong>Orb picked-up:</strong> {{ rift_data['orbs'] }}</p>
 	</div>
-</div>
 {% else %}
 	<h3 class="center">Rift data not found for this player.</h3>
 {% endif %}
+</div>
 
-<h2 class="section-title center">Miscellaneous</h2>
-{% if misc_data != None %}
 <div id="misc-stats" class="red-border stats-div">
+	<h2 class="section-title center">Miscellaneous</h2>
+{% if misc_data != None %}
 	<div class="red-border">
 		{% for stats in misc_data %}
 			<p class="misc-data"><strong>{{ stats }}:</strong> {{ misc_data[stats] }}</p>
 		{% endfor %}
 	</div>
-</div>
 {% else %}
 	<h3 class="center">Misc data not found for this player.</h3>
 {% endif %}
+</div>
 
-<h2 class="section-title center">Trophy Fishing</h2>
-{% if trophy_data != None %}
 <div id="trophy-stats" class="red-border stats-div">
+	<h2 class="section-title center">Trophy Fishing</h2>
+{% if trophy_data != None %}
 	<div id="trophy-fish-misc" class="red-border">
 		{% for element in trophy_data[1] %}
 			<p><strong>{{ element }}</strong>: {{ trophy_data[1][element] }}</p>
@@ -142,8 +142,8 @@
 
 	<div id="trophy-fish-count" class="red-border">
 		{% for trophy in trophy_data[0] %}
-			<div id="{{ trophy.keys() | first }}-summary" class="red-border fish-card">
-				<h3 id="{{ trophy.keys() | first }}-title">{{ trophy.keys() | first }}</h3>
+			<div id="{{ trophy.keys() | first }}-summary" class="fish-card">
+				<h3 id="{{ trophy.keys() | first }}-title" class="center">{{ trophy.keys() | first }}</h3>
 				<div class="trophy-count">
 					{% for fish_rarity in trophy[trophy.keys() | first] %}
 						<p><strong>{{ fish_rarity}}</strong>: {{ trophy[trophy.keys() | first][fish_rarity] }}</p>
@@ -152,10 +152,12 @@
 			</div>
 		{% endfor %}
 	</div>
-</div>
 {% else %}
 	<h3 class="center">Trophy fishing data not found for this player.</h3>
 {% endif %}
 </div>
+</div>
+
+<script src="/scripts/app.js" type="application/javascript"></script>
 </body>
 </html>
