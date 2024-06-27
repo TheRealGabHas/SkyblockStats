@@ -216,13 +216,14 @@ footer {
     grid-column-gap: 10px;
 }
 
-#slayer-title-container {
+.icon-text {
     width: 100%;
     display: inline-flex;
-    justify-content: center;
+    justify-content: space-around;
+    align-items: center;
 }
 
-#slayer-title-container img {
+.icon-text img {
     margin-right: 5px;
 }
 
@@ -288,6 +289,13 @@ footer {
     text-align: center;
 }
 
+@media screen and (max-width: 1020px) {
+    #trophy-fish-count {
+        grid-template-rows: repeat(6, 1fr);
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 @media screen and (max-width: 978px) {
     #slayer-cards, .slayer-boss-killed {
         grid-template-rows: repeat(3, 1fr);
@@ -305,5 +313,17 @@ footer {
     .slayer-boss-killed {
         grid-template-rows: repeat(3, 1fr);
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    #trophy-fish-count {
+        grid-template-rows: repeat(9, 1fr);
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 510px) {
+    #trophy-fish-count {
+        grid-template-rows: repeat(18, 1fr);
+        grid-template-columns: repeat(1, 1fr);
     }
 }

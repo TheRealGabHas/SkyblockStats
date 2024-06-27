@@ -255,6 +255,7 @@ class Profile:
             for rarity in consts.TROPHY_RARITIES:
                 current_fish[label][rarity.capitalize()] = fishes.get(f"{fish}_{rarity}", "X")
 
+            current_fish["icon_path"] = f"/images/{label}_bronze.webp"
             fish_record.append(current_fish)
-
+        print(fish_record)
         return fish_record, misc_trophy_stats

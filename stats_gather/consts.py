@@ -51,3 +51,24 @@ TROPHY_FISH: list = ['blobfish', 'flyfish', 'golden_fish', 'gusher', 'karate_fis
 TROPHY_RARITIES: list = ["bronze", "silver", "gold", "diamond"]
 TROPHY_MISC: list = ["rewards", "last_caught", "total_caught"]
 TROPHY_REWARDS: list = ["Bronze Hunter Reward", "Silver Hunter Reward", "Gold Hunter Reward", "Diamond Hunter Reward"]
+
+TROPHY_FISH_ICONS: dict = {
+    "Blobfish": "Blobfish_bronze",
+    "Flyfish": "Flyfish_bronze",
+    "Golden fish": "Golden_fish_bronze",
+    "Gusher": "Gusher_bronze",
+    "Karate fish": "Karate_fish_bronze",
+    "Lava horse": "Lava_horse_bronze",
+    "Mana ray": "Mana_ray_bronze",
+    "Moldfin": "Moldfin_bronze",
+    "Obfuscated fish": "Obfuscated_fish_1_bronze",
+    "Obfuscated fish 2": "Obfuscated_fish_2_bronze",
+    "Obfuscated fish 3": "Obfuscated_fish_3_bronze",
+    "Skeleton fish": "Skeleton_fish_bronze",
+    "Slugfish": "Slugfish_bronze",
+    "Soul fish": "Soul_fish_bronze",
+    "Steaming hot flounder": "Steaming_hot_flounder_bronze",
+    "Sulphur skitter": "Sulphur_skitter_bronze",
+    "Vanille": "Vanille_bronze",
+    "Volcanic stonefish": "Volcanic_stonefish_bronze",
+}
