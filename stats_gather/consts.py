@@ -32,6 +32,15 @@ SLAYER_MAX_BOSS_TIER: dict = {
     "vampire": 5
 }
 
+SLAYER_BOSS_ICONS: dict = {
+    "zombie": "Rotten_Flesh",
+    "spider": "Cobweb",
+    "wolf": "Raw_Mutton",
+    "enderman": "Ender_Pearl",
+    "blaze": "Blaze_Powder",
+    "vampire": "Redstone_Dust"
+}
+
 TIMECHARMS: list = ["Wyldly supreme Timecharm", "Mirrored Timecharm", "Chicken n egg Timecharm",
                     "Citizen Timecharm", "Lazy living Timecharm", "Slime Timecharm", "Vampiric Timecharm"]
 

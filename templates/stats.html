@@ -53,7 +53,7 @@
 	{% for boss in slayer_data %}
 		<div id="{{ boss.lower() }}" class="slayer-boss-div center">
 			<div id="slayer-title-container">
-				<img src="" alt="{{ boss.lower().capitalize() }} Icon" width="30" height="30">
+				<img src="{{ slayer_data[boss]["icon_path"] }}" alt="{{ boss.lower().capitalize() }} Icon" width="30" height="30">
 				<h3 class="{{ boss.lower() }}-boss-level boss-title center">
 					{{ boss }} - LVL {{ slayer_data[boss]["current_level"] }}
 				</h3>
@@ -158,6 +158,5 @@
 </div>
 </div>
 
-<script src="/scripts/app.js" type="application/javascript"></script>
 </body>
 </html>

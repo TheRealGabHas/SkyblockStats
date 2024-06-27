@@ -15,11 +15,10 @@ from stats_gather import data_pickup
 app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None, swagger_ui_oauth2_redirect_url=None)
 
 # Mounting all the directories
-app.mount("/style", StaticFiles(directory="./assets/stylesheet"), name="style")
-app.mount("/images", StaticFiles(directory="./assets/images"), name="images")
-app.mount("/font", StaticFiles(directory="./assets/font"), name="font")
-app.mount("/video", StaticFiles(directory="./assets/video"), name="video")
-app.mount("/scripts", StaticFiles(directory="./assets/scripts"), name="scripts")
+app.mount("/style", StaticFiles(directory="./templates/assets/stylesheet"), name="style")
+app.mount("/images", StaticFiles(directory="./templates/assets/images"), name="images")
+app.mount("/font", StaticFiles(directory="./templates/assets/font"), name="font")
+app.mount("/video", StaticFiles(directory="./templates/assets/video"), name="video")
 
 templates = Jinja2Templates(directory="templates")
 
@@ -52,7 +51,9 @@ async def stats(request: Request, name: str):
     result = p.gather_stats()  # Send API request to Hypixel to fetch the player's stats
 
     if not result:
-        return RedirectResponse(url="/")
+        return templates.TemplateResponse("home.html",
+                                          {"request": request,
+                                           "message": "An error occurred during the Hypixel API request"})
 
     try:
         slayer_data = p.get_slayer_data()

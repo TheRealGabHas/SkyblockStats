@@ -7,7 +7,7 @@ import requests
 import stats_gather.consts
 import stats_gather.s_utils as utils
 import stats_gather.consts as consts
-from stats_gather.consts import SKILLS, SLAYER_XP_REQUIREMENTS, SLAYER_MAX_BOSS_TIER, TIMECHARMS
+from stats_gather.consts import SKILLS, SLAYER_XP_REQUIREMENTS, SLAYER_MAX_BOSS_TIER, SLAYER_BOSS_ICONS, TIMECHARMS
 
 
 with open("stats_gather/credentials.json", "r") as file:
@@ -121,7 +121,8 @@ class Profile:
                 "current_level": len(sl_data[boss].get("claimed_levels", {}).keys()),  # Current level
                 "xp": current_xp,
                 "next_lvl_xp": next_level_xp,
-                "boss_kills": boss_kills
+                "boss_kills": boss_kills,
+                "icon_path": f"/images/{SLAYER_BOSS_ICONS[boss]}.webp"
             }
 
         # Make sure the dictionary is correctly ordered
