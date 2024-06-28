@@ -156,7 +156,7 @@
 	<div id="trophy-fish-count" class="red-border">
 		{% for trophy in trophy_data[0] %}
 			<div id="{{ trophy.keys() | first }}-summary" class="fish-card">
-				<div class="icon-text">
+				<div class="icon-text center">
 					<img src="{{ trophy['icon_path'] | replace(" ", "_") }}" alt="{{ trophy.keys() | first }} Icon" width="30" height="30">
 					<h3 id="{{ trophy.keys() | first }}-title" class="center">{{ trophy.keys() | first }}</h3>
 				</div>

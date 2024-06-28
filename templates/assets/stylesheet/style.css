@@ -219,12 +219,11 @@ footer {
 .icon-text {
     width: 100%;
     display: inline-flex;
-    justify-content: space-around;
-    align-items: center;
+    justify-content: center;
 }
 
 .icon-text img {
-    margin-right: 5px;
+    margin-right: 10px;
 }
 
 .slayer-boss-div {
@@ -275,11 +274,16 @@ footer {
 }
 
 .fish-card {
+    padding-top: 10px;
     border-radius: 5px;
     background-color: rgba(9, 8, 8, 0.6);
 
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
+}
+
+.fish-card p, .fish-card h3 {
+    white-space: nowrap;
 }
 
 .trophy-count {
@@ -303,6 +307,13 @@ footer {
     }
 }
 
+@media screen and (max-width: 715px) {
+        #trophy-fish-count {
+        grid-template-rows: repeat(9, 1fr);
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media screen and (max-width: 650px) {
     #slayer-cards {
         grid-template-rows: repeat(4, 1fr);
@@ -315,13 +326,6 @@ footer {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    #trophy-fish-count {
-        grid-template-rows: repeat(9, 1fr);
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media screen and (max-width: 510px) {
     #trophy-fish-count {
         grid-template-rows: repeat(18, 1fr);
         grid-template-columns: repeat(1, 1fr);
