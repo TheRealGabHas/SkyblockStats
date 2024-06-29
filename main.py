@@ -55,6 +55,7 @@ async def stats(request: Request, name: str):
                                           {"request": request,
                                            "message": "An error occurred during the Hypixel API request"})
 
+    # TODO: Add better error handling to prevent the usage of try/except
     try:
         slayer_data = p.get_slayer_data()
     except Exception:
@@ -74,12 +75,8 @@ async def stats(request: Request, name: str):
 
     trophy_data = p.get_trophy_stats()
 
-    return templates.TemplateResponse("stats.html",
-                                      {"request": request,
-                                       "player_name": name, "player_uuid": _uuid, "skin_link": skin_link,
-                                       "leveling_data": leveling_data,
-                                       "slayer_data": slayer_data,
-                                       "rift_data": rift_data,
-                                       "misc_data": misc_data,
-                                       "trophy_data": trophy_data
-                                       })
+    context: dict = {"request": request, "player_name": name, "player_uuid": _uuid, "skin_link": skin_link,
+                     "leveling_data": leveling_data, "slayer_data": slayer_data, "rift_data": rift_data,
+                     "misc_data": misc_data, "trophy_data": trophy_data}
+
+    return templates.TemplateResponse("stats.html", context=context)
