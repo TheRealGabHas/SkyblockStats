@@ -40,7 +40,9 @@ async def stats(request: Request, name: str):
     player_data = requests.get(f"https://playerdb.co/api/player/minecraft/{name}")
     # If this Minecraft account doesn't exist → 404 Not Found
     if not player_data.ok:
-        return RedirectResponse(url="/")
+        return templates.TemplateResponse("home.html",
+                                          {"request": request,
+                                           "message": f"Minecraft account not found for {name}"})
 
     player_data = player_data.json()
     _uuid: str = player_data["data"]["player"]["id"]
