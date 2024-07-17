@@ -6,7 +6,6 @@ import requests
 from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from fastapi.responses import RedirectResponse
 
 # Project
 from stats_gather import data_pickup
