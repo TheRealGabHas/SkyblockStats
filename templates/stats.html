@@ -49,7 +49,7 @@
 		<div class="icon-text">
 			<img src="{{ leveling_data[skill]["icon_path"] }}" alt="{{ skill }} Icon" width="30" height="30">
 			<p id="{{ skill.lower() }}-info" class="skills-info">
-				<strong>{{ skill | replace("2", "") }} :</strong> {{ leveling_data[skill]["xp"] }} EXP
+				<strong>{{ skill | replace("2", "") }} :</strong> {{ leveling_data[skill]["level"] }} ({{ leveling_data[skill]["xp"] }} EXP)
 			</p>
 		</div>
 		{% endif %}
