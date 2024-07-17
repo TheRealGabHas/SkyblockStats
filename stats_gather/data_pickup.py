@@ -71,7 +71,7 @@ class Profile:
             "xp": global_level,
             "icon_path": "/images/Skyblock_Levels.webp"
         }
-        print(SKILLS)
+
         for skill in SKILLS:
             key = skill.lower().capitalize()
             value = self.get_selected_profile().get(f'experience_skill_{skill.lower()}', 0)
@@ -185,10 +185,10 @@ class Profile:
         # Number of found Enigma souls
         rift_data['souls'] = len(souls)
 
+        # Amount of time spent sitting alone (minutes, seconds)
         if lonely is None:
             rift_data['time_sitting'] = (0, 0)
         else:
-            # Amount of time spent sitting alone (minutes, seconds)
             rift_data['time_sitting'] = int(lonely / 60), lonely % 60
 
         # Amount of Montezuma soul fragments found
@@ -210,7 +210,7 @@ class Profile:
         coin_purse = self.get_profile_data("coin_purse", profile=profile)
         bank_level = self.get_profile_data("personal_bank_upgrade", profile=profile)
 
-        first_join = datetime.datetime.utcfromtimestamp(int(join_date / 1000)).strftime('%Y-%m-%d %H:%M:%S')
+        first_join = datetime.datetime.fromtimestamp(int(join_date / 1000)).strftime('%Y-%m-%d %H:%M:%S')
 
         if soulflow is None:
             soulflow = 0
