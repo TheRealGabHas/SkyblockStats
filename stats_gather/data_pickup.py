@@ -66,19 +66,32 @@ class Profile:
         xp_data: dict = {}
 
         global_level = self.get_profile_data("leveling", profile=profile)['experience']
+
         xp_data['Global'] = {
             "xp": global_level,
             "icon_path": "/images/Skyblock_Levels.webp"
         }
-
+        print(SKILLS)
         for skill in SKILLS:
             key = skill.lower().capitalize()
             value = self.get_selected_profile().get(f'experience_skill_{skill.lower()}', 0)
+
+            if key == "Social2":
+                skill_table = consts.SOCIAL_XP_REQUIREMENTS
+            elif key == "Runecrafting":
+                skill_table = consts.RUNECRAFTING_XP_REQUIREMENTS
+            else:
+                skill_table = consts.SKILLS_XP_REQUIREMENTS
 
             xp_data[key] = {
                 "xp": f"{round(value):,}",
                 "icon_path": f"/images/{key}.webp"
             }
+
+            if key != "Global":
+                xp_data[key]['level'] = utils.get_level_from_xp(f"{round(value):,}", skill_table=skill_table)
+
+        # TODO: Take the Taming and Runecrafting level cap into account
 
         return xp_data
 
