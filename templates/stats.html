@@ -17,7 +17,11 @@
 	</div>
 	<h2 class="center white-text">{{ player_name }}</h2>
 {% if misc_data != None %}
-	<p class="to-hover center"><strong>First joined:</strong> {{ misc_data["First Join"] }}</p>
+	<div class="flex-wrapper">
+    <p class="center tooltip-container">
+        <strong>First joined:</strong> {{ misc_data["First Join"] }}<span class="tooltip">Format: YYYY-dd-MM hh:mm:ss</span>
+    </p>
+    </div>
 	<p class="center"><strong>Purse:</strong> {{ misc_data["Purse"] }}</p>
 {% else %}
 	<p class="to-hover center"><strong>First joined:</strong> -</p>

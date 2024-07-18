@@ -235,7 +235,7 @@ footer {
     line-height: 1.6;
     text-align: left;
     white-space: nowrap;
-    transform: translate(-50%, 1em);
+    transform: translate(-50%, 14pt);
     transition: all .15s ease-in-out;
 }
 
