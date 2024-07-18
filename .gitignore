@@ -3,3 +3,4 @@
 test_main.http
 stats_gather/credentials.json
 .gitignore
+__pycache__
