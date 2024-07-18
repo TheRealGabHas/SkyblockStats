@@ -208,6 +208,49 @@ footer {
     text-shadow: #000000 1px 0 10px;
 }
 
+.tooltip-container {
+    position: relative;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+}
+
+.tooltip-container:hover > .tooltip {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+.tooltip-container .tooltip {
+    position: absolute;
+    left: 50%;
+    bottom: 100%;
+    opacity: 0;
+    margin-bottom: 1em;
+    padding: 1em;
+    background-color: #000;
+    border-radius: 5px;
+    font-size: 12pt;
+    line-height: 1.6;
+    text-align: left;
+    white-space: nowrap;
+    transform: translate(-50%, 1em);
+    transition: all .15s ease-in-out;
+}
+
+.tooltip-container .tooltip::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border: .5em solid transparent;
+    border-top-color: #000;
+    transform: translate(-50%, 0);
+}
+
 #slayer-cards, .slayer-boss-killed {
     display: grid;
     grid-template-rows: repeat(2, 1fr);

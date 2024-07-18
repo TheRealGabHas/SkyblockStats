@@ -48,8 +48,8 @@
 		{% if skill != "Global" %}
 		<div class="icon-text">
 			<img src="{{ leveling_data[skill]["icon_path"] }}" alt="{{ skill }} Icon" width="30" height="30">
-			<p id="{{ skill.lower() }}-info" class="skills-info">
-				<strong>{{ skill | replace("2", "") }} :</strong> {{ leveling_data[skill]["level"] }} ({{ leveling_data[skill]["xp"] }} EXP)
+			<p id="{{ skill.lower() }}-info" class="skills-info tooltip-container">
+                <strong>{{ skill | replace("2", "") }} :</strong> {{ leveling_data[skill]["level"] }} <span class="tooltip">{{ leveling_data[skill]["xp"] }} EXP</span>
 			</p>
 		</div>
 		{% endif %}
