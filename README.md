@@ -31,6 +31,34 @@ The Hypixel API key must go in the `stats_gather/credentials.json` file followin
 ```
 **Note:** You must create this file.
 
+## Deployment
+
+To run the project, the first step is to clone the repository :
+```shell
+git clone https://github.com/TheRealGabHas/SkyblockStats 
+```
+
+The use uvicorn to run the server :
+```shell
+python -m uvicorn main:app --reload --no-server-header
+```
+- `--reload`: Allows hot reload without restarting the whole server on modification.
+- `--no-server-header`: Removes information about the server from the request header (Apache, Nginx...).
+
+The server will run on the port 8000. This value can be edited with the `--port [INTEGER]` parameter. 
+For more information, see the list of all the [command line options](https://www.uvicorn.org/#command-line-options).
+
+For security purpose, consider using a reverse proxy. Here is minimal example with Apache2 :
+```bash
+<VirtualHost *:443>
+    ServerName skyblock.my-website.com
+    
+    RewriteEngine On
+    ProxyPass / http://127.0.0.1:8000/
+    ProxyPassReverse / http://127.0.0.1:8000/
+</VirtualHost>
+```
+
 ## Files and folders
 
 The project is composed of several folders:
