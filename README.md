@@ -39,3 +39,9 @@ templates
 - [`templates`](templates) : Contains all the Jinja2 templates and web resources (images, stylesheets...)
 
 The [`main.py`](main.py) file runs the web server, references the routes and send the data to the Jinja2 templates.
+
+## Goals
+
+- [ ] Add Chocolate Factory stats viewer
+- [ ] Add profile selector
+- [ ] Add icon for every field
