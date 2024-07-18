@@ -252,6 +252,10 @@ footer {
     margin: 2.5% 10% 1.5%;
 }
 
+.slayer-title-container {
+    margin-top: 5px;
+}
+
 #unlocked-timecharms {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
