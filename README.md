@@ -77,3 +77,4 @@ The [`main.py`](main.py) file runs the web server, references the routes and sen
 - [ ] Add Chocolate Factory stats viewer
 - [ ] Add profile selector
 - [ ] Add icon for every field
+- [ ] Add and complete a page about user data, credits, legals...
