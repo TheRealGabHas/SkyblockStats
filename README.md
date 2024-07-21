@@ -64,6 +64,13 @@ For security purpose, consider using a reverse proxy. Here is minimal example wi
 The project is composed of several folders:
 - [`stats_gather`](stats_gather) : Contains the Python file that gather and prepare the data that will be used in the 
 templates
+  - [`consts.py`](stats_gather/consts.py) : A Python file containing a lot of game constants (XP levels, items names...)
+  - [`data_pickup.py`](stats_gather/data_pickup.py) : The file that collects every data and format it before sending 
+  it to the template.
+  - [`s_utils.py`](stats_gather/s_utils.py) : Some utility functions in Python
+  - [`credentials.json`](stats_gather/credentials.json) : JSON file in which the API-Key must be filled 
+  (see [API Key](#api-key))
+  
 - [`templates`](templates) : Contains all the Jinja2 templates and web resources (images, stylesheets...)
 
 The [`main.py`](main.py) file runs the web server, references the routes and send the data to the Jinja2 templates.
