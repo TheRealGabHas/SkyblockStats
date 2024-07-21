@@ -75,6 +75,18 @@ templates
 
 The [`main.py`](main.py) file runs the web server, references the routes and send the data to the Jinja2 templates.
 
+### The tooltip system
+
+Some text are intended to display a tooltip on hover. To do so, the concept from 
+[Chris Bracco](https://codepen.io/cbracco/pen/nXEQLw). The CSS code is contained in the 
+[`tooltip.css`](templates/assets/stylesheet/tooltip.css).
+
+To add a tooltip to an element, add the custom attribute `data-tooltip` to the HTML tag. For instance, the following 
+code displays "This is the tooltip text" when hovering the `<p>` element.
+```html
+<p data-tooltip="This is the tooltip text">Hello world</p>
+```
+
 ## Goals
 
 - [ ] Add Chocolate Factory stats viewer
