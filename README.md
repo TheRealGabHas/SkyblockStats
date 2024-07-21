@@ -1,10 +1,6 @@
 # Skyblock Stats
 
-<div style="text-align: center;">
-
-![Skyblock Stats](templates/assets/images/favicon.png)
-
-</div>
+<div style="text-align: center;"><img src="templates/assets/images/favicon.png" alt="Skyblock Stats"></div>
 
 ## Description
 
