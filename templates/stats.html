@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="icon" href="{{ skin_link }}">
 	<link href="{{ url_for('style', path='style.css') }}" rel="stylesheet">
+    <link href="{{ url_for('style', path='tooltip.css') }}" rel="stylesheet">
 </head>
 <body>
 
@@ -18,9 +19,8 @@
 	<h2 class="center white-text">{{ player_name }}</h2>
 {% if misc_data != None %}
 	<div class="flex-wrapper">
-    <p class="center tooltip-container">
-        <strong>First joined:</strong> {{ misc_data["First Join"] }}<span class="tooltip">Format: YYYY-dd-MM hh:mm:ss</span>
-    </p>
+    <p class="center tooltip-container" data-tooltip="Format: YYYY-dd-MM hh:mm:ss">
+        <strong>First joined:</strong> {{ misc_data["First Join"] }}</p>
     </div>
 	<p class="center"><strong>Purse:</strong> {{ misc_data["Purse"] }}</p>
 {% else %}
@@ -52,9 +52,8 @@
 		{% if skill != "Global" %}
 		<div class="icon-text">
 			<img src="{{ leveling_data[skill]["icon_path"] }}" alt="{{ skill }} Icon" width="30" height="30">
-			<p id="{{ skill.lower() }}-info" class="skills-info tooltip-container">
-                <strong>{{ skill | replace("2", "") }} :</strong> {{ leveling_data[skill]["level"] }} <span class="tooltip">{{ leveling_data[skill]["xp"] }} EXP</span>
-			</p>
+			<p id="{{ skill.lower() }}-info" class="skills-info tooltip-container" data-tooltip="{{ leveling_data[skill]["xp"] }} EXP">
+                <strong>{{ skill | replace("2", "") }} :</strong> {{ leveling_data[skill]["level"] }}</p>
 		</div>
 		{% endif %}
 	{% endfor %}
