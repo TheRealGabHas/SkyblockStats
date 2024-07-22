@@ -87,14 +87,10 @@ class Profile:
             else:
                 break
 
-        _color = hex(level_color).replace("0x", "#")
-        if _color == "#bebe":  # Handle the case of the cyan (where 0x00bebe gets converted to #bebe, we want #00bebe)
-            _color = "#00bebe"
-
         xp_data['Global'] = {
             "xp": global_level,
             "icon_path": "/images/Skyblock_Levels.webp",
-            "color": _color
+            "color": f"#{level_color:06x}"
         }
 
         for skill in SKILLS:
