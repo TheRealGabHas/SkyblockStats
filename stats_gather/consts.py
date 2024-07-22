@@ -111,3 +111,28 @@ TROPHY_FISH_ICONS: dict = {
     "Vanille": "Vanille_bronze",
     "Volcanic stonefish": "Volcanic_stonefish_bronze",
 }
+
+# --- COLORS ---
+
+LEVELS_COLOR: dict = {
+    0: 0xbebebe,
+    40: 0xffffff,
+    120: 0x3ffe3f,
+    160: 0x00be00,
+    200: 0x3ffefe,
+    240: 0x00bebe,
+    280: 0x3f3ffe,
+    320: 0xfe3ffe,
+    360: 0xbe00be,
+    400: 0xd9a334,
+    440: 0xfe3f3f,
+    480: 0xbe0000
+}
+
+RANKS_COLOR: dict = {
+    "VIP": 0x3ffe3f,
+    "VIP+": 0x3ffe3f,
+    "MVP": 0x3ffefe,
+    "MVP+": 0x3ffefe,
+    "MVP++": 0xd9a334,
+}
