@@ -28,6 +28,7 @@ class Profile:
         rank_data = requests.get(f"https://api.hypixel.net/v2/player?uuid={self.uuid}", headers=header).json()
         if rank_data is not None:
             self.rank = rank_data['player'].get('newPackageRank', "None")
+            self.rank = self.rank.replace("PLUS", "+").replace("_", "")
 
             if rank_data['player']['stats'].get('SkyBlock', None) is not None:
                 self.skyblock_profiles = rank_data['player']['stats']['SkyBlock']['profiles']
