@@ -7,7 +7,8 @@ import requests
 import stats_gather.consts
 import stats_gather.s_utils as utils
 import stats_gather.consts as consts
-from stats_gather.consts import SKILLS, SLAYER_XP_REQUIREMENTS, SLAYER_MAX_BOSS_TIER, SLAYER_BOSS_ICONS, TIMECHARMS
+from stats_gather.consts import (SKILLS, SLAYER_XP_REQUIREMENTS, SLAYER_MAX_BOSS_TIER, SLAYER_BOSS_ICONS, TIMECHARMS,
+                                 RANKS_COLOR)
 
 
 with open("stats_gather/credentials.json", "r") as file:
@@ -22,6 +23,7 @@ class Profile:
         self.data = None
         self.uuid: str = uuid
         self.rank: str = "None"
+        self.rank_color: str = "0xfff"
         self.skyblock_profiles: dict = {}
 
     def gather_rank(self):
@@ -29,6 +31,8 @@ class Profile:
         if rank_data is not None:
             self.rank = rank_data['player'].get('newPackageRank', "None")
             self.rank = self.rank.replace("PLUS", "+").replace("_", "")
+
+            self.rank_color = hex(RANKS_COLOR.get(self.rank, 0xfff)).replace("0x", "#")
 
             if rank_data['player']['stats'].get('SkyBlock', None) is not None:
                 self.skyblock_profiles = rank_data['player']['stats']['SkyBlock']['profiles']

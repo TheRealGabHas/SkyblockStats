@@ -17,8 +17,8 @@
 		<img id="main-skin-img" src="{{ skin_link }}" width="128" height="128" alt="{{ player_name }}">
 	</div>
 	<h2 class="center white-text">
-        {% if rank != "None" %}
-        	[{{ rank }}]
+        {% if rank_data['rank'] != "None" %}
+        	<span style="color: {{ rank_data['color'] }}">{{ rank_data['rank'] }}</span>
         {% endif %}
         {% if leveling_data != None %}
         	[{{ (leveling_data["Global"]["xp"] / 100) | int }}]
