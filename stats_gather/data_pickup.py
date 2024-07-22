@@ -29,13 +29,14 @@ class Profile:
     def gather_rank(self):
         rank_data = requests.get(f"https://api.hypixel.net/v2/player?uuid={self.uuid}", headers=header).json()
         if rank_data is not None:
-            self.rank = rank_data['player'].get('newPackageRank', "None")
-            self.rank = self.rank.replace("PLUS", "+").replace("_", "")
+            if rank_data.get('player') is not None:
+                self.rank = rank_data['player'].get('newPackageRank', "None")
+                self.rank = self.rank.replace("PLUS", "+").replace("_", "")
 
-            self.rank_color = hex(RANKS_COLOR.get(self.rank, 0xfff)).replace("0x", "#")
+                self.rank_color = hex(RANKS_COLOR.get(self.rank, 0xfff)).replace("0x", "#")
 
-            if rank_data['player']['stats'].get('SkyBlock', None) is not None:
-                self.skyblock_profiles = rank_data['player']['stats']['SkyBlock']['profiles']
+                if rank_data['player']['stats'].get('SkyBlock', None) is not None:
+                    self.skyblock_profiles = rank_data['player']['stats']['SkyBlock']['profiles']
 
     def gather_stats(self) -> bool:
         _data = requests.get(f"https://api.hypixel.net/skyblock/profiles?uuid={self.uuid}", headers=header).json()
