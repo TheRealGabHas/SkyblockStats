@@ -117,6 +117,7 @@ TROPHY_FISH_ICONS: dict = {
 LEVELS_COLOR: dict = {
     0: 0xbebebe,
     40: 0xffffff,
+    80: 0xfefe3f,
     120: 0x3ffe3f,
     160: 0x00be00,
     200: 0x3ffefe,

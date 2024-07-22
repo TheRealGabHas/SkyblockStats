@@ -21,7 +21,7 @@
         	<span style="color: {{ rank_data['color'] }}">{{ rank_data['rank'] }}</span>
         {% endif %}
         {% if leveling_data != None %}
-        	[{{ (leveling_data["Global"]["xp"] / 100) | int }}]
+        	[<span style="color: {{ leveling_data["Global"]["color"] }}">{{ (leveling_data["Global"]["xp"] / 100) | int }}</span>]
         {% endif %}
         {{ player_name }}
     </h2>

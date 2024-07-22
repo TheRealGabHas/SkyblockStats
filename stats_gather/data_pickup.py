@@ -8,7 +8,7 @@ import stats_gather.consts
 import stats_gather.s_utils as utils
 import stats_gather.consts as consts
 from stats_gather.consts import (SKILLS, SLAYER_XP_REQUIREMENTS, SLAYER_MAX_BOSS_TIER, SLAYER_BOSS_ICONS, TIMECHARMS,
-                                 RANKS_COLOR)
+                                 RANKS_COLOR, LEVELS_COLOR)
 
 
 with open("stats_gather/credentials.json", "r") as file:
@@ -78,10 +78,18 @@ class Profile:
         xp_data: dict = {}
 
         global_level = self.get_profile_data("leveling", profile=profile)['experience']
+        level_color = 0xbebebe
+
+        for level, color in LEVELS_COLOR.items():
+            if global_level*0.01 > level:
+                level_color = color
+            else:
+                break
 
         xp_data['Global'] = {
             "xp": global_level,
-            "icon_path": "/images/Skyblock_Levels.webp"
+            "icon_path": "/images/Skyblock_Levels.webp",
+            "color": hex(level_color).replace("0x", "#")
         }
 
         for skill in SKILLS:
