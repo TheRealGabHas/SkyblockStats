@@ -20,6 +20,9 @@
         {% if rank != "None" %}
         	[{{ rank }}]
         {% endif %}
+        {% if leveling_data != None %}
+        	[{{ (leveling_data["Global"]["xp"] / 100) | int }}]
+        {% endif %}
         {{ player_name }}
     </h2>
 {% if misc_data != None %}
