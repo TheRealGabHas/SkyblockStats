@@ -21,6 +21,16 @@ class Profile:
     def __init__(self, uuid: str):
         self.data = None
         self.uuid: str = uuid
+        self.rank: str = "None"
+        self.skyblock_profiles: dict = {}
+
+    def gather_rank(self):
+        rank_data = requests.get(f"https://api.hypixel.net/v2/player?uuid={self.uuid}", headers=header).json()
+        if rank_data is not None:
+            self.rank = rank_data['player'].get('newPackageRank', "None")
+
+            if rank_data['player']['stats'].get('SkyBlock', None) is not None:
+                self.skyblock_profiles = rank_data['player']['stats']['SkyBlock']['profiles']
 
     def gather_stats(self) -> bool:
         _data = requests.get(f"https://api.hypixel.net/skyblock/profiles?uuid={self.uuid}", headers=header).json()

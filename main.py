@@ -49,6 +49,7 @@ async def stats(request: Request, name: str):
     skin_link: str = f"https://crafthead.net/avatar/{_uuid}/256"
 
     p = data_pickup.Profile(uuid=_uuid)
+    p.gather_rank()  # Send API request to fetch the player's Hypixel rank (and a list of SkyBlock profiles)
     result = p.gather_stats()  # Send API request to Hypixel to fetch the player's stats
 
     if not result:
