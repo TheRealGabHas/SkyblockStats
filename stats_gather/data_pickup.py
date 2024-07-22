@@ -35,9 +35,6 @@ class Profile:
 
     def gather_stats(self) -> bool:
         _data = requests.get(f"https://api.hypixel.net/skyblock/profiles?uuid={self.uuid}", headers=header).json()
-        # print(_data)
-        # with open("temp.json", "w") as file:
-        #     __import__("json").dump(_data, file)
 
         if _data['success']:
             self.data = _data
