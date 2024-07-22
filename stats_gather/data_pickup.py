@@ -154,7 +154,7 @@ class Profile:
                 "boss_kills": boss_kills,
             }
 
-        # Making sure every card has a least the icon  (even if the boss was never fought/ beaten)
+        # Making sure every card has at least the icon  (even if the boss was never fought/ beaten)
         for boss, file_name in SLAYER_BOSS_ICONS.items():
             if final_dict.get(boss.capitalize()) is None:
                 final_dict[boss.capitalize()] = {
