@@ -153,7 +153,7 @@ class Profile:
             boss_kills = []
             for i in range(5):
                 if (v := sl_data[boss].get(f'boss_kills_tier_{i}')) is not None:
-                    boss_kills.append({f"Tier {i + 1}": v})
+                    boss_kills.append({f"Tier {i + 1}": f"{v:,}"})
                 elif SLAYER_MAX_BOSS_TIER[boss] >= i + 1:  # A boss of Tier 5 exists
                     boss_kills.append({f"Tier {i + 1}": 0})
 
