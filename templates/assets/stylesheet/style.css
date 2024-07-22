@@ -208,6 +208,10 @@ footer {
     text-shadow: #000000 1px 0 10px;
 }
 
+.text-shadow {
+    text-shadow: #000000 1px 0 10px;
+}
+
 #slayer-cards, .slayer-boss-killed {
     display: grid;
     grid-template-rows: repeat(2, 1fr);

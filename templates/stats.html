@@ -18,12 +18,12 @@
 	</div>
 	<h2 class="center white-text">
         {% if rank_data['rank'] != "None" %}
-        	<span style="color: {{ rank_data['color'] }}">{{ rank_data['rank'] }}</span>
+        	<span style="color: {{ rank_data['color'] }}" class="text-shadow">{{ rank_data['rank'] }}</span>
         {% endif %}
         {% if leveling_data != None %}
-            <span style="color: #3f3f3f">[</span>
-            <span style="color: {{ leveling_data["Global"]["color"] }}">{{ (leveling_data["Global"]["xp"] / 100) | int }}</span>
-            <span style="color: #3f3f3f">]</span>
+            <span style="color: #3f3f3f" class="text-shadow">[</span>
+            <span style="color: {{ leveling_data["Global"]["color"] }}" class="text-shadow">{{ (leveling_data["Global"]["xp"] / 100) | int }}</span>
+            <span style="color: #3f3f3f" class="text-shadow">]</span>
         {% endif %}
         {{ player_name }}
     </h2>
