@@ -97,3 +97,12 @@ code displays "This is the tooltip text" when hovering the `<p>` element.
 - [ ] Add profile selector
 - [ ] Add icon for every field
 - [ ] Add and complete a page about user data, credits, legals...
+
+## Bug reporting guide
+
+To report a bug, one must open an issue and fill in the following information :
+
+- Reported behavior : What is the website actually doing
+- Expected behavior : What the website should be doing
+- Step to reproduce the bug
+- Other information (only if relevant)
