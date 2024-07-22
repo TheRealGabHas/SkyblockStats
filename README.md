@@ -1,6 +1,8 @@
 # Skyblock Stats
 
-<div style="text-align: center;"><img src="templates/assets/images/favicon.png" alt="Skyblock Stats"></div>
+<p align="center">
+  <img src="templates/assets/images/favicon.png" alt="Skyblock Stats">
+</p>
 
 ## Description
 
