@@ -152,8 +152,16 @@ class Profile:
                 "xp": current_xp,
                 "next_lvl_xp": next_level_xp,
                 "boss_kills": boss_kills,
-                "icon_path": f"/images/{SLAYER_BOSS_ICONS[boss]}.webp"
             }
+
+        # Making sure every card has a least the icon  (even if the boss was never fought/ beaten)
+        for boss, file_name in SLAYER_BOSS_ICONS.items():
+            if final_dict.get(boss.capitalize()) is None:
+                final_dict[boss.capitalize()] = {
+                    "icon_path": f"/images/{file_name}.webp"
+                }
+            else:
+                final_dict[boss.capitalize()]['icon_path'] = f"/images/{file_name}.webp"
 
         # Make sure the dictionary is correctly ordered
         final_dict = utils.order_dict(final_dict, key_order=[boss.capitalize() for boss in SLAYER_MAX_BOSS_TIER.keys()])
