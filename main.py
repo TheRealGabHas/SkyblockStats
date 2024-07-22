@@ -27,11 +27,14 @@ async def root(request: Request):
     return templates.TemplateResponse("home.html", {"request": request})
 
 
-@app.get("/{name}")
-async def wrong_scheme(request: Request, name: str):
+@app.get("/{page}")
+async def wrong_scheme(request: Request, page: str):
+    if page == "info":
+        return templates.TemplateResponse("info.html", {"request": request})
+
     return templates.TemplateResponse("home.html",
                                       {"request": request,
-                                       "message": f"To view a player's profile, use the search bar or go to /p/{name}"})
+                                       "message": f"To view a player's profile, use the search bar."})
 
 
 @app.get("/p/{name}")
