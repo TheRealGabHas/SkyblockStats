@@ -230,6 +230,13 @@ footer {
     margin-right: 10px;
 }
 
+.blurry-bg {
+    background-color: rgba(9, 8, 8, 0.6);
+
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
 .slayer-boss-div {
     background-color: rgba(9, 8, 8, 0.6);
     color: white;
@@ -338,4 +345,24 @@ footer {
         grid-template-rows: repeat(18, 1fr);
         grid-template-columns: repeat(1, 1fr);
     }
+}
+
+/* Info page */
+.info-div {
+    border-radius: 5px;
+    padding-right: 10%;
+    padding-left: 10%;
+}
+
+#credits-list {
+    list-style-type: none;
+    padding-left: 15px;
+}
+
+#license-toggle-container {
+    cursor: pointer;
+}
+
+#license-container {
+    visibility: hidden;
 }
