@@ -1,6 +1,7 @@
 import sys
 import datetime
 import json
+import uuid as lib_uuid
 
 import requests
 
@@ -24,7 +25,7 @@ class Profile:
         self.uuid: str = uuid
         self.rank: str = "None"
         self.rank_color: str = "0xfff"
-        self.skyblock_profiles: dict = {}
+        self.skyblock_profiles: list = []
 
     def gather_rank(self):
         rank_data = requests.get(f"https://api.hypixel.net/v2/player?uuid={self.uuid}", headers=header).json()
@@ -35,8 +36,11 @@ class Profile:
 
                 self.rank_color = hex(RANKS_COLOR.get(self.rank, 0xfff)).replace("0x", "#")
 
+                # Get a first taste of what profile the player owns (id, name)
                 if rank_data['player']['stats'].get('SkyBlock', None) is not None:
-                    self.skyblock_profiles = rank_data['player']['stats']['SkyBlock']['profiles']
+                    _profiles = rank_data['player']['stats']['SkyBlock']['profiles']
+                    for profile_id, profile_data in _profiles.items():
+                        self.skyblock_profiles.append((str(lib_uuid.UUID(profile_id)), profile_data['cute_name']))
 
     def gather_stats(self) -> bool:
         _data = requests.get(f"https://api.hypixel.net/skyblock/profiles?uuid={self.uuid}", headers=header).json()
