@@ -54,6 +54,10 @@ class Profile:
         return self.data
 
     def get_selected_profile(self) -> dict | None:
+        """
+        Fetch the selected profile and returns the associated datas (JSON dict)
+        :return: JSON dictionary containing the profile data
+        """
         if self.data is None:
             return {}
         if self.data.get('profiles') is None:
@@ -63,6 +67,28 @@ class Profile:
             if profile['selected']:
                 return profile['members'][self.uuid.replace("-", "")]
                 # Returns queried user profile in the coop. Replacing the uuid dashes
+
+    def get_profile_list(self) -> list[dict]:
+        """
+        Fetch every profile of the player and retrieves essential information (uuid, name, game mode, selection state)
+        :return: A list of dictionaries with the following keys : {uuid, name, selected, game_mode}
+        """
+        profile_list = []
+
+        if self.data is None:
+            return profile_list
+        if self.data.get('profiles') is None:
+            return profile_list
+
+        for profile in self.data['profiles']:
+            profile_list.append({
+                "uuid": profile['profile_id'],
+                "name": profile['cute_name'],
+                "selected": profile['selected'],
+                "game_mode": profile.get('game_mode', 'normal')  # This field is only defined if custom game mode
+            })
+
+        return profile_list
 
     def get_profile_data(self, searched_field: str, profile: str = "selected") -> dict | int | float:
         """

@@ -80,13 +80,18 @@ async def stats(request: Request, name: str):
         misc_data = None
 
     trophy_data = p.get_trophy_stats()
+
     rank_data = {
         "rank": p.rank,
         "color": p.rank_color
     }
 
+    profiles_data = p.get_profile_list()
+
     context: dict = {"request": request, "player_name": name, "player_uuid": _uuid, "skin_link": skin_link,
                      "leveling_data": leveling_data, "slayer_data": slayer_data, "rift_data": rift_data,
-                     "misc_data": misc_data, "trophy_data": trophy_data, "rank_data": rank_data}
+                     "misc_data": misc_data, "trophy_data": trophy_data, "rank_data": rank_data,
+                     "profiles_data": profiles_data
+                     }
 
     return templates.TemplateResponse("stats.html", context=context)

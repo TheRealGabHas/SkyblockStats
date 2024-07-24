@@ -27,6 +27,22 @@
         {% endif %}
         {{ player_name }}
     </h2>
+<div class="center">
+    {% if profiles_data != None %}
+    <label for="profile-selector">Displayed profile:</label>
+    <select id="profile-selector">
+    {% for profile in profiles_data %}
+        {% if profile['selected'] == 'true' %}
+    	    <option selected>{{ profile['name'] }} ({{ profile['game_mode'] }})</option>
+        {% else %}
+            <option>{{ profile['name'] }} ({{ profile['game_mode'] }})</option>
+        {% endif %}
+    {% endfor %}
+    </select>
+{% endif %}
+</div>
+
+
 {% if misc_data != None %}
 	<div class="flex-wrapper">
     <p class="center tooltip-container" data-tooltip="Format: YYYY-dd-MM hh:mm:ss">
