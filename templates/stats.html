@@ -32,7 +32,7 @@
     <label for="profile-selector">Displayed profile:</label>
     <select id="profile-selector">
     {% for profile in profiles_data %}
-        {% if profile['selected'] == 'true' %}
+        {% if profile['selected'] == True %}
     	    <option selected>{{ profile['name'] }} ({{ profile['game_mode'] }})</option>
         {% else %}
             <option>{{ profile['name'] }} ({{ profile['game_mode'] }})</option>
