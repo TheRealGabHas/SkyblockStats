@@ -9,6 +9,7 @@ from fastapi.templating import Jinja2Templates
 
 # Project
 from stats_gather import data_pickup
+from stats_gather import s_utils
 
 # Disabling the default routes
 app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None, swagger_ui_oauth2_redirect_url=None)
@@ -61,37 +62,12 @@ async def stats(request: Request, name: str):
                                           {"request": request,
                                            "message": "An error occurred during the Hypixel API request"})
 
-    # TODO: Add better error handling to prevent the usage of try/except
-    try:
-        slayer_data = p.get_slayer_data()
-    except Exception:
-        slayer_data = None
-    try:
-        leveling_data = p.get_leveling_data()
-    except Exception:
-        leveling_data = None
-    try:
-        rift_data = p.get_rift_data()
-    except Exception:
-        rift_data = None
-    try:
-        misc_data = p.get_misc_stats()
-    except Exception:
-        misc_data = None
+    context = s_utils.get_context_for_profile(player=p, profile_name="selected")
 
-    trophy_data = p.get_trophy_stats()
-
-    rank_data = {
-        "rank": p.rank,
-        "color": p.rank_color
-    }
-
-    profiles_data = p.get_profile_list()
-
-    context: dict = {"request": request, "player_name": name, "player_uuid": _uuid, "skin_link": skin_link,
-                     "leveling_data": leveling_data, "slayer_data": slayer_data, "rift_data": rift_data,
-                     "misc_data": misc_data, "trophy_data": trophy_data, "rank_data": rank_data,
-                     "profiles_data": profiles_data
-                     }
+    # Filling the context with local variables
+    context['request'] = request
+    context['player_name'] = name
+    context['player_uuid'] = _uuid
+    context['skin_link'] = skin_link
 
     return templates.TemplateResponse("stats.html", context=context)
