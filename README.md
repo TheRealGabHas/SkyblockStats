@@ -96,7 +96,7 @@ code displays "This is the tooltip text" when hovering the `<p>` element.
 - [ ] Add Chocolate Factory stats viewer
 - [x] Add profile selector
 - [ ] Add icon for every field
-- [ ] Add and complete a page about user data, credits, legals...
+- [x] Add and complete a page about user data, credits, legals...
 
 ## Bug reporting guide
 
