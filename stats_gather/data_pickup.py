@@ -286,7 +286,7 @@ class Profile:
             "Fished Treasures": f"{fishing_treasures:,.0f}",
             "Fairy Souls": fairy_souls,
             "Purse": f"{coin_purse:,.2f} coins",
-            "Bank Upgrade": bank_level
+            "Personal Bank Upgrade": bank_level
         }
 
         return final_dict
