@@ -30,13 +30,13 @@
 <div class="center">
     {% if profiles_data != None %}
     <label for="profile-selector">Displayed profile: </label>
-    <select id="profile-selector">
+    <select id="profile-selector" class="blurry-bg">
     {% if displayed_profile == "Selected" %}
         {% for profile in profiles_data %}
             {% if profile['selected'] == True %}
-                <option selected>{{ profile['name'] }} ({{ profile['game_mode'] }})</option>
+                <option selected class="text-shadow">{{ profile['name'] }} ({{ profile['game_mode'] }})</option>
             {% else %}
-                <option>{{ profile['name'] }} ({{ profile['game_mode'] }})</option>
+                <option class="text-shadow">{{ profile['name'] }} ({{ profile['game_mode'] }})</option>
             {% endif %}
         {% endfor %}
     {% else %}

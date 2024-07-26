@@ -203,13 +203,23 @@ footer {
 }
 
 .white-text, .section-title,
-.stats-div > * {
+.stats-div > *, #profile-selector {
     color: white;
     text-shadow: #000000 1px 0 10px;
 }
 
 .text-shadow {
     text-shadow: #000000 1px 0 10px;
+}
+
+#profile-selector {
+    font-family: "Minecraft", sans-serif;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding-right: 10px;
+    padding-left: 10px;
 }
 
 #slayer-cards, .slayer-boss-killed {
