@@ -36,7 +36,7 @@ async def wrong_scheme(request: Request, page: str):
 
     return templates.TemplateResponse("home.html",
                                       {"request": request,
-                                       "message": f"To view a player's profile, use the search bar."})
+                                       "message": "To view a player's profile, use the search bar."})
 
 
 @app.get("/p/{name}")
