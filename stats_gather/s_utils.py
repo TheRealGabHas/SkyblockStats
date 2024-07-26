@@ -43,23 +43,23 @@ def get_context_for_profile(player: Profile, profile_name: str = "selected"):
     """
     # TODO: Add better error handling to prevent the usage of try/except
     try:
-        slayer_data = player.get_slayer_data()
+        slayer_data = player.get_slayer_data(profile_name)
     except Exception:
         slayer_data = None
     try:
-        leveling_data = player.get_leveling_data()
+        leveling_data = player.get_leveling_data(profile_name)
     except Exception:
         leveling_data = None
     try:
-        rift_data = player.get_rift_data()
+        rift_data = player.get_rift_data(profile_name)
     except Exception:
         rift_data = None
     try:
-        misc_data = player.get_misc_stats()
+        misc_data = player.get_misc_stats(profile_name)
     except Exception:
         misc_data = None
 
-    trophy_data = player.get_trophy_stats()
+    trophy_data = player.get_trophy_stats(profile_name)
 
     rank_data = {
         "rank": player.rank,
