@@ -125,7 +125,10 @@ class Profile:
 
         for skill in SKILLS:
             key = skill.lower().capitalize()
-            value = self.get_selected_profile().get(f'experience_skill_{skill.lower()}', 0)
+            value = self.get_profile_data(f'experience_skill_{skill.lower()}', profile=profile)
+
+            if value is None:
+                value = 0
 
             if key == "Social2":
                 skill_table = consts.SOCIAL_XP_REQUIREMENTS
