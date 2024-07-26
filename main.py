@@ -76,6 +76,7 @@ async def stats(request: Request, name: str, profile: str = "selected"):
     context['player_name'] = name
     context['player_uuid'] = _uuid
     context['skin_link'] = skin_link
+    context['displayed_profile'] = profile.lower().capitalize()
 
     return templates.TemplateResponse("stats.html", context=context)
 
@@ -89,4 +90,4 @@ async def stats_2(request: Request, name: str, profile: str):
     :param profile: Name of the targeted profile (not case-sensitive)
     :return:
     """
-    return await stats(request=request, name=name, profile=profile)
+    return await stats(request=request, name=name, profile=profile.lower().capitalize())

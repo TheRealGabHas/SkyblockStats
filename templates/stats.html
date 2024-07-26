@@ -29,15 +29,25 @@
     </h2>
 <div class="center">
     {% if profiles_data != None %}
-    <label for="profile-selector">Displayed profile:</label>
+    <label for="profile-selector">Displayed profile: </label>
     <select id="profile-selector">
-    {% for profile in profiles_data %}
-        {% if profile['selected'] == True %}
-    	    <option selected>{{ profile['name'] }} ({{ profile['game_mode'] }})</option>
-        {% else %}
-            <option>{{ profile['name'] }} ({{ profile['game_mode'] }})</option>
-        {% endif %}
-    {% endfor %}
+    {% if displayed_profile == "Selected" %}
+        {% for profile in profiles_data %}
+            {% if profile['selected'] == True %}
+                <option selected>{{ profile['name'] }} ({{ profile['game_mode'] }})</option>
+            {% else %}
+                <option>{{ profile['name'] }} ({{ profile['game_mode'] }})</option>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        {% for profile in profiles_data %}
+            {% if (profile['name'].startswith(displayed_profile))  %}
+                <option selected>{{ profile['name'] }} ({{ profile['game_mode'] }})</option>
+            {% else %}
+                <option>{{ profile['name'] }} ({{ profile['game_mode'] }})</option>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
     </select>
 {% endif %}
 </div>
