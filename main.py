@@ -9,6 +9,7 @@ from fastapi.templating import Jinja2Templates
 
 # Project
 from stats_gather import data_pickup
+from stats_gather import s_utils
 
 # Disabling the default routes
 app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None, swagger_ui_oauth2_redirect_url=None)
@@ -39,7 +40,14 @@ async def wrong_scheme(request: Request, page: str):
 
 
 @app.get("/p/{name}")
-async def stats(request: Request, name: str):
+async def stats(request: Request, name: str, profile: str = "selected"):
+    """
+    Return the page with the player's statistics for its currently selected profile
+    :param request: Request data
+    :param name: The player's name (not case-sensitive)
+    :param profile: Set to "selected" to specify that the retrieved data will be for the selected profile
+    :return:
+    """
     player_data = requests.get(f"https://playerdb.co/api/player/minecraft/{name}")
     # If this Minecraft account doesn't exist → 404 Not Found
     if not player_data.ok:
@@ -61,32 +69,25 @@ async def stats(request: Request, name: str):
                                           {"request": request,
                                            "message": "An error occurred during the Hypixel API request"})
 
-    # TODO: Add better error handling to prevent the usage of try/except
-    try:
-        slayer_data = p.get_slayer_data()
-    except Exception:
-        slayer_data = None
-    try:
-        leveling_data = p.get_leveling_data()
-    except Exception:
-        leveling_data = None
-    try:
-        rift_data = p.get_rift_data()
-    except Exception:
-        rift_data = None
-    try:
-        misc_data = p.get_misc_stats()
-    except Exception:
-        misc_data = None
+    context = s_utils.get_context_for_profile(player=p, profile_name=profile)
 
-    trophy_data = p.get_trophy_stats()
-    rank_data = {
-        "rank": p.rank,
-        "color": p.rank_color
-    }
-
-    context: dict = {"request": request, "player_name": name, "player_uuid": _uuid, "skin_link": skin_link,
-                     "leveling_data": leveling_data, "slayer_data": slayer_data, "rift_data": rift_data,
-                     "misc_data": misc_data, "trophy_data": trophy_data, "rank_data": rank_data}
+    # Filling the context with local variables
+    context['request'] = request
+    context['player_name'] = name
+    context['player_uuid'] = _uuid
+    context['skin_link'] = skin_link
+    context['displayed_profile'] = profile.lower().capitalize()
 
     return templates.TemplateResponse("stats.html", context=context)
+
+
+@app.get("/p/{name}/{profile}")
+async def stats_2(request: Request, name: str, profile: str):
+    """
+    Return the page with the player's statistics for a specified profile
+    :param request: Request data
+    :param name: The player's name (not case-sensitive)
+    :param profile: Name of the targeted profile (not case-sensitive)
+    :return:
+    """
+    return await stats(request=request, name=name, profile=profile.lower().capitalize())

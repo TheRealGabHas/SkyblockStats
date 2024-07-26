@@ -1,6 +1,7 @@
 import sys
 import datetime
 import json
+import uuid as lib_uuid
 
 import requests
 
@@ -24,7 +25,7 @@ class Profile:
         self.uuid: str = uuid
         self.rank: str = "None"
         self.rank_color: str = "0xfff"
-        self.skyblock_profiles: dict = {}
+        self.skyblock_profiles: list = []
 
     def gather_rank(self):
         rank_data = requests.get(f"https://api.hypixel.net/v2/player?uuid={self.uuid}", headers=header).json()
@@ -35,8 +36,11 @@ class Profile:
 
                 self.rank_color = hex(RANKS_COLOR.get(self.rank, 0xfff)).replace("0x", "#")
 
+                # Get a first taste of what profile the player owns (id, name)
                 if rank_data['player']['stats'].get('SkyBlock', None) is not None:
-                    self.skyblock_profiles = rank_data['player']['stats']['SkyBlock']['profiles']
+                    _profiles = rank_data['player']['stats']['SkyBlock']['profiles']
+                    for profile_id, profile_data in _profiles.items():
+                        self.skyblock_profiles.append((str(lib_uuid.UUID(profile_id)), profile_data['cute_name']))
 
     def gather_stats(self) -> bool:
         _data = requests.get(f"https://api.hypixel.net/skyblock/profiles?uuid={self.uuid}", headers=header).json()
@@ -50,6 +54,10 @@ class Profile:
         return self.data
 
     def get_selected_profile(self) -> dict | None:
+        """
+        Fetch the selected profile and returns the associated datas (JSON dict)
+        :return: JSON dictionary containing the profile data
+        """
         if self.data is None:
             return {}
         if self.data.get('profiles') is None:
@@ -59,6 +67,28 @@ class Profile:
             if profile['selected']:
                 return profile['members'][self.uuid.replace("-", "")]
                 # Returns queried user profile in the coop. Replacing the uuid dashes
+
+    def get_profile_list(self) -> list[dict]:
+        """
+        Fetch every profile of the player and retrieves essential information (uuid, name, game mode, selection state)
+        :return: A list of dictionaries with the following keys : {uuid, name, selected, game_mode}
+        """
+        profile_list = []
+
+        if self.data is None:
+            return profile_list
+        if self.data.get('profiles') is None:
+            return profile_list
+
+        for profile in self.data['profiles']:
+            profile_list.append({
+                "uuid": profile['profile_id'],
+                "name": profile['cute_name'],
+                "selected": profile['selected'],
+                "game_mode": profile.get('game_mode', 'normal')  # This field is only defined if custom game mode
+            })
+
+        return profile_list
 
     def get_profile_data(self, searched_field: str, profile: str = "selected") -> dict | int | float:
         """
@@ -95,7 +125,10 @@ class Profile:
 
         for skill in SKILLS:
             key = skill.lower().capitalize()
-            value = self.get_selected_profile().get(f'experience_skill_{skill.lower()}', 0)
+            value = self.get_profile_data(f'experience_skill_{skill.lower()}', profile=profile)
+
+            if value is None:
+                value = 0
 
             if key == "Social2":
                 skill_table = consts.SOCIAL_XP_REQUIREMENTS
@@ -253,7 +286,7 @@ class Profile:
             "Fished Treasures": f"{fishing_treasures:,.0f}",
             "Fairy Souls": fairy_souls,
             "Purse": f"{coin_purse:,.2f} coins",
-            "Bank Upgrade": bank_level
+            "Personal Bank Upgrade": bank_level
         }
 
         return final_dict
