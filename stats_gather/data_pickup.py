@@ -334,3 +334,59 @@ class Profile:
             fish_record.append(current_fish)
 
         return fish_record, misc_trophy_stats
+
+    def get_chocolate_factory_stats(self, profile: str = "selected"):
+        cf = self.get_profile_data("events", profile=profile)
+
+        # If the player has no chocolate factory
+        if cf is None:
+            return {}
+
+        # Fetch the chocolate factory statistics
+        cf = cf.get("easter")
+
+        # Fetch the level of every rabbit employee (0 = not unlocked)
+        employees = {
+            'rabbit_bro': 0,
+            'rabbit_cousin': 0,
+            'rabbit_sis': 0,
+            'rabbit_father': 0,
+            'rabbit_dog': 0,
+            'rabbit_grandma': 0,
+            'rabbit_uncle': 0
+        }
+
+        for employee, level in cf.get("employees", {}).items():
+            employees[employee] = level
+
+        employees = utils.order_dict(employees, ["rabbit_bro", "rabbit_cousin", "rabbit_sis", "rabbit_father",
+                                                 "rabbit_grandma", "rabbit_uncle", "rabbit_dog"])
+
+        # Fetch the rabbit collection (Rabbit name, number of found time)
+        collection: dict = {}
+        for rabbit_name, quantity in cf.get("rabbits", {}).items():
+            collection[str(rabbit_name).replace("_", " ").capitalize()] = quantity
+
+        del collection["Collected eggs"]
+
+        # Fetch the chocolate factory upgrades level
+        upgrades: dict = {
+            "barn": cf.get("rabbit_barn_capacity_level", 0),
+            "click": cf.get("click_upgrades", 0),
+            "tower": cf.get("level", {}).get("level", 0),
+            "shrine": cf.get("rabbit_rarity_upgrades", 0),
+            "jackrabbit": cf.get("chocolate_multiplier_upgrades", 0),
+        }
+
+        # Fetch chocolate statistics
+        chocolate: dict = {
+            "factory_level": cf.get("chocolate_level", 0),
+            "current_chocolate": cf.get("chocolate", 0),
+            "alltime_chocolate": cf.get("total_chocolate", 0),
+            "prestige_chocolate": cf.get("chocolate_since_prestige", 0),
+        }
+
+        print(employees)
+        print(collection)
+        print(upgrades)
+        print(chocolate)
