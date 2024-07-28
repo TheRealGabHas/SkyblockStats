@@ -137,3 +137,26 @@ RANKS_COLOR: dict = {
     "MVP+": 0x3ffefe,
     "MVP++": 0xd9a334,
 }
+
+RABBITS_RANK_COLOR: dict = {
+    "Intern": 0xffffff,
+    "Employee": 0x3ffe3f,
+    "Assistant": 0x3f3ffe,
+    "Manager": 0xbe00be,
+    "Director": 0xd9a334,
+    "Executive": 0xfe3ffe,
+    "Board Member": 0x3ffefe,
+}
+
+# --- CHOCOLATE FACTORY ---
+
+RABBITS_LEVEL: dict = {
+    0: "Intern",
+    20: "Employee",
+    75: "Assistant",
+    120: "Assistant",
+    140: "Manager",
+    180: "Director",
+    200: "Executive",
+    220: "Board Member"
+}
