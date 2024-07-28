@@ -154,8 +154,7 @@ RABBITS_LEVEL: dict = {
     0: "Intern",
     20: "Employee",
     75: "Assistant",
-    120: "Assistant",
-    140: "Manager",
+    120: "Manager",
     180: "Director",
     200: "Executive",
     220: "Board Member"
