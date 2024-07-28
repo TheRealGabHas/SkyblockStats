@@ -1,3 +1,6 @@
+import stats_gather.consts as consts
+
+
 type Profile = object  # Figurehead for the class defined in data_pickup.py
 
 
@@ -75,3 +78,29 @@ def get_context_for_profile(player: Profile, profile_name: str = "selected"):
                      }
 
     return context
+
+
+def get_barn_capacity(level: int):
+    """
+    Return the maximum number of slots in the Chocolate Factory barn at level X
+    :param level: An integer representing the level of the barn
+    :return: An integer corresponding to the barn capacity
+    """
+
+    # Default amount of slots is 20, each level adds 2 slots
+    return 20 + (level - 1) * 2
+
+
+def get_shop_milestone(chocolate_spent: int):
+    """
+    Return the Chocolate shop milestone
+    :param chocolate_spent: An integer representing the total number of chocolate spent in the shop
+    :return: An integer representing the shop milestone
+    """
+    i: int = 0
+
+    while chocolate_spent > consts.CHOCOLATE_SHOP_MILESTONES[i]:
+        i += 1
+        continue
+
+    return i

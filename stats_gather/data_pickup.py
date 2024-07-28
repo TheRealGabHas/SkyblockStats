@@ -368,6 +368,7 @@ class Profile:
             collection[str(rabbit_name).replace("_", " ").capitalize()] = quantity
 
         del collection["Collected eggs"]
+        del collection["Collected locations"]
 
         # Fetch the chocolate factory upgrades level
         upgrades: dict = {
@@ -377,16 +378,25 @@ class Profile:
             "shrine": cf.get("rabbit_rarity_upgrades", 0),
             "jackrabbit": cf.get("chocolate_multiplier_upgrades", 0),
         }
+        upgrades["barn_slots"] = utils.get_barn_capacity(upgrades['barn'])
 
         # Fetch chocolate statistics
         chocolate: dict = {
             "factory_level": cf.get("chocolate_level", 0),
-            "current_chocolate": cf.get("chocolate", 0),
-            "alltime_chocolate": cf.get("total_chocolate", 0),
-            "prestige_chocolate": cf.get("chocolate_since_prestige", 0),
+            "current_chocolate": f"{cf.get("chocolate", 0):,.0f}",
+            "alltime_chocolate": f"{cf.get("total_chocolate", 0):,.0f}",
+            "prestige_chocolate": f"{cf.get("chocolate_since_prestige", 0):,.0f}",
         }
 
+        # Misc
+        misc: dict = {
+            "chocolate_bar_counter": cf.get("supreme_chocolate_bars", 0),
+            "shop_spent": cf.get("shop", {}).get("chocolate_spent", 0),
+        }
+        misc["shop_milestone"] = utils.get_shop_milestone(misc["shop_spent"])
+
         print(employees)
-        print(collection)
+        print(len(collection.keys()), collection)
         print(upgrades)
         print(chocolate)
+        print(misc)
