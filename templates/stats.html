@@ -216,15 +216,24 @@
     <h2 class="section-title center">Chocolate Factory</h2>
 {% if chocolate_data != None and chocolate_data != {} %}
     <p class="white-text">{{ chocolate_data }}</p>
-    
-    <div id="factory-employees">
-    
+
+<div id="factory-production">
+<h3 class="white-text center">Chocolate production</h3>
+<p class="white-text">Factory Prestige: {{ chocolate_data['chocolate']['factory_level'] }}</p>
+<p class="white-text">Chocolate this prestige: {{ chocolate_data['chocolate']['prestige_chocolate'] }}</p>
+<p class="white-text">All-time chocolate: {{ chocolate_data['chocolate']['alltime_chocolate'] }}</p>
+<p class="white-text">Current chocolate: {{ chocolate_data['chocolate']['current_chocolate'] }}</p>
+</div>
+
+<div id="factory-employees">
+<h3 class="white-text center">Rabbit employees</h3>
     {% for rabbit in chocolate_data['employees'] %}
         <div class="blurry-bg">
-        <p>[{{ chocolate_data['employees'][rabbit]['level'] }}]
+        <p class="white-text">[{{ chocolate_data['employees'][rabbit]['level'] }}]
             <span style="color: {{ chocolate_data['employees'][rabbit]['color'] }}">
                 {{ rabbit.replace("_", " ").split()[0].capitalize() }} {{ rabbit.replace("_", " ").split()[1].capitalize() }}
             </span>
+
             (
             <span style="color: {{ chocolate_data['employees'][rabbit]['color'] }}">
                 {{ chocolate_data['employees'][rabbit]['rank'] }}
@@ -232,12 +241,30 @@
             )
         </p>
         </div>
-
     {% endfor %}
-    
-    
-    </div>
-    
+</div>
+<div id="factory-collection">
+<h3 class="white-text center">Hoppity's collection</h3>
+<p class="white-text">Found Rabbits: {{ chocolate_data['collection'].keys() | length }}/457</p>
+    <!-- TODO: Add a toggle div that displays each rabbit and duplicate counter (sortable by duplicate count)  -->
+<p class="white-text">Barn capacity: {{ chocolate_data['upgrades']['barn_slots'] }} (Tier {{ chocolate_data['upgrades']['barn'] }})</p>
+</div>
+
+<div id="factory-upgrades">
+<h3 class="white-text center">Factory upgrades</h3>
+<p class="white-text">Hand-Baked Chocolate: {{ chocolate_data['upgrades']['click'] }}</p>
+<p class="white-text" data-tooltip="(Corresponding to a x{{ chocolate_data['upgrades']['tower'] / 10 }} multiplier)">Time Tower: {{ chocolate_data['upgrades']['tower'] }}</p>
+<p class="white-text">Rabbit Shrine: {{ chocolate_data['upgrades']['shrine'] }}</p>
+<p class="white-text">Coach Jackrabbit: {{ chocolate_data['upgrades']['jackrabbit'] }}</p>
+</div>
+
+<div id="factory-misc">
+<h3 class="white-text center">Other stats</h3>
+<p class="white-text">Chocolate spent in shop: {{ chocolate_data['misc']['shop_spent'] }} (milestone {{ chocolate_data['misc']['shop_milestone'] }})</p>
+<p class="white-text">Chocolate bar bought: {{ chocolate_data['misc']['chocolate_bar_counter'] }}</p>
+
+</div>
+
 {% else %}
     <h3 class="center">Chocolate Factory data not found for this player.</h3>
 {% endif %}
