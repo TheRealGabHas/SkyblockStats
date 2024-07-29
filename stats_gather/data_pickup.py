@@ -346,6 +346,12 @@ class Profile:
         cf = cf.get("easter")
 
         # Fetch the level of every rabbit employee (0 = not unlocked)
+        default_state: dict = {
+            "level": 0,
+            "rank": "Not unlocked",
+            "color": "#9ec8d9"
+        }
+
         employees = {
             'rabbit_bro': 0,
             'rabbit_cousin': 0,
@@ -357,7 +363,17 @@ class Profile:
         }
 
         for employee, level in cf.get("employees", {}).items():
-            employees[employee] = level
+            employee_data = utils.get_rabbit_employee_data(level)
+            employees[employee] = {
+                "level": level,
+                "rank": employee_data[0],
+                "color": employee_data[1],
+            }
+
+        # Put the default state if there is no data (level 0)
+        for rabbit, data in employees.copy().items():
+            if data == 0:
+                employees[rabbit] = default_state.copy()
 
         employees = utils.order_dict(employees, ["rabbit_bro", "rabbit_cousin", "rabbit_sis", "rabbit_father",
                                                  "rabbit_grandma", "rabbit_uncle", "rabbit_dog"])
@@ -367,8 +383,10 @@ class Profile:
         for rabbit_name, quantity in cf.get("rabbits", {}).items():
             collection[str(rabbit_name).replace("_", " ").capitalize()] = quantity
 
-        del collection["Collected eggs"]
-        del collection["Collected locations"]
+        if collection.get("Collected eggs") is not None:
+            del collection["Collected eggs"]
+        if collection.get("Collected locations") is not None:
+            del collection["Collected locations"]
 
         # Fetch the chocolate factory upgrades level
         upgrades: dict = {
@@ -396,7 +414,15 @@ class Profile:
         misc["shop_milestone"] = utils.get_shop_milestone(misc["shop_spent"])
 
         print(employees)
-        print(len(collection.keys()), collection)
-        print(upgrades)
-        print(chocolate)
-        print(misc)
+        # print(len(collection.keys()), collection)
+        # print(upgrades)
+        # print(chocolate)
+        # print(misc)
+
+        return {
+            "employees": employees,
+            "collection": collection,
+            "upgrades": upgrades,
+            "chocolate": chocolate,
+            "misc": misc,
+        }

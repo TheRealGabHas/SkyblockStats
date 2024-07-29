@@ -62,6 +62,11 @@ def get_context_for_profile(player: Profile, profile_name: str = "selected"):
     except Exception:
         misc_data = None
 
+    try:
+        chocolate_data = player.get_chocolate_factory_stats(profile_name)
+    except Exception:
+        chocolate_data = None
+
     trophy_data = player.get_trophy_stats(profile_name)
 
     rank_data = {
@@ -74,7 +79,7 @@ def get_context_for_profile(player: Profile, profile_name: str = "selected"):
     context: dict = {
                      "leveling_data": leveling_data, "slayer_data": slayer_data, "rift_data": rift_data,
                      "misc_data": misc_data, "trophy_data": trophy_data, "rank_data": rank_data,
-                     "profiles_data": profiles_data
+                     "profiles_data": profiles_data, "chocolate_data": chocolate_data
                      }
 
     return context
@@ -104,3 +109,28 @@ def get_shop_milestone(chocolate_spent: int):
         continue
 
     return i
+
+
+def get_rabbit_employee_data(employee_level: int) -> tuple:
+    """
+    :param employee_level: An integer representing the level of the rabbit employee
+    :return: Title and Hex color code for the rabbit employee according to its level ("Director", 0xffffff)
+    """
+
+    # Get the employee rank
+    i: int = 0
+    level_list = list(consts.RABBITS_LEVEL.keys())
+
+    while employee_level >= level_list[i]:
+        if i + 1 >= len(level_list):
+            break
+        i += 1
+        continue
+
+    if employee_level > 220:
+        rank = consts.RABBITS_LEVEL[220]
+    else:
+        rank = consts.RABBITS_LEVEL[level_list[i-1]]
+
+    return rank, f"#{consts.RABBITS_RANK_COLOR[rank]:06x}"
+
