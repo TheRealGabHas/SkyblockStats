@@ -127,7 +127,7 @@ def get_rabbit_employee_data(employee_level: int) -> tuple:
         i += 1
         continue
 
-    if employee_level > 220:
+    if employee_level >= 220:
         rank = consts.RABBITS_LEVEL[220]
     else:
         rank = consts.RABBITS_LEVEL[level_list[i-1]]

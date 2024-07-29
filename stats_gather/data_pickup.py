@@ -392,7 +392,7 @@ class Profile:
         upgrades: dict = {
             "barn": cf.get("rabbit_barn_capacity_level", 0),
             "click": cf.get("click_upgrades", 0),
-            "tower": cf.get("level", {}).get("level", 0),
+            "tower": cf.get("time_tower", {}).get("level", 0),
             "shrine": cf.get("rabbit_rarity_upgrades", 0),
             "jackrabbit": cf.get("chocolate_multiplier_upgrades", 0),
         }
@@ -412,12 +412,8 @@ class Profile:
             "shop_spent": cf.get("shop", {}).get("chocolate_spent", 0),
         }
         misc["shop_milestone"] = utils.get_shop_milestone(misc["shop_spent"])
-
-        print(employees)
-        # print(len(collection.keys()), collection)
-        # print(upgrades)
-        # print(chocolate)
-        # print(misc)
+        misc["chocolate_bar_counter"] = f"{misc["chocolate_bar_counter"]:,.0f}"
+        misc['shop_spent'] = f"{misc["shop_spent"]:,.0f}"
 
         return {
             "employees": employees,
