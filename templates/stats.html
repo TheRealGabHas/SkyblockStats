@@ -211,6 +211,38 @@
 	<h3 class="center">Trophy fishing data not found for this player.</h3>
 {% endif %}
 </div>
+
+<div id="chocolate-stats" class="red-border stats-div">
+    <h2 class="section-title center">Chocolate Factory</h2>
+{% if chocolate_data != None and chocolate_data != {} %}
+    <p class="white-text">{{ chocolate_data }}</p>
+    
+    <div id="factory-employees">
+    
+    {% for rabbit in chocolate_data['employees'] %}
+        <div class="blurry-bg">
+        <p>[{{ chocolate_data['employees'][rabbit]['level'] }}]
+            <span style="color: {{ chocolate_data['employees'][rabbit]['color'] }}">
+                {{ rabbit.replace("_", " ").split()[0].capitalize() }} {{ rabbit.replace("_", " ").split()[1].capitalize() }}
+            </span>
+            (
+            <span style="color: {{ chocolate_data['employees'][rabbit]['color'] }}">
+                {{ chocolate_data['employees'][rabbit]['rank'] }}
+            </span>
+            )
+        </p>
+        </div>
+
+    {% endfor %}
+    
+    
+    </div>
+    
+{% else %}
+    <h3 class="center">Chocolate Factory data not found for this player.</h3>
+{% endif %}
+</div>
+
 </div>
 <script src="/script/app.js" type="application/javascript"></script>
 </body>
