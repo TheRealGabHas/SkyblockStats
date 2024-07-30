@@ -318,6 +318,27 @@ footer {
     text-align: center;
 }
 
+.divider-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 1fr;
+    column-gap: 10px;
+}
+
+#chocolate-stats .divider-2 > div {
+    margin-left: 5%;
+    margin-right: 5%;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+#chocolate-stats .divider-2 > div > p,
+#chocolate-stats .divider-2 > div > .icon-text {
+    width: auto;
+    padding-left: 5%;
+    text-align: left;
+}
+
 @media screen and (max-width: 1020px) {
     #trophy-fish-count {
         grid-template-rows: repeat(6, 1fr);
