@@ -94,6 +94,9 @@ code displays "This is the tooltip text" when hovering the `<p>` element.
 ## Goals
 
 - [ ] Add Chocolate Factory stats viewer
+  - [ ] Make it responsive
+  - [ ] Add the rabbit list (can be toggled and sorted)
+  - [ ] Add the chocolate per second rate
 - [x] Add profile selector
 - [ ] Add icon for every field
 - [x] Add and complete a page about user data, credits, legals...
