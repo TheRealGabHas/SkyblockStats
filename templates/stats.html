@@ -219,10 +219,22 @@
 <div class="divider-2">
     <div id="factory-production" class="blurry-bg">
     <h3 class="white-text center">Chocolate production</h3>
-    <p class="">Factory Prestige: {{ chocolate_data['chocolate']['factory_level'] }}</p>
-    <p class="white-text">Chocolate this prestige: {{ chocolate_data['chocolate']['prestige_chocolate'] }}</p>
-    <p class="white-text">All-time chocolate: {{ chocolate_data['chocolate']['alltime_chocolate'] }}</p>
-    <p class="white-text">Current chocolate: {{ chocolate_data['chocolate']['current_chocolate'] }}</p>
+    <div class="icon-text">
+        <img src="/images/Dropper.webp" alt="Prestige" width="30" height="30">
+        <p class="white-text">Factory Prestige: {{ chocolate_data['chocolate']['factory_level'] }}</p>
+    </div>
+    <div class="icon-text">
+        <img src="/images/Chocolate_Muffin.webp" alt="Prestique Chocolate" width="30" height="30">
+        <p class="white-text">Chocolate this prestige: {{ chocolate_data['chocolate']['prestige_chocolate'] }}</p>
+    </div>
+    <div class="icon-text">
+        <img src="/images/Chocolate_Cube.webp" alt="All-time Chocolate" width="30" height="30">
+        <p class="white-text">All-time chocolate: {{ chocolate_data['chocolate']['alltime_chocolate'] }}</p>
+    </div>
+    <div class="icon-text">
+        <img src="/images/Chocolate_Sphere.webp" alt="Current Chocolate" width="30" height="30">
+        <p class="white-text">Current chocolate: {{ chocolate_data['chocolate']['current_chocolate'] }}</p>
+    </div>
     </div>
     <div id="factory-employees" class="blurry-bg">
     <h3 class="white-text center">Rabbit employees</h3>
@@ -239,7 +251,6 @@
                 <span class="parenthesis" style="color: {{ chocolate_data['employees'][rabbit]['color'] }}">
                     {{ chocolate_data['employees'][rabbit]['rank'] }}
                 </span>
-
             </p>
         </div>
         {% endfor %}
@@ -249,13 +260,26 @@
 <div class="divider-2">
     <div id="factory-collection" class="blurry-bg">
         <h3 class="white-text center">Hoppity's collection</h3>
-        <p class="white-text">Found Rabbits: {{ chocolate_data['collection'].keys() | length }}/457</p>
+        <div class="icon-text">
+            <img src="/images/Hoppity.webp" alt="Hoppity" width="30" height="30">
+            <p class="white-text">Found Rabbits: {{ chocolate_data['collection'].keys() | length }}/457</p>
+        </div>
+        <div class="icon-text">
+            <img src="/images/Fence.webp" alt="Barn" width="30" height="30">
+            <p class="white-text">Barn capacity: {{ chocolate_data['upgrades']['barn_slots'] }} (Tier {{ chocolate_data['upgrades']['barn'] }})</p>
+        </div>
             <!-- TODO: Add a toggle div that displays each rabbit and duplicate counter (sortable by duplicate count)  -->
-        <p class="white-text">Barn capacity: {{ chocolate_data['upgrades']['barn_slots'] }} (Tier {{ chocolate_data['upgrades']['barn'] }})</p>
+
     </div>
     <div id="factory-upgrades" class="blurry-bg">
         <h3 class="white-text center">Factory upgrades</h3>
+    <div class="icon-text">
+        <img src="/images/Cookie.webp" alt="Cookie" width="30" height="30">
         <p class="white-text">Hand-Baked Chocolate: {{ chocolate_data['upgrades']['click'] }}</p>
+    </div>
+
+    <div class="icon-text">
+        <img src="/images/Clock.webp" alt="Time Tower" width="30" height="30">
         <p class="white-text">
             Time Tower: {{ chocolate_data['upgrades']['tower'] }}
             {% if chocolate_data['upgrades']['tower'] > 0 %}
@@ -265,12 +289,19 @@
             	(+ x0.7 shop milestone 12)
             {% endif %}
         </p>
+    </div>
+
+    <div class="icon-text">
+    <img src="/images/Rabbit_Foot.webp" alt="Rabbit Shrine" width="30" height="30">
         <p class="white-text">
             Rabbit Shrine: {{ chocolate_data['upgrades']['shrine'] }}
             {% if chocolate_data['upgrades']['shrine'] > 0 %}
                 (+{{ chocolate_data['upgrades']['shrine'] }}% to find rare rabbits)
             {% endif %}
         </p>
+    </div>
+    <div class="icon-text">
+    <img src="/images/chocolate/coach_jackrabbit.webp" alt="Coach Jackrabbit" width="30" height="30">
         <p class="white-text">
             Coach Jackrabbit: {{ chocolate_data['upgrades']['jackrabbit'] }}
             {% if chocolate_data['upgrades']['jackrabbit'] > 0 %}
@@ -278,13 +309,22 @@
             {% endif %}
         </p>
     </div>
+
+    </div>
 </div>
 <br>
 <div class="divider-2">
     <div id="factory-misc" class="blurry-bg">
         <h3 class="white-text center">Other stats</h3>
-        <p class="white-text">Chocolate spent in shop: {{ chocolate_data['misc']['shop_spent'] }} (milestone {{ chocolate_data['misc']['shop_milestone'] }})</p>
-        <p class="white-text">Chocolate bar bought: {{ chocolate_data['misc']['chocolate_bar_counter'] }}</p>
+        <div class="icon-text">
+            <img src="/images/Emerald.webp" alt="Shop" width="30" height="30">
+            <p class="white-text">Chocolate spent in shop: {{ chocolate_data['misc']['shop_spent'] }} (milestone {{ chocolate_data['misc']['shop_milestone'] }})</p>
+        </div>
+        <div class="icon-text">
+            <img src="/images/Chocolate_Bar.webp" alt="Chocolate Bar" width="30" height="30">
+            <p class="white-text">Chocolate bar bought: {{ chocolate_data['misc']['chocolate_bar_counter'] }}</p>
+        </div>
+
     </div>
 </div>
 
