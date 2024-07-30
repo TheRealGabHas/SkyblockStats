@@ -349,7 +349,8 @@ class Profile:
         default_state: dict = {
             "level": 0,
             "rank": "Not unlocked",
-            "color": "#9ec8d9"
+            "color": "#9e9e9e",
+            "icon_path": "/images/Barrier.webp",
         }
 
         employees = {
@@ -368,13 +369,13 @@ class Profile:
                 "level": level,
                 "rank": employee_data[0],
                 "color": employee_data[1],
+                "icon_path": f"/images/chocolate/{employee}.webp",
             }
 
         # Put the default state if there is no data (level 0)
         for rabbit, data in employees.copy().items():
             if data == 0:
                 employees[rabbit] = default_state.copy()
-
 
         # Fetch the rabbit collection (Rabbit name, number of found time)
         collection: dict = {}
