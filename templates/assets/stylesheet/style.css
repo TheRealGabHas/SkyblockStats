@@ -353,9 +353,9 @@ footer {
 
 #chocolate-stats .divider-2 > div > p,
 #chocolate-stats .divider-2 > div > .icon-text {
-    width: auto;
+    width: 100%;
     padding-left: 5%;
-    text-align: left;
+    justify-content: left;
 }
 
 .parenthesis::before {

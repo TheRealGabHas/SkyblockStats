@@ -18,9 +18,9 @@ profileSelector.addEventListener('change', () => {
 
 // Set the color for the Trophy fish rarities
 const rarityColor = {
-    "Bronze": "var(--§4)",
+    "Bronze": "var(--§c)",
     "Silver": "var(--§7)",
-    "Gold": "#d9a334",
+    "Gold": "var(--§6)",
     "Diamond": "var(--§b)",
 }
 document.querySelectorAll('.trophy-count p strong').forEach(element => {
