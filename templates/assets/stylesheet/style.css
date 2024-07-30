@@ -339,6 +339,24 @@ footer {
     text-align: left;
 }
 
+.parenthesis::before {
+    content: "(";
+    color: #7c7b7b;
+}
+.parenthesis::after {
+    content: ")";
+    color: #7c7b7b;
+}
+
+.brackets::before {
+    content: "[";
+    color: #7c7b7b;
+}
+.brackets::after {
+    content: "]";
+    color: #7c7b7b;
+}
+
 @media screen and (max-width: 1020px) {
     #trophy-fish-count {
         grid-template-rows: repeat(6, 1fr);

@@ -230,16 +230,16 @@
         <div class="icon-text">
             <img src="{{ chocolate_data['employees'][rabbit]['icon_path'] }}" alt="{{ rabbit }} icon" width="30" height="30">
             <p class="white-text">
-                [{{ chocolate_data['employees'][rabbit]['level'] }}]
+                <span class="brackets" style="color: #bebebe">
+                    {{ chocolate_data['employees'][rabbit]['level'] }}
+                </span>
                 <span style="color: {{ chocolate_data['employees'][rabbit]['color'] }}">
                     {{ rabbit.replace("_", " ").split()[0].capitalize() }} {{ rabbit.replace("_", " ").split()[1].capitalize() }}
                 </span>
-
-                (
-                <span style="color: {{ chocolate_data['employees'][rabbit]['color'] }}">
+                <span class="parenthesis" style="color: {{ chocolate_data['employees'][rabbit]['color'] }}">
                     {{ chocolate_data['employees'][rabbit]['rank'] }}
                 </span>
-                )
+
             </p>
         </div>
         {% endfor %}
@@ -265,8 +265,18 @@
             	(+ x0.7 shop milestone 12)
             {% endif %}
         </p>
-        <p class="white-text">Rabbit Shrine: {{ chocolate_data['upgrades']['shrine'] }}</p>
-        <p class="white-text">Coach Jackrabbit: {{ chocolate_data['upgrades']['jackrabbit'] }}</p>
+        <p class="white-text">
+            Rabbit Shrine: {{ chocolate_data['upgrades']['shrine'] }}
+            {% if chocolate_data['upgrades']['shrine'] > 0 %}
+                (+{{ chocolate_data['upgrades']['shrine'] }}% to find rare rabbits)
+            {% endif %}
+        </p>
+        <p class="white-text">
+            Coach Jackrabbit: {{ chocolate_data['upgrades']['jackrabbit'] }}
+            {% if chocolate_data['upgrades']['jackrabbit'] > 0 %}
+            	(x{{ chocolate_data['upgrades']['jackrabbit'] / 100 }} multiplier)
+            {% endif %}
+        </p>
     </div>
 </div>
 <br>
