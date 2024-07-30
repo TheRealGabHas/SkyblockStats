@@ -51,6 +51,8 @@ html, body {
     background-image: url("../images/background-image.png");
     background-attachment: fixed;
     background-size: cover;
+
+    overflow-x: hidden;
 }
 
 #background-video {
@@ -349,6 +351,7 @@ footer {
     margin-right: 5%;
     padding-bottom: 10px;
     padding-top: 10px;
+    word-wrap: break-word;
 }
 
 #chocolate-stats .divider-2 > div > p,
@@ -381,6 +384,15 @@ footer {
         grid-template-rows: repeat(6, 1fr);
         grid-template-columns: repeat(3, 1fr);
     }
+
+    .divider-2 {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+
+    .divider-2 > div {
+        max-height: fit-content;
+    }
 }
 
 @media screen and (max-width: 978px) {
@@ -409,9 +421,20 @@ footer {
         grid-template-columns: repeat(2, 1fr);
     }
 
+    #unlocked-timecharms {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+    }
+
     #trophy-fish-count {
         grid-template-rows: repeat(18, 1fr);
         grid-template-columns: repeat(1, 1fr);
+    }
+
+    .trophy-count {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto
     }
 }
 

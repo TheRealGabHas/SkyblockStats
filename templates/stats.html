@@ -248,9 +248,9 @@
                 <span style="color: {{ chocolate_data['employees'][rabbit]['color'] }}">
                     {{ rabbit.replace("_", " ").split()[0].capitalize() }} {{ rabbit.replace("_", " ").split()[1].capitalize() }}
                 </span>
-                <span class="parenthesis" style="color: {{ chocolate_data['employees'][rabbit]['color'] }}">
+                <i class="parenthesis" style="color: {{ chocolate_data['employees'][rabbit]['color'] }}">
                     {{ chocolate_data['employees'][rabbit]['rank'] }}
-                </span>
+                </i>
             </p>
         </div>
         {% endfor %}
@@ -268,8 +268,6 @@
             <img src="/images/Fence.webp" alt="Barn" width="30" height="30">
             <p class="white-text">Barn capacity: {{ chocolate_data['upgrades']['barn_slots'] }} (Tier {{ chocolate_data['upgrades']['barn'] }})</p>
         </div>
-            <!-- TODO: Add a toggle div that displays each rabbit and duplicate counter (sortable by duplicate count)  -->
-
     </div>
     <div id="factory-upgrades" class="blurry-bg">
         <h3 class="white-text center">Factory upgrades</h3>
