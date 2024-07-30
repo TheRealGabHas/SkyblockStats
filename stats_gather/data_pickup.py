@@ -293,7 +293,7 @@ class Profile:
 
     def get_trophy_stats(self, profile: str = "selected"):
         trophy_stats = self.get_profile_data("trophy_fish", profile=profile)
-
+        print(trophy_stats)
         # The player never fished trophy
         if trophy_stats is None:
             return None
@@ -311,7 +311,7 @@ class Profile:
         # Check if the reward level is at least 1
         if len(trophy_stats.get('rewards', [])) == 0:
             reward_tier = "No claimed reward"
-        elif s := trophy_stats.get('rewards', [0])[0] > 0:
+        elif (s := trophy_stats.get('rewards', [0])[-1]) > 0:
             reward_tier = consts.TROPHY_REWARDS[s-1]
         else:
             reward_tier = "No claimed reward"
