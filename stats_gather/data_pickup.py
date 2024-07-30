@@ -319,7 +319,7 @@ class Profile:
         total_caught = f"{trophy_stats['total_caught']:,.0f}"
         misc_trophy_stats = {
             "Claimed reward": reward_tier,
-            "Trophy caught count": total_caught,
+            "Trophy fished": total_caught,
         }
         fish_record = []
 
@@ -328,7 +328,12 @@ class Profile:
             current_fish = {label: {}}
 
             for rarity in consts.TROPHY_RARITIES:
-                current_fish[label][rarity.capitalize()] = fishes.get(f"{fish}_{rarity}", "X")
+                amount_fished = fishes.get(f"{fish}_{rarity}", "X")
+
+                if amount_fished != "X":
+                    amount_fished = f"{amount_fished:,.0f}"
+
+                current_fish[label][rarity.capitalize()] = amount_fished
 
             current_fish["icon_path"] = f"/images/{label}_bronze.webp"
             fish_record.append(current_fish)

@@ -352,6 +352,7 @@ footer {
     padding-bottom: 10px;
     padding-top: 10px;
     word-wrap: break-word;
+    border-radius: 5px;
 }
 
 #chocolate-stats .divider-2 > div > p,
