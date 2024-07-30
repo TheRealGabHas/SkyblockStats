@@ -357,9 +357,9 @@ class Profile:
             'rabbit_cousin': 0,
             'rabbit_sis': 0,
             'rabbit_father': 0,
-            'rabbit_dog': 0,
             'rabbit_grandma': 0,
-            'rabbit_uncle': 0
+            'rabbit_uncle': 0,
+            'rabbit_dog': 0,
         }
 
         for employee, level in cf.get("employees", {}).items():
@@ -375,8 +375,6 @@ class Profile:
             if data == 0:
                 employees[rabbit] = default_state.copy()
 
-        employees = utils.order_dict(employees, ["rabbit_bro", "rabbit_cousin", "rabbit_sis", "rabbit_father",
-                                                 "rabbit_grandma", "rabbit_uncle", "rabbit_dog"])
 
         # Fetch the rabbit collection (Rabbit name, number of found time)
         collection: dict = {}
