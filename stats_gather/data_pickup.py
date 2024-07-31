@@ -324,10 +324,23 @@ class Profile:
         else:
             reward_tier = "No claimed reward"
 
+        reward_icons: dict = {
+            "Bronze Hunter Reward": "/images/Leather_Tunic.webp",
+            "Silver Hunter Reward": "/images/Iron_Chestplate.webp",
+            "Gold Hunter Reward": "/images/Gold_Chestplate.webp",
+            "Diamond Hunter Reward": "/images/Diamond_Chestplate.webp",
+        }
+
         total_caught = f"{trophy_stats['total_caught']:,.0f}"
         misc_trophy_stats = {
-            "Claimed reward": reward_tier,
-            "Trophy fished": total_caught,
+            "Claimed reward": {
+                "name": reward_tier,
+                "icon_path": reward_icons[reward_tier]
+            },
+            "Trophy fished": {
+                "amount": total_caught,
+                "icon_path": "/images/Pufferfish.webp"
+            },
         }
         fish_record = []
 
@@ -346,6 +359,7 @@ class Profile:
             current_fish["icon_path"] = f"/images/{label}_bronze.webp"
             fish_record.append(current_fish)
 
+        print(misc_trophy_stats)
         return fish_record, misc_trophy_stats
 
     def get_chocolate_factory_stats(self, profile: str = "selected"):

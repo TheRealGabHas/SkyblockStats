@@ -133,7 +133,7 @@
 	<div id="rift-trophies" class="red-border">
 		{% if rift_data['trophies'] | length > 0 %}
 			<h3 class="center">Unlocked Timecharms</h3>
-			<div id="unlocked-timecharms" class="red-border">
+			<div id="unlocked-timecharms">
 				{% for trophy in rift_data['trophies'] %}
                     <div class="icon-text blurry-bg rift-trophy-div">
                     <img src="{{ trophy['icon_path'] }}" alt="{{ trophy['type'] }}" width="30" height="30">
@@ -146,8 +146,8 @@
 			</div>
 		{% endif %}
 		{% if rift_data['missing_trophies'] | length > 0 %}
-			<div id="missing-timecharm" class="red-border">
-				<h3 class="center">Missing Timecharms</h3>
+            <h3 class="center">Missing Timecharms</h3>
+			<div id="missing-timecharm">
 				{% for trophy in rift_data['missing_trophies'] %}
                     <div class="icon-text blurry-bg rift-trophy-div rift-missing-trophy">
                     <img src="{{ trophy['icon_path'] }}" alt="{{ trophy['type'] }}" width="30" height="30">
@@ -194,9 +194,14 @@
 	<h2 class="section-title center">Trophy Fishing</h2>
 {% if trophy_data != None %}
 	<div id="trophy-fish-misc" class="red-border">
-		{% for element in trophy_data[1] %}
-			<p><strong>{{ element }}</strong>: {{ trophy_data[1][element] }}</p>
-		{% endfor %}
+    <div class="icon-text">
+        <img src="{{ trophy_data[1]['Claimed reward']['icon_path'] }}" alt="Reward icon" width="30" height="30">
+        <p><strong>Claimed reward</strong>: {{ trophy_data[1]['Claimed reward']['name'] }}</p>
+    </div>
+    <div class="icon-text">
+        <img src="{{ trophy_data[1]['Trophy fished']['icon_path'] }}" alt="Trophy icon" width="30" height="30">
+        <p><strong>Trophy fished</strong>: {{ trophy_data[1]['Trophy fished']['amount'] }}</p>
+    </div>
 	</div>
 
 	<div id="trophy-fish-count" class="red-border">

@@ -298,10 +298,10 @@ footer {
     margin-top: 5px;
 }
 
-#unlocked-timecharms {
+#unlocked-timecharms, #missing-timecharm {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: auto;
     grid-row-gap: 10px;
     grid-column-gap: 10px;
 }
@@ -403,16 +403,25 @@ footer {
 }
 
 @media screen and (max-width: 978px) {
+    #core-content {
+        padding: 0;
+        margin-inside: 0;
+    }
+
     #slayer-cards, .slayer-boss-killed {
         grid-template-rows: repeat(3, 1fr);
         grid-template-columns: repeat(2, 1fr);
     }
+
+    #trophy-fish-count {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
 }
 
 @media screen and (max-width: 715px) {
-        #trophy-fish-count {
-        grid-template-rows: repeat(9, 1fr);
-        grid-template-columns: repeat(2, 1fr);
+    #unlocked-timecharms {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -426,11 +435,6 @@ footer {
     .slayer-boss-killed {
         grid-template-rows: repeat(3, 1fr);
         grid-template-columns: repeat(2, 1fr);
-    }
-
-    #unlocked-timecharms {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: auto;
     }
 
     #trophy-fish-count {
