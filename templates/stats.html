@@ -135,10 +135,13 @@
 			<h3 class="center">Unlocked Timecharms</h3>
 			<div id="unlocked-timecharms" class="red-border">
 				{% for trophy in rift_data['trophies'] %}
-					<div class="rift-trophy">
-						<strong>{{ trophy[0] }}</strong>
-						<p>Unlocked after {{ trophy[1] }} visits</p>
-					</div>
+                    <div class="icon-text blurry-bg">
+                    <img src="{{ trophy['icon_path'] }}" alt="{{ trophy['type'] }}" width="30" height="30">
+                        <div class="rift-trophy">
+                            <strong>{{ trophy['type'] }}</strong>
+                            <p>Unlocked after {{ trophy['visits'] }} visits</p>
+                        </div>
+                    </div>
 				{% endfor %}
 			</div>
 		{% endif %}

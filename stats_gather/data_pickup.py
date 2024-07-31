@@ -229,17 +229,21 @@ class Profile:
         orb_picked = int(stats.get('rift_motes_orb_pickup', 0))
 
         missing_trophies = []
+        found_trophies = []
 
         if trophies is None:
             rift_data['trophies'] = []
         else:
             # (Timecharm name, unlocked at visit)
-            trophy_lst = [(trophy['type'].replace("_", " ").capitalize() + " Timecharm", trophy['visits'])
-                          for trophy in trophies]
-            rift_data['trophies'] = trophy_lst
+            for trophy in trophies:
+                trophy['icon_path'] = f"/images/rift/{trophy['type']}.png"
+                trophy['type'] = " ".join(word.capitalize() for word in trophy['type'].replace("_", " ").split())
+                found_trophies.append(trophy)
+
+        rift_data['trophies'] = found_trophies
 
         for trophy in TIMECHARMS:
-            if trophy not in (tr for tr, _ in rift_data['trophies']):
+            if trophy not in (tr['type'] for tr in rift_data['trophies']):
                 missing_trophies.append(trophy)
 
         rift_data['missing_trophies'] = missing_trophies
@@ -261,7 +265,7 @@ class Profile:
         rift_data['motes'] = f"{current_motes:,}"
         rift_data['lifetime_motes'] = f"{lifetime_motes:,}"
         rift_data['orbs'] = f"{orb_picked:,}"
-
+        print(rift_data)
         return rift_data
 
     def get_misc_stats(self, profile: str = "selected"):
@@ -293,7 +297,7 @@ class Profile:
 
     def get_trophy_stats(self, profile: str = "selected"):
         trophy_stats = self.get_profile_data("trophy_fish", profile=profile)
-        print(trophy_stats)
+
         # The player never fished trophy
         if trophy_stats is None:
             return None
