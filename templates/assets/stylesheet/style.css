@@ -468,5 +468,5 @@ footer {
 }
 
 #license-container {
-    visibility: hidden;
+    display: none;
 }

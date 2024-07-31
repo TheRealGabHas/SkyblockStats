@@ -14,12 +14,12 @@ licenseToggleDiv.addEventListener("click", () => {
         licenseToggleState.textContent = "[ON]"
         licenseToggleState.style.color = "#00be00"
 
-        licenseContainer.style.visibility = "visible"
+        licenseContainer.style.display = "inline-flex"
     } else {
         licenseToggleDiv.getElementsByClassName("toggle-icon")[0].src = "/images/Redstone_Lamp_Off.webp"
         licenseToggleState.textContent = "[OFF]"
         licenseToggleState.style.color = "#be0000"
 
-        licenseContainer.style.visibility = "hidden"
+        licenseContainer.style.display = "none"
     }
 })
