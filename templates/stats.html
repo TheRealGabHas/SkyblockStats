@@ -135,7 +135,7 @@
 			<h3 class="center">Unlocked Timecharms</h3>
 			<div id="unlocked-timecharms" class="red-border">
 				{% for trophy in rift_data['trophies'] %}
-                    <div class="icon-text blurry-bg">
+                    <div class="icon-text blurry-bg rift-trophy-div">
                     <img src="{{ trophy['icon_path'] }}" alt="{{ trophy['type'] }}" width="30" height="30">
                         <div class="rift-trophy">
                             <strong>{{ trophy['type'] }}</strong>
@@ -149,9 +149,13 @@
 			<div id="missing-timecharm" class="red-border">
 				<h3 class="center">Missing Timecharms</h3>
 				{% for trophy in rift_data['missing_trophies'] %}
-					<div class="rift-missing-trophy">
-						<strong>{{ trophy }}</strong>
-					</div>
+                    <div class="icon-text blurry-bg rift-trophy-div rift-missing-trophy">
+                    <img src="{{ trophy['icon_path'] }}" alt="{{ trophy['type'] }}" width="30" height="30">
+                        <div class="rift-trophy">
+                            <strong>{{ trophy['type'] }}</strong>
+                            <p>Not unlocked</p>
+                        </div>
+                    </div>
 				{% endfor %}
 			</div>
 		{% endif %}

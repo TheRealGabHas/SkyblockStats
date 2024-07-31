@@ -238,13 +238,17 @@ class Profile:
             for trophy in trophies:
                 trophy['icon_path'] = f"/images/rift/{trophy['type']}.png"
                 trophy['type'] = " ".join(word.capitalize() for word in trophy['type'].replace("_", " ").split())
+                del trophy['timestamp']
                 found_trophies.append(trophy)
 
         rift_data['trophies'] = found_trophies
 
         for trophy in TIMECHARMS:
             if trophy not in (tr['type'] for tr in rift_data['trophies']):
-                missing_trophies.append(trophy)
+                missing_trophies.append({
+                    "type": trophy,
+                    "icon_path": f"/images/rift/{" ".join(word.lower() for word in trophy.replace("_", " ").split())}.png"
+                })
 
         rift_data['missing_trophies'] = missing_trophies
 
@@ -265,7 +269,7 @@ class Profile:
         rift_data['motes'] = f"{current_motes:,}"
         rift_data['lifetime_motes'] = f"{lifetime_motes:,}"
         rift_data['orbs'] = f"{orb_picked:,}"
-        print(rift_data)
+
         return rift_data
 
     def get_misc_stats(self, profile: str = "selected"):
