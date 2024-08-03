@@ -138,8 +138,8 @@
                     <div class="icon-text blurry-bg rift-trophy-div">
                     <img src="{{ trophy['icon_path'] }}" alt="{{ trophy['type'] }}" width="30" height="30">
                         <div class="rift-trophy">
-                            <p class="text-shadow bold">{{ trophy['type'] }}</p>
-                            <p class="text-shadow color-a"><i>Unlocked after {{ trophy['visits'] }} visits</i></p>
+                            <p class="text-shadow color-a bold">{{ trophy['type'] }}</p>
+                            <p class="text-shadow color-7"><i>Unlocked after {{ trophy['visits'] }} visits</i></p>
                         </div>
                     </div>
 				{% endfor %}
@@ -152,81 +152,85 @@
                     <div class="icon-text blurry-bg rift-trophy-div rift-missing-trophy">
                     <img src="{{ trophy['icon_path'] }}" alt="{{ trophy['type'] }}" width="30" height="30">
                         <div class="rift-trophy">
-                            <strong>{{ trophy['type'] }}</strong>
-                            <p class="text-shadow color-c bold"><i>Not unlocked</i></p>
+                            <p class="text-shadow color-c bold">{{ trophy['type'] }}</p>
+                            <p class="text-shadow color-7"><i>Not unlocked</i></p>
                         </div>
                     </div>
 				{% endfor %}
 			</div>
 		{% endif %}
 	</div>
-	<div id="rift-misc" class="red-border">
-        <div class="icon-text">
-            <img src="{{ rift_data['souls']['icon_path'] }}" alt="Enigma Soul" width="30" height="30">
-            <p class="text-shadow color-5 bold">
-                Enigma Souls found
-                <span class="color-f">
-                    : {{ rift_data['souls']['value'] }}/42
-                </span>
-            </p>
+    <div class="divider-2">
+        <div id="rift-misc" class="blurry-bg">
+            <h3 class="text-shadow color-f center">Progression</h3>
+            <div class="icon-text">
+                <img src="{{ rift_data['souls']['icon_path'] }}" alt="Enigma Soul" width="30" height="30">
+                <p class="text-shadow color-5 bold">
+                    Enigma Souls found
+                    <span class="color-f">
+                        : {{ rift_data['souls']['value'] }}/42
+                    </span>
+                </p>
+            </div>
+            <div class="icon-text">
+                <img src="{{ rift_data['montezuma']['icon_path'] }}" alt="Montezuma" width="30" height="30">
+                <p class="text-shadow color-5 bold">
+                    Montezuma fragments
+                    <span class="color-f">
+                        : {{ rift_data['montezuma']['value'] }}/9
+                    </span>
+                </p>
+            </div>
+            <div class="icon-text">
+                <img src="{{ rift_data['burger']['icon_path'] }}" alt="McGrubber's Burger" width="30" height="30">
+                <p class="text-shadow color-5 bold">
+                    McGrubber's Burger eaten
+                    <span class="color-f">
+                        : {{ rift_data['burger']['value'] }}/5
+                    </span>
+                </p>
+            </div>
+            <div class="icon-text">
+                <img src="{{ rift_data['time_sitting']['icon_path'] }}" alt="Oak Stairs" width="30" height="30">
+                <p class="text-shadow color-5 bold">
+                    Time spent sitting
+                    <span class="color-f">
+                        : {{ rift_data['time_sitting']['value'][0] }}min {{ rift_data['time_sitting']['value'][0] }}sec
+                    </span>
+                </p>
+            </div>
         </div>
-        <div class="icon-text">
-            <img src="{{ rift_data['montezuma']['icon_path'] }}" alt="Montezuma" width="30" height="30">
-            <p class="text-shadow color-5 bold">
-                Montezuma fragments
-                <span class="color-f">
-                    : {{ rift_data['montezuma']['value'] }}/9
-                </span>
-            </p>
+        <div id="rift-motes" class="blurry-bg">
+            <h3 class="text-shadow color-f center">Motes</h3>
+            <div class="icon-text">
+                <img src="{{ rift_data['motes']['icon_path'] }}" alt="Oak Stairs" width="30" height="30">
+                <p class="text-shadow color-5 bold">
+                    Motes purse
+                    <span class="color-f">
+                        : {{ rift_data['motes']['value'] }}
+                    </span>
+                </p>
+            </div>
+            <div class="icon-text">
+                <img src="{{ rift_data['lifetime_motes']['icon_path'] }}" alt="Oak Stairs" width="30" height="30">
+                <p class="text-shadow color-5 bold">
+                    Lifetime earned motes
+                    <span class="color-f">
+                        : {{ rift_data['lifetime_motes']['value'] }}
+                    </span>
+                </p>
+            </div>
+            <div class="icon-text">
+                <img src="{{ rift_data['orbs']['icon_path'] }}" alt="Oak Stairs" width="30" height="30">
+                <p class="text-shadow color-5 bold">
+                    Orb picked-up
+                    <span class="color-f">
+                        : {{ rift_data['orbs']['value'] }}
+                    </span>
+                </p>
+            </div>
         </div>
-        <div class="icon-text">
-            <img src="{{ rift_data['burger']['icon_path'] }}" alt="McGrubber's Burger" width="30" height="30">
-            <p class="text-shadow color-5 bold">
-                McGrubber's Burger eaten
-                <span class="color-f">
-                    : {{ rift_data['burger']['value'] }}/5
-                </span>
-            </p>
-        </div>
-        <div class="icon-text">
-            <img src="{{ rift_data['time_sitting']['icon_path'] }}" alt="Oak Stairs" width="30" height="30">
-            <p class="text-shadow color-5 bold">
-                Time spent sitting
-                <span class="color-f">
-                    : {{ rift_data['time_sitting']['value'][0] }}min {{ rift_data['time_sitting']['value'][0] }}sec
-                </span>
-            </p>
-        </div>
-	</div>
-	<div id="rift-motes" class="red-border">
-        <div class="icon-text">
-            <img src="{{ rift_data['motes']['icon_path'] }}" alt="Oak Stairs" width="30" height="30">
-            <p class="text-shadow color-5 bold">
-                Motes purse
-                <span class="color-f">
-                    : {{ rift_data['motes']['value'] }}
-                </span>
-            </p>
-        </div>
-        <div class="icon-text">
-            <img src="{{ rift_data['lifetime_motes']['icon_path'] }}" alt="Oak Stairs" width="30" height="30">
-            <p class="text-shadow color-5 bold">
-                Lifetime earned motes
-                <span class="color-f">
-                    : {{ rift_data['lifetime_motes']['value'] }}
-                </span>
-            </p>
-        </div>
-        <div class="icon-text">
-            <img src="{{ rift_data['orbs']['icon_path'] }}" alt="Oak Stairs" width="30" height="30">
-            <p class="text-shadow color-5 bold">
-                Orb picked-up
-                <span class="color-f">
-                    : {{ rift_data['orbs']['value'] }}
-                </span>
-            </p>
-        </div>
-	</div>
+    </div>
 {% else %}
 	<h3 class="center">Rift data not found for this player.</h3>
 {% endif %}

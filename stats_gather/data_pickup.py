@@ -286,7 +286,7 @@ class Profile:
         }
 
         rift_data['lifetime_motes'] = {
-            "value":f"{lifetime_motes:,}",
+            "value": f"{lifetime_motes:,}",
             "icon_path": "/images/Motes.webp"
         }
 
@@ -382,7 +382,7 @@ class Profile:
 
                 current_fish[label][rarity.capitalize()] = amount_fished
 
-            current_fish["icon_path"] = f"/images/{label}_bronze.webp"
+            current_fish["icon_path"] = f"/images/trophy_fish/{label}_bronze.webp"
             fish_record.append(current_fish)
 
         return fish_record, misc_trophy_stats

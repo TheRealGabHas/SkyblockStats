@@ -318,10 +318,28 @@ footer {
     grid-template-rows: auto;
     grid-row-gap: 10px;
     grid-column-gap: 10px;
+    padding-bottom: 10px;
 }
 
-.rift-trophy-div {
+.rift-trophy-div,
+#rift-stats .divider-2 div {
     border-radius: 5px;
+}
+
+#rift-stats .divider-2 {
+    grid-column-gap: 10%;
+}
+
+#rift-stats .divider-2 > div {
+    width: fit-content;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#rift-stats .divider-2 > div .icon-text {
+    width: 100%;
+    padding-left: 5%;
+    justify-content: left;
 }
 
 #trophy-fish-misc {
