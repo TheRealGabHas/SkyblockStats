@@ -16,7 +16,7 @@
 	<div class="flex-wrapper">
 		<img id="main-skin-img" src="{{ skin_link }}" width="128" height="128" alt="{{ player_name }}">
 	</div>
-	<h2 class="center white-text">
+	<h2 class="center color-f">
         {% if rank_data['rank'] != "None" %}
         	<span style="color: {{ rank_data['color'] }}" class="text-shadow">{{ rank_data['rank'] }}</span>
         {% endif %}
@@ -230,31 +230,54 @@
 
 <div class="divider-2">
     <div id="factory-production" class="blurry-bg">
-    <h3 class="white-text center">Chocolate production</h3>
+    <h3 class="color-f center">Chocolate production</h3>
     <div class="icon-text">
         <img src="/images/Dropper.webp" alt="Prestige" width="30" height="30">
-        <p class="white-text">Factory Prestige: {{ chocolate_data['chocolate']['factory_level'] }}</p>
+        <p class="color-6 text-shadow">
+            Factory Prestige
+            <span class="color-f">
+                : {{ chocolate_data['chocolate']['factory_level'] }}
+            </span>
+            {% if chocolate_data['chocolate']['factory_level'] == 6 %}
+                <i class="parenthesis color-b bold">MAX LEVEL</i>
+            {% endif %}
+        </p>
     </div>
     <div class="icon-text">
         <img src="/images/Chocolate_Muffin.webp" alt="Prestige Chocolate" width="30" height="30">
-        <p class="white-text">Chocolate this prestige: {{ chocolate_data['chocolate']['prestige_chocolate'] }}</p>
+        <p class="color-6 text-shadow">
+            Chocolate this prestige
+            <span class="color-f">
+                : {{ chocolate_data['chocolate']['prestige_chocolate'] }}
+            </span>
+        </p>
     </div>
     <div class="icon-text">
         <img src="/images/Chocolate_Cube.webp" alt="All-time Chocolate" width="30" height="30">
-        <p class="white-text">All-time chocolate: {{ chocolate_data['chocolate']['alltime_chocolate'] }}</p>
+        <p class="color-6 text-shadow">
+            All-time chocolate
+            <span class="color-f">
+                : {{ chocolate_data['chocolate']['alltime_chocolate'] }}
+            </span>
+        </p>
     </div>
     <div class="icon-text">
         <img src="/images/Chocolate_Sphere.webp" alt="Current Chocolate" width="30" height="30">
-        <p class="white-text">Current chocolate: {{ chocolate_data['chocolate']['current_chocolate'] }}</p>
+        <p class="color-6 text-shadow">
+            Current chocolate
+            <span class="color-f">
+                : {{ chocolate_data['chocolate']['current_chocolate'] }}
+            </span>
+        </p>
     </div>
     </div>
     <div id="factory-employees" class="blurry-bg">
-    <h3 class="white-text center">Rabbit employees</h3>
+    <h3 class="color-f center">Rabbit employees</h3>
         {% for rabbit in chocolate_data['employees'] %}
         <div class="icon-text">
             <img src="{{ chocolate_data['employees'][rabbit]['icon_path'] }}" alt="{{ rabbit }} icon" width="30" height="30">
-            <p class="white-text">
-                <span class="brackets" style="color: #bebebe">
+            <p class="color-f">
+                <span class="brackets color-7">
                     {{ chocolate_data['employees'][rabbit]['level'] }}
                 </span>
                 <span style="color: {{ chocolate_data['employees'][rabbit]['color'] }}">
@@ -271,70 +294,123 @@
 <br>
 <div class="divider-2">
     <div id="factory-collection" class="blurry-bg">
-        <h3 class="white-text center">Hoppity's collection</h3>
+        <h3 class="color-f center">Hoppity's collection</h3>
         <div class="icon-text">
             <img src="/images/Hoppity.webp" alt="Hoppity" width="30" height="30">
-            <p class="white-text">Found Rabbits: {{ chocolate_data['collection'].keys() | length }}/457</p>
+            <p class="color-a">
+                Found Rabbits
+                <span class="color-f">
+                    : {{ chocolate_data['collection'].keys() | length }}/457
+                </span>
+            </p>
         </div>
         <div class="icon-text">
             <img src="/images/Fence.webp" alt="Barn" width="30" height="30">
-            <p class="white-text">Barn capacity: {{ chocolate_data['upgrades']['barn_slots'] }} (Tier {{ chocolate_data['upgrades']['barn'] }})</p>
+            <p class="color-a">
+                Barn capacity
+                <span class="color-f">
+                    : {{ chocolate_data['upgrades']['barn_slots'] }}
+                </span>
+                <i class="color-7">
+                    (Tier {{ chocolate_data['upgrades']['barn'] }})
+                </i>
+            </p>
         </div>
     </div>
+
     <div id="factory-upgrades" class="blurry-bg">
-        <h3 class="white-text center">Factory upgrades</h3>
-    <div class="icon-text">
+
+        <h3 class="color-f center">Factory upgrades</h3>
+
+        <div class="icon-text">
         <img src="/images/Cookie.webp" alt="Cookie" width="30" height="30">
-        <p class="white-text">Hand-Baked Chocolate: {{ chocolate_data['upgrades']['click'] }}</p>
-    </div>
-
-    <div class="icon-text">
-        <img src="/images/Clock.webp" alt="Time Tower" width="30" height="30">
-        <p class="white-text">
-            Time Tower: {{ chocolate_data['upgrades']['tower'] }}
-            {% if chocolate_data['upgrades']['tower'] > 0 %}
-            	(x{{ chocolate_data['upgrades']['tower'] / 10 }} multiplier)
-            {% endif %}
-            {% if chocolate_data['misc']['shop_milestone'] >= 12 %}
-            	(+ x0.7 shop milestone 12)
-            {% endif %}
+        <p class="color-d text-shadow">
+            Hand-Baked Chocolate
+            <span class="color-f">
+                : {{ chocolate_data['upgrades']['click'] }}
+            </span>
         </p>
     </div>
 
-    <div class="icon-text">
-    <img src="/images/Rabbit_Foot.webp" alt="Rabbit Shrine" width="30" height="30">
-        <p class="white-text">
-            Rabbit Shrine: {{ chocolate_data['upgrades']['shrine'] }}
-            {% if chocolate_data['upgrades']['shrine'] > 0 %}
-                (+{{ chocolate_data['upgrades']['shrine'] }}% to find rare rabbits)
-            {% endif %}
-        </p>
-    </div>
-    <div class="icon-text">
-    <img src="/images/chocolate/coach_jackrabbit.webp" alt="Coach Jackrabbit" width="30" height="30">
-        <p class="white-text">
-            Coach Jackrabbit: {{ chocolate_data['upgrades']['jackrabbit'] }}
+        <div class="icon-text">
+            <img src="/images/Clock.webp" alt="Time Tower" width="30" height="30">
+            <p class="color-d text-shadow">
+                Time Tower
+                <span class="color-f">
+                    : {{ chocolate_data['upgrades']['tower'] }}
+                </span>
+                {% if chocolate_data['upgrades']['tower'] > 0 %}
+                    <i class="color-7">
+                    (x{{ chocolate_data['upgrades']['tower'] / 10 }} multiplier)
+                    </i>
+                {% endif %}
+                {% if chocolate_data['misc']['shop_milestone'] >= 12 %}
+                    <i class="color-7">
+                    (+ x0.7 shop milestone 12)
+                    </i>
+                {% endif %}
+            </p>
+        </div>
+
+        <div class="icon-text">
+            <img src="/images/Rabbit_Foot.webp" alt="Rabbit Shrine" width="30" height="30">
+            <p class="color-d text-shadow">
+                Rabbit Shrine
+                <span class="color-f">
+                    : {{ chocolate_data['upgrades']['shrine'] }}
+                </span>
+                {% if chocolate_data['upgrades']['shrine'] > 0 %}
+                    <i class="color-7">
+                        (+{{ chocolate_data['upgrades']['shrine'] }}% to find rare rabbits)
+                    </i>
+                {% endif %}
+            </p>
+        </div>
+
+        <div class="icon-text">
+            <img src="/images/chocolate/coach_jackrabbit.webp" alt="Coach Jackrabbit" width="30" height="30">
+            <p class="color-d text-shadow">
+                Coach Jackrabbit
+            <span class="color-f">
+                : {{ chocolate_data['upgrades']['jackrabbit'] }}
+            </span>
+
             {% if chocolate_data['upgrades']['jackrabbit'] > 0 %}
-            	(x{{ chocolate_data['upgrades']['jackrabbit'] / 100 }} multiplier)
+                <i class="color-7">
+                    (x{{ chocolate_data['upgrades']['jackrabbit'] / 100 }} multiplier)
+                </i>
             {% endif %}
-        </p>
-    </div>
+
+            </p>
+        </div>
 
     </div>
 </div>
 <br>
 <div class="divider-2">
     <div id="factory-misc" class="blurry-bg">
-        <h3 class="white-text center">Other stats</h3>
+        <h3 class="color-f center">Other stats</h3>
         <div class="icon-text">
             <img src="/images/Emerald.webp" alt="Shop" width="30" height="30">
-            <p class="white-text">Chocolate spent in shop: {{ chocolate_data['misc']['shop_spent'] }} (milestone {{ chocolate_data['misc']['shop_milestone'] }})</p>
+            <p class="color-a text-shadow">
+                Chocolate spent in shop
+                <span class="color-f">
+                    : {{ chocolate_data['misc']['shop_spent'] }}
+                </span>
+                <i class="color-7">
+                    (milestone {{ chocolate_data['misc']['shop_milestone'] }})
+                </i>
+            </p>
         </div>
         <div class="icon-text">
             <img src="/images/Chocolate_Bar.webp" alt="Chocolate Bar" width="30" height="30">
-            <p class="white-text">Chocolate bar bought: {{ chocolate_data['misc']['chocolate_bar_counter'] }}</p>
+            <p class="color-a text-shadow">
+                Chocolate bar bought
+                <span class="color-f">
+                    : {{ chocolate_data['misc']['chocolate_bar_counter'] }}
+                </span>
+            </p>
         </div>
-
     </div>
 </div>
 

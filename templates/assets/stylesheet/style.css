@@ -31,6 +31,25 @@
     --§0: #000000;
 }
 
+.color-4 { color: var(--§4); }
+.color-c { color: var(--§c); }
+.color-6 { color: var(--§6); }
+.color-e { color: var(--§e); }
+.color-2 { color: var(--§2); }
+.color-a { color: var(--§a); }
+.color-b { color: var(--§b); }
+.color-3 { color: var(--§3); }
+.color-1 { color: var(--§1); }
+.color-9 { color: var(--§9); }
+.color-d { color: var(--§d); }
+.color-5 { color: var(--§5); }
+.color-f { color: var(--§f); }
+.color-7 { color: var(--§7); }
+.color-8 { color: var(--§8); }
+.color-0 { color: var(--§0); }
+
+.bold { font-weight: bold; }
+
 * {
     box-sizing: border-box;
     margin: 0;
