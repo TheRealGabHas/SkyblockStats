@@ -325,6 +325,7 @@ class Profile:
             reward_tier = "No claimed reward"
 
         reward_icons: dict = {
+            "No claimed reward": "/images/Barrier.webp",
             "Bronze Hunter Reward": "/images/Leather_Tunic.webp",
             "Silver Hunter Reward": "/images/Iron_Chestplate.webp",
             "Gold Hunter Reward": "/images/Gold_Chestplate.webp",
