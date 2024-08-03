@@ -82,6 +82,12 @@ def get_context_for_profile(player: Profile, profile_name: str = "selected"):
                      "profiles_data": profiles_data, "chocolate_data": chocolate_data
                      }
 
+    # Add a field if some data haven't been correctly retrieved
+    for value in context.values():
+        if value is None:
+            context['api_warning'] = True
+            break
+
     return context
 
 
