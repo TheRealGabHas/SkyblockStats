@@ -12,6 +12,11 @@
 
 <div id="core-content">
 <a href="/" target="_self">Home</a>
+{% if api_warning == True %}
+    <h3 class="center text-shadow color-4 blurry-bg">
+        Some data couldn't be retrieved. This is usually because the in-game API settings are turned off.
+    </h3>
+{% endif %}
 <div id="head-section" class="red-border stats-div">
 	<div class="flex-wrapper">
 		<img id="main-skin-img" src="{{ skin_link }}" width="128" height="128" alt="{{ player_name }}">
