@@ -253,22 +253,47 @@ class Profile:
         rift_data['missing_trophies'] = missing_trophies
 
         # Number of found Enigma souls
-        rift_data['souls'] = len(souls)
+        rift_data['souls'] = {
+            "value": len(souls),
+            "icon_path": "/images/Enigma_Soul.webp"
+        }
+
+        rift_data['time_sitting'] = {
+            "value": 0,
+            "icon_path": "/images/Oak_Stairs.webp"
+        }
 
         # Amount of time spent sitting alone (minutes, seconds)
         if lonely is None:
-            rift_data['time_sitting'] = (0, 0)
+            rift_data['time_sitting']['value'] = (0, 0)
         else:
-            rift_data['time_sitting'] = int(lonely / 60), lonely % 60
+            rift_data['time_sitting']['value'] = int(lonely / 60), lonely % 60
 
         # Amount of Montezuma soul fragments found
-        rift_data['montezuma'] = len(montezuma.get('found_cats', []))
+        rift_data['montezuma'] = {
+            "value": len(montezuma.get('found_cats', [])),
+            "icon_path": "/images/Montezuma.webp"
+        }
 
-        rift_data['burger'] = burger
+        rift_data['burger'] = {
+            "value": burger,
+            "icon_path": "/images/McGrubber_Burger.webp"
+        }
 
-        rift_data['motes'] = f"{current_motes:,}"
-        rift_data['lifetime_motes'] = f"{lifetime_motes:,}"
-        rift_data['orbs'] = f"{orb_picked:,}"
+        rift_data['motes'] = {
+            "value": f"{current_motes:,}",
+            "icon_path": "/images/Motes.webp"
+        }
+
+        rift_data['lifetime_motes'] = {
+            "value":f"{lifetime_motes:,}",
+            "icon_path": "/images/Motes.webp"
+        }
+
+        rift_data['orbs'] = {
+            "value": f"{orb_picked:,}",
+            "icon_path": "/images/Experience_Bottle.webp"
+        }
 
         return rift_data
 
@@ -360,7 +385,6 @@ class Profile:
             current_fish["icon_path"] = f"/images/{label}_bronze.webp"
             fish_record.append(current_fish)
 
-        print(misc_trophy_stats)
         return fish_record, misc_trophy_stats
 
     def get_chocolate_factory_stats(self, profile: str = "selected"):

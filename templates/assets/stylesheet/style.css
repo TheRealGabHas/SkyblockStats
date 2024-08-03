@@ -56,11 +56,6 @@
     padding: 0;
 }
 
-*::selection {
-    background-color: transparent;
-    color: currentColor;
-}
-
 html, body {
     width: 100%;
     height: 100%;

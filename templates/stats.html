@@ -98,7 +98,7 @@
 {% endif %}
 </div>
 
-<div id="slayer-stats" class="red-border stats-div">
+<div id="slayer-stats" class="stats-div">
 	<h2 class="section-title center">Slayer</h2>
 {% if slayer_data != None %}
 	<div id="slayer-cards">
@@ -130,7 +130,7 @@
 <div id="rift-stats" class="red-border stats-div">
 	<h2 class="section-title center">Rift</h2>
 {% if rift_data != None %}
-	<div id="rift-trophies" class="red-border">
+	<div id="rift-trophies">
 		{% if rift_data['trophies'] | length > 0 %}
 			<h3 class="center">Unlocked Timecharms</h3>
 			<div id="unlocked-timecharms">
@@ -138,8 +138,8 @@
                     <div class="icon-text blurry-bg rift-trophy-div">
                     <img src="{{ trophy['icon_path'] }}" alt="{{ trophy['type'] }}" width="30" height="30">
                         <div class="rift-trophy">
-                            <strong>{{ trophy['type'] }}</strong>
-                            <p>Unlocked after {{ trophy['visits'] }} visits</p>
+                            <p class="text-shadow bold">{{ trophy['type'] }}</p>
+                            <p class="text-shadow color-a"><i>Unlocked after {{ trophy['visits'] }} visits</i></p>
                         </div>
                     </div>
 				{% endfor %}
@@ -153,7 +153,7 @@
                     <img src="{{ trophy['icon_path'] }}" alt="{{ trophy['type'] }}" width="30" height="30">
                         <div class="rift-trophy">
                             <strong>{{ trophy['type'] }}</strong>
-                            <p>Not unlocked</p>
+                            <p class="text-shadow color-c bold"><i>Not unlocked</i></p>
                         </div>
                     </div>
 				{% endfor %}
@@ -161,16 +161,71 @@
 		{% endif %}
 	</div>
 	<div id="rift-misc" class="red-border">
-		<p><strong>Enigma Souls found:</strong> {{ rift_data['souls'] }}/42</p>
-		<p><strong>Montezuma fragments:</strong> {{ rift_data['montezuma'] }}/9</p>
-		<p><strong>McGrubber's Burger eaten :</strong> {{ rift_data['burger'] }}/5</p>
-		<p><strong>Time spent
-			sitting:</strong> {{ rift_data['time_sitting'][0] }}min {{ rift_data['time_sitting'][0] }}sec</p>
+        <div class="icon-text">
+            <img src="{{ rift_data['souls']['icon_path'] }}" alt="Enigma Soul" width="30" height="30">
+            <p class="text-shadow color-5 bold">
+                Enigma Souls found
+                <span class="color-f">
+                    : {{ rift_data['souls']['value'] }}/42
+                </span>
+            </p>
+        </div>
+        <div class="icon-text">
+            <img src="{{ rift_data['montezuma']['icon_path'] }}" alt="Montezuma" width="30" height="30">
+            <p class="text-shadow color-5 bold">
+                Montezuma fragments
+                <span class="color-f">
+                    : {{ rift_data['montezuma']['value'] }}/9
+                </span>
+            </p>
+        </div>
+        <div class="icon-text">
+            <img src="{{ rift_data['burger']['icon_path'] }}" alt="McGrubber's Burger" width="30" height="30">
+            <p class="text-shadow color-5 bold">
+                McGrubber's Burger eaten
+                <span class="color-f">
+                    : {{ rift_data['burger']['value'] }}/5
+                </span>
+            </p>
+        </div>
+        <div class="icon-text">
+            <img src="{{ rift_data['time_sitting']['icon_path'] }}" alt="Oak Stairs" width="30" height="30">
+            <p class="text-shadow color-5 bold">
+                Time spent sitting
+                <span class="color-f">
+                    : {{ rift_data['time_sitting']['value'][0] }}min {{ rift_data['time_sitting']['value'][0] }}sec
+                </span>
+            </p>
+        </div>
 	</div>
 	<div id="rift-motes" class="red-border">
-		<p><strong>Motes purse:</strong> {{ rift_data['motes'] }}</p>
-		<p><strong>Lifetime earned motes:</strong> {{ rift_data['lifetime_motes'] }}</p>
-		<p><strong>Orb picked-up:</strong> {{ rift_data['orbs'] }}</p>
+        <div class="icon-text">
+            <img src="{{ rift_data['motes']['icon_path'] }}" alt="Oak Stairs" width="30" height="30">
+            <p class="text-shadow color-5 bold">
+                Motes purse
+                <span class="color-f">
+                    : {{ rift_data['motes']['value'] }}
+                </span>
+            </p>
+        </div>
+        <div class="icon-text">
+            <img src="{{ rift_data['lifetime_motes']['icon_path'] }}" alt="Oak Stairs" width="30" height="30">
+            <p class="text-shadow color-5 bold">
+                Lifetime earned motes
+                <span class="color-f">
+                    : {{ rift_data['lifetime_motes']['value'] }}
+                </span>
+            </p>
+        </div>
+        <div class="icon-text">
+            <img src="{{ rift_data['orbs']['icon_path'] }}" alt="Oak Stairs" width="30" height="30">
+            <p class="text-shadow color-5 bold">
+                Orb picked-up
+                <span class="color-f">
+                    : {{ rift_data['orbs']['value'] }}
+                </span>
+            </p>
+        </div>
 	</div>
 {% else %}
 	<h3 class="center">Rift data not found for this player.</h3>
@@ -190,10 +245,10 @@
 {% endif %}
 </div>
 
-<div id="trophy-stats" class="red-border stats-div">
+<div id="trophy-stats" class="stats-div">
 	<h2 class="section-title center">Trophy Fishing</h2>
 {% if trophy_data != None %}
-	<div id="trophy-fish-misc" class="red-border">
+	<div id="trophy-fish-misc">
     <div class="icon-text">
         <img src="{{ trophy_data[1]['Claimed reward']['icon_path'] }}" alt="Reward icon" width="30" height="30">
         <p><strong>Claimed reward</strong>: {{ trophy_data[1]['Claimed reward']['name'] }}</p>
@@ -204,7 +259,7 @@
     </div>
 	</div>
 
-	<div id="trophy-fish-count" class="red-border">
+	<div id="trophy-fish-count">
 		{% for trophy in trophy_data[0] %}
 			<div id="{{ trophy.keys() | first }}-summary" class="fish-card">
 				<div class="icon-text center">
@@ -224,7 +279,7 @@
 {% endif %}
 </div>
 
-<div id="chocolate-stats" class="red-border stats-div">
+<div id="chocolate-stats" class="stats-div">
     <h2 class="section-title center">Chocolate Factory</h2>
 {% if chocolate_data != None and chocolate_data != {} %}
 
