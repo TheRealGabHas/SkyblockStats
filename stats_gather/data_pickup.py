@@ -170,7 +170,7 @@ class Profile:
                     return "MAX LEVEL"
                 for level in all_reqs:
                     if xp < level:
-                        return f"{level:,} EXP"
+                        return f"{level:,}"
 
         # Formatting the data
         final_dict: dict = {}
@@ -314,12 +314,30 @@ class Profile:
             coin_purse = 0
 
         final_dict: dict = {
-            "First Join": first_join,
-            "Soulflow": f"{soulflow:,.0f}",
-            "Fished Treasures": f"{fishing_treasures:,.0f}",
-            "Fairy Souls": fairy_souls,
-            "Purse": f"{coin_purse:,.2f} coins",
-            "Personal Bank Upgrade": bank_level
+            "First Join": {
+                "value": first_join,
+                "icon_path": "/images/Painting.webp"
+            },
+            "Soulflow": {
+                "value": f"{soulflow:,.0f}",
+                "icon_path": "/images/Soulflow.webp"
+            },
+            "Fished Treasures": {
+                "value": f"{fishing_treasures:,.0f}",
+                "icon_path": "/images/Treasurite.webp"
+            },
+            "Fairy Souls": {
+                "value": fairy_souls,
+                "icon_path": "/images/Fairy_Soul.webp"
+            },
+            "Purse": {
+                "value": f"{coin_purse:,.2f} coins",
+                "icon_path": "/images/Personal_Bank.webp"
+            },
+            "Personal Bank Upgrade": {
+                "value": bank_level,
+                "icon_path": "/images/Personal_Bank.webp"
+            }
         }
 
         return final_dict

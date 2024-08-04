@@ -111,17 +111,26 @@
 		<div id="{{ boss.lower() }}" class="slayer-boss-div center">
 			<div class="slayer-title-container icon-text">
 				<img src="{{ slayer_data[boss]["icon_path"] }}" alt="{{ boss.lower().capitalize() }} Icon" width="30" height="30">
-				<h3 class="{{ boss.lower() }}-boss-level boss-title center">
+				<h3 class="{{ boss.lower() }}-boss-level boss-title center text-shadow">
 					{{ boss }} - LVL {{ slayer_data[boss]["current_level"] }}
 				</h3>
 			</div>
-			<p class="{{ boss.lower() }}-boss-xp boss-xp center">{{ slayer_data[boss]["xp"] }} EXP
-				/ {{ slayer_data[boss]["next_lvl_xp"] }}</p>
+			<p class="{{ boss.lower() }}-boss-xp boss-xp center text-shadow">
+                <strong class="color-d">{{ slayer_data[boss]["xp"] }}</strong>
+                <strong class="color-5">/</strong>
+                <strong class="color-d">{{ slayer_data[boss]["next_lvl_xp"] }}</strong>
+                <strong class="color-5">EXP</strong>
+            </p>
 			<hr class="slayer-separator">
 			<div id="{{ boss.lower() }}-boss-killed" class="slayer-boss-killed">
 				{% for kill in slayer_data[boss]["boss_kills"] %}
 					<p id="{{ boss.lower() }}-{{ kill.keys() | first | lower | replace(" ", "-") }}-kills"
-					   class="slayer-boss-tier-killed">{{ kill.keys() | first }} : {{ kill.values() | first }}</p>
+					   class="slayer-boss-tier-killed text-shadow color-e">
+                        {{ kill.keys() | first }}
+                        <span class="color-f bold">
+                           : {{ kill.values() | first }}
+                        </span>
+                    </p>
 				{% endfor %}
 			</div>
 		</div>
@@ -244,10 +253,16 @@
 <div id="misc-stats" class="red-border stats-div">
 	<h2 class="section-title center">Miscellaneous</h2>
 {% if misc_data != None %}
-	<div class="red-border">
+	<div class="divider-2">
+    <div class="blurry-bg">
 		{% for stats in misc_data %}
-			<p class="misc-data"><strong>{{ stats }}:</strong> {{ misc_data[stats] }}</p>
+            <div class="icon-text">
+            <img src="{{ misc_data[stats]['icon_path'] }}" alt="{{ stats }}" width="30" height="30">
+                <p class="misc-data"><strong>{{ stats }}:</strong> {{ misc_data[stats]['value'] }}</p>
+            </div>
 		{% endfor %}
+    </div>
+
 	</div>
 {% else %}
 	<h3 class="center">Misc data not found for this player.</h3>

@@ -237,6 +237,11 @@ footer {
     margin-inside: 2.5%;
 }
 
+.stats-div {
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
 .white-text, .section-title,
 .stats-div > *, #profile-selector {
     color: white;
@@ -273,6 +278,7 @@ footer {
 
 .icon-text img {
     margin-right: 10px;
+    transform: translateY(-2px);
 }
 
 .blurry-bg {
@@ -300,8 +306,9 @@ footer {
 .slayer-separator {
     width: 40%;
     margin-left: 30%;
-    border: 1px solid white;
-    color: white;
+    border: 1px solid var(--§7);
+    border-radius: 5px;
+    color: var(--§7);
 }
 
 .slayer-boss-killed {
@@ -336,7 +343,8 @@ footer {
     padding-bottom: 10px;
 }
 
-#rift-stats .divider-2 > div .icon-text {
+#rift-stats .divider-2 > div .icon-text,
+#misc-stats .divider-2 > div .icon-text {
     width: 100%;
     padding-left: 5%;
     justify-content: left;
