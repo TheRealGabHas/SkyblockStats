@@ -56,6 +56,12 @@
     padding: 0;
 }
 
+*::selection {
+    color: currentColor;
+    filter: invert(100%);
+    background-color: white;
+}
+
 html, body {
     width: 100%;
     height: 100%;
@@ -237,6 +243,13 @@ footer {
     margin-inside: 2.5%;
 }
 
+#head-section-data {
+    width: fit-content;
+    margin: 0 auto;
+    border-radius: 5px;
+    padding: 5px;
+}
+
 .stats-div {
     padding-bottom: 10px;
     padding-left: 10px;
@@ -268,6 +281,10 @@ footer {
     grid-template-columns: repeat(3, 1fr);
     grid-row-gap: 10px;
     grid-column-gap: 10px;
+}
+
+.slayer-boss-tier-killed {
+    text-align: left;
 }
 
 .icon-text {
@@ -339,6 +356,16 @@ footer {
 
 #rift-stats .divider-2 > div {
     width: fit-content;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#misc-stats .divider-2 > div {
+    border-radius: 5px;
+}
+
+#misc-stats .divider-2 > div,
+.rift-trophy-div {
     padding-top: 10px;
     padding-bottom: 10px;
 }

@@ -331,7 +331,7 @@ class Profile:
                 "icon_path": "/images/Fairy_Soul.webp"
             },
             "Purse": {
-                "value": f"{coin_purse:,.2f} coins",
+                "value": f"{coin_purse:,.2f}",
                 "icon_path": "/images/Personal_Bank.webp"
             },
             "Personal Bank Upgrade": {

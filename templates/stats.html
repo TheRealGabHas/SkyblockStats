@@ -17,71 +17,98 @@
         Some data couldn't be retrieved. This is usually because the in-game API settings are turned off.
     </h3>
 {% endif %}
-<div id="head-section" class="red-border stats-div">
+<div id="head-section">
+<div id="head-section-data" class="blurry-bg">
 	<div class="flex-wrapper">
 		<img id="main-skin-img" src="{{ skin_link }}" width="128" height="128" alt="{{ player_name }}">
 	</div>
-	<h2 class="center color-f">
+
+	<h2 class="center color-f text-shadow">
         {% if rank_data['rank'] != "None" %}
         	<span style="color: {{ rank_data['color'] }}" class="text-shadow">{{ rank_data['rank'] }}</span>
         {% endif %}
         {% if leveling_data != None %}
-            <span style="color: #3f3f3f" class="text-shadow">[</span>
-            <span style="color: {{ leveling_data["Global"]["color"] }}" class="text-shadow">{{ (leveling_data["Global"]["xp"] / 100) | int }}</span>
-            <span style="color: #3f3f3f" class="text-shadow">]</span>
+            <span style="color: {{ leveling_data["Global"]["color"] }}" class="text-shadow brackets">{{ (leveling_data["Global"]["xp"] / 100) | int }}</span>
         {% endif %}
         {{ player_name }}
     </h2>
-<div class="center">
+    <div class="center text-shadow">
     {% if profiles_data != None %}
-    <label for="profile-selector">Displayed profile: </label>
-    <select id="profile-selector" class="blurry-bg">
-    {% if displayed_profile == "Selected" %}
-        {% for profile in profiles_data %}
-            {% if profile['selected'] == True %}
-                <option selected class="text-shadow">{{ profile['name'] }} ({{ profile['game_mode'] }})</option>
+        <div class="icon-text">
+            <img src="/images/Nametag.webp" alt="Profile" width="30" height="30">
+            <label for="profile-selector" class="color-b">Profile <span class="color-f bold">:</span></label>
+            <select id="profile-selector" class="blurry-bg">
+            {% if displayed_profile == "Selected" %}
+                {% for profile in profiles_data %}
+                    {% if profile['selected'] == True %}
+                        <option selected>{{ profile['name'] }} ({{ profile['game_mode'] | replace('island', 'stranded') }})</option>
+                    {% else %}
+                        <option>{{ profile['name'] }} ({{ profile['game_mode'] | replace('island', 'stranded') }})</option>
+                    {% endif %}
+                {% endfor %}
             {% else %}
-                <option class="text-shadow">{{ profile['name'] }} ({{ profile['game_mode'] }})</option>
+                {% for profile in profiles_data %}
+                    {% if (profile['name'].startswith(displayed_profile))  %}
+                        <option selected>{{ profile['name'] }} ({{ profile['game_mode'] | replace('island', 'stranded') }})</option>
+                    {% else %}
+                        <option>{{ profile['name'] }} ({{ profile['game_mode'] | replace('island', 'stranded')}})</option>
+                    {% endif %}
+                {% endfor %}
             {% endif %}
-        {% endfor %}
-    {% else %}
-        {% for profile in profiles_data %}
-            {% if (profile['name'].startswith(displayed_profile))  %}
-                <option selected>{{ profile['name'] }} ({{ profile['game_mode'] }})</option>
-            {% else %}
-                <option>{{ profile['name'] }} ({{ profile['game_mode'] }})</option>
-            {% endif %}
-        {% endfor %}
+            </select>
+        </div>
     {% endif %}
-    </select>
-{% endif %}
 </div>
-
-
-{% if misc_data != None %}
-	<div class="flex-wrapper">
-    <p class="center tooltip-container" data-tooltip="Format: YYYY-dd-MM hh:mm:ss">
-        <strong>First joined:</strong> {{ misc_data["First Join"] }}</p>
+    {% if misc_data != None %}
+        <div class="flex-wrapper text-shadow">
+            <div class="icon-text">
+                <img src="{{ misc_data['First Join']['icon_path'] }}" alt="First joined" width="30" height="30">
+                <p class="tooltip-container color-b" data-tooltip="Format: YYYY-dd-MM hh:mm:ss">
+                    First joined
+                    <span class="color-f bold">
+                        : {{ misc_data["First Join"]['value'] }}
+                    </span>
+                </p>
+            </div>
+        </div>
+        <div class="icon-text text-shadow">
+            <img src="{{ misc_data['Purse']['icon_path'] }}" alt="Purse" width="30" height="30">
+            <p class="color-b">
+                Purse
+                <span class="color-f bold">: {{ misc_data['Purse']['value'] }}</span>
+                <span class="color-6"> coins</span>
+            </p>
+        </div>
+    {% else %}
+        <p class="center color-b bold">
+            First joined:
+            <span class="color-c"> -</span>
+        </p>
+        <p class="center color-b bold">
+            Purse:
+            <span class="color-c"> -</span>
+        </p>
+    {% endif %}
+    {% if leveling_data != None %}
+        <div class="icon-text text-shadow">
+        <img src="{{ leveling_data["Global"]["icon_path"] }}" alt="{{ skill }} Icon" width="30" height="30">
+        <p class="center color-b">Skyblock Level
+            <span class="color-f bold">
+                : {{ leveling_data["Global"]["xp"] / 100 }}
+            </span>
+        </p>
     </div>
-	<p class="center"><strong>Purse:</strong> {{ misc_data["Purse"] }}</p>
-{% else %}
-	<p class="to-hover center"><strong>First joined:</strong> -</p>
-	<p class="center"><strong>Purse:</strong> -</p>
-{% endif %}
-{% if leveling_data != None %}
-<div class="icon-text">
-	<img src="{{ leveling_data["Global"]["icon_path"] }}" alt="{{ skill }} Icon" width="30" height="30">
-	<p class="center"><strong>Skyblock Level:</strong> {{ leveling_data["Global"]["xp"] / 100 }}</p>
+    {% else %}
+        <div class="icon-text text-shadow">
+        <img src="/images/Skyblock_Levels.webp" alt="{{ skill }} Icon" width="30" height="30">
+        <p class="center color-b">
+            Skyblock Level:
+            <span class="color-c"> -</span>
+        </p>
+    </div>
+    {% endif %}
+    </div>
 </div>
-
-{% else %}
-<div class="icon-text">
-	<img src="/images/Skyblock_Levels.webp" alt="{{ skill }} Icon" width="30" height="30">
-	<p class="center"><strong>Skyblock Level:</strong> -</p>
-</div>
-{% endif %}
-</div>
-
 <div id="skills-stats" class="red-border stats-div">
 	<h2 class="section-title center">Skills & Level</h2>
 {% if leveling_data != None %}
@@ -89,15 +116,24 @@
 		<img src="{{ leveling_data["Global"]["icon_path"] }}" alt="{{ skill }} Icon" width="30" height="30">
 		<h2 id="sb-level" class="title">Skyblock Level: {{ leveling_data["Global"]["xp"] / 100 }}</h2>
 	</div>
-	{% for skill in leveling_data %}
-		{% if skill != "Global" %}
-		<div class="icon-text">
-			<img src="{{ leveling_data[skill]["icon_path"] }}" alt="{{ skill }} Icon" width="30" height="30">
-			<p id="{{ skill.lower() }}-info" class="skills-info tooltip-container" data-tooltip="{{ leveling_data[skill]["xp"] }} EXP">
-                <strong>{{ skill | replace("2", "") }} :</strong> {{ leveling_data[skill]["level"] }}</p>
-		</div>
-		{% endif %}
-	{% endfor %}
+    <div id="skills-container">
+    	{% for skill in leveling_data %}
+            {% if skill != "Global" %}
+                <div class="skill-container">
+                    <div class="icon-text">
+                    <img src="{{ leveling_data[skill]["icon_path"] }}" alt="{{ skill }} Icon" width="30" height="30">
+                    <p id="{{ skill.lower() }}-info" class="skills-info tooltip-container color-b" data-tooltip="{{ leveling_data[skill]["xp"] }} EXP">
+                        {{ skill | replace("2", "") }}
+                        <span class="color-f bold">
+                            : {{ leveling_data[skill]["level"] | replace('-1', '0') }}
+                        </span>
+                    </p>
+                    </div>
+                </div>
+            {% endif %}
+	    {% endfor %}
+    </div>
+
 {% else %}
 	<h3 class="center">Skills data not found for this player.</h3>
 {% endif %}
@@ -111,23 +147,29 @@
 		<div id="{{ boss.lower() }}" class="slayer-boss-div center">
 			<div class="slayer-title-container icon-text">
 				<img src="{{ slayer_data[boss]["icon_path"] }}" alt="{{ boss.lower().capitalize() }} Icon" width="30" height="30">
-				<h3 class="{{ boss.lower() }}-boss-level boss-title center text-shadow">
+				<h3 class="{{ boss.lower() }}-boss-level boss-title center text-shadow color-7">
 					{{ boss }} - LVL {{ slayer_data[boss]["current_level"] }}
 				</h3>
 			</div>
 			<p class="{{ boss.lower() }}-boss-xp boss-xp center text-shadow">
                 <strong class="color-d">{{ slayer_data[boss]["xp"] }}</strong>
                 <strong class="color-5">/</strong>
-                <strong class="color-d">{{ slayer_data[boss]["next_lvl_xp"] }}</strong>
-                <strong class="color-5">EXP</strong>
+                {% if slayer_data[boss]["next_lvl_xp"] == "MAX LEVEL" %}
+                    <strong class="color-5">{{ slayer_data[boss]["next_lvl_xp"] }}</strong>
+                {% else %}
+                    <strong class="color-d">{{ slayer_data[boss]["next_lvl_xp"] }}
+                        <span class="color-5">EXP</span>
+                    </strong>
+                {% endif %}
+
             </p>
 			<hr class="slayer-separator">
 			<div id="{{ boss.lower() }}-boss-killed" class="slayer-boss-killed">
 				{% for kill in slayer_data[boss]["boss_kills"] %}
 					<p id="{{ boss.lower() }}-{{ kill.keys() | first | lower | replace(" ", "-") }}-kills"
-					   class="slayer-boss-tier-killed text-shadow color-e">
+					   class="slayer-boss-tier-killed text-shadow color-2">
                         {{ kill.keys() | first }}
-                        <span class="color-f bold">
+                        <span class="color-a bold">
                            : {{ kill.values() | first }}
                         </span>
                     </p>
@@ -141,7 +183,7 @@
 {% endif %}
 </div>
 
-<div id="rift-stats" class="red-border stats-div">
+<div id="rift-stats" class="stats-div">
 	<h2 class="section-title center">Rift</h2>
 {% if rift_data != None %}
 	<div id="rift-trophies">
@@ -250,7 +292,7 @@
 {% endif %}
 </div>
 
-<div id="misc-stats" class="red-border stats-div">
+<div id="misc-stats" class="stats-div">
 	<h2 class="section-title center">Miscellaneous</h2>
 {% if misc_data != None %}
 	<div class="divider-2">
