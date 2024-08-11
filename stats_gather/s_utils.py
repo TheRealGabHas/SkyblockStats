@@ -37,6 +37,22 @@ def get_level_from_xp(xp: str, skill_table: list[int]) -> int:
     return len(skill_table)
 
 
+def get_level_info_from_xp(xp: str, skill_table: list[int]):
+    """
+    Get the level progression for the given skill current_xp/required_xp
+    :param xp: The amount of experience (a string such as "12,548,397")
+    :param skill_table: A list of the required amount of experience for each level (such as [10, 50, 175, 500, ...])
+    :return: A dict with the following keys : {"current_xp", "required_xp"}
+    """
+    skill_xp = int(xp.replace(",", ""))
+    level = get_level_from_xp(xp, skill_table)
+
+    current_xp = skill_xp - sum(skill_table[0:level]) if skill_xp > 0 else 0
+    next_xp = skill_table[level + 1] if (len(skill_table) > level + 1) else 0
+
+    return {"current_xp": current_xp, "required_xp": next_xp}
+
+
 def get_context_for_profile(player: Profile, profile_name: str = "selected"):
     """
     Give the request context for a given player and a given profile name (default is the last selected profile)

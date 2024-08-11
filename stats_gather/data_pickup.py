@@ -120,7 +120,7 @@ class Profile:
         xp_data['Global'] = {
             "xp": global_level,
             "icon_path": "/images/Skyblock_Levels.webp",
-            "color": f"#{level_color:06x}"
+            "color": f"#{level_color:06x}",
         }
 
         for skill in SKILLS:
@@ -139,11 +139,16 @@ class Profile:
 
             xp_data[key] = {
                 "xp": f"{round(value):,}",
-                "icon_path": f"/images/{key}.webp"
+                "icon_path": f"/images/{key}.webp",
+                "level_xp": 0,
+                "next_level_xp": 100,
             }
 
             if key != "Global":
                 xp_data[key]['level'] = utils.get_level_from_xp(f"{round(value):,}", skill_table=skill_table)
+                progression = utils.get_level_info_from_xp(f"{round(value):,}", skill_table=skill_table)
+                xp_data[key]['level_xp'] = progression['current_xp']
+                xp_data[key]['next_level_xp'] = progression['required_xp']
 
         # TODO: Take the Taming and Runecrafting level cap into account
 
