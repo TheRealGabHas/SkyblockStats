@@ -119,16 +119,29 @@
     <div id="skills-container">
     	{% for skill in leveling_data %}
             {% if skill != "Global" %}
-                <div class="skill-container">
+                <div class="skill-container blurry-bg">
                     <div class="icon-text">
-                    <img src="{{ leveling_data[skill]["icon_path"] }}" alt="{{ skill }} Icon" width="30" height="30">
-                    <p id="{{ skill.lower() }}-info" class="skills-info tooltip-container color-b" data-tooltip="{{ leveling_data[skill]["xp"] }} EXP">
-                        {{ skill | replace("2", "") }}
-                        <span class="color-f bold">
-                            : {{ leveling_data[skill]["level"] | replace('-1', '0') }}
-                        </span>
-                    </p>
+                        <img src="{{ leveling_data[skill]["icon_path"] }}" alt="{{ skill }} Icon" width="30" height="30">
+                        <p id="{{ skill.lower() }}-info" class="skills-info tooltip-container color-b" data-tooltip="{{ leveling_data[skill]["xp"] }} EXP">
+                            {{ skill | replace("2", "") }}
+                            <span class="color-f bold">
+                                : {{ leveling_data[skill]["level"] | replace('-1', '0') }}
+                            </span>
+                        </p>
                     </div>
+                    <label for="{{ skill }}-progress">
+                        <span class="color-3">{{ '{value:,.0f}'.format(value=leveling_data[skill]['level_xp']) }}</span>
+                        <span class="color-9 bold">/</span>
+                        {% if leveling_data[skill]['next_level_xp'] == 0 %}
+                            <i class="color-b bold">MAX LEVEL</i>
+                        {% else %}
+                            <span class="color-3">{{ '{value:,.0f}'.format(value=leveling_data[skill]['next_level_xp']) }}</span>
+                        {% endif %}
+                    </label>
+                    <progress id="{{ skill }}-progress" max="{{ leveling_data[skill]['next_level_xp'] }}"
+                              value="{{ leveling_data[skill]['level_xp'] }}">
+                        {{ leveling_data[skill]['level_xp'] }}/{{ leveling_data[skill]['next_level_xp'] }}
+                    </progress>
                 </div>
             {% endif %}
 	    {% endfor %}
