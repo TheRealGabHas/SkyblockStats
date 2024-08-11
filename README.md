@@ -140,6 +140,6 @@ When editing and contributing to the project, one must follow these few rules:
   - [ ] Add the rabbit list (can be toggled and sorted)
   - [ ] Add the chocolate per second rate
 - [x] Add profile selector
-- [ ] Add icon for every field
+- [x] Add icon for every field
 - [x] Add and complete a page about user data, credits, legals...
 
