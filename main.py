@@ -21,7 +21,7 @@ app.mount("/font", StaticFiles(directory="./templates/assets/font"), name="font"
 app.mount("/video", StaticFiles(directory="./templates/assets/video"), name="video")
 app.mount("/script", StaticFiles(directory="./templates/assets/scripts"), name="script")
 
-templates = Jinja2Templates(directory="templates")
+templates = Jinja2Templates(directory="templates", trim_blocks=True, lstrip_blocks=True)
 
 
 @app.get("/")
