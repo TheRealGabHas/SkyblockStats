@@ -16,6 +16,15 @@ This project doesn't have any grand ambitions, it's just for fun and training.
 
 ## Technologies
 
+This website is built with FastAPI in Python 3.12. A route is created for each page and a filled Jinja2 template is 
+returned as an HTML document.
+
+<p align="center">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=python,fastapi,html,css,javascript"/>
+  </a>
+</p>
+
 - [Python 3.12+](https://python.org)
 - [FastAPI](https://fastapi.tiangolo.com/)
 - [Jinja2 Templates](https://jinja.palletsprojects.com/en/2.10.x/)
@@ -91,6 +100,39 @@ code displays "This is the tooltip text" when hovering the `<p>` element.
 <p data-tooltip="This is the tooltip text">Hello world</p>
 ```
 
+## Bug reporting guide
+
+To report a bug, one must open an issue and fill in the following information :
+
+- Reported behavior : What is the website actually doing
+- Expected behavior : What the website should be doing
+- Step to reproduce the bug
+- Other information (only if relevant)
+
+## Style guidelines
+
+When editing and contributing to the project, one must follow these few rules:
+- **Jinja2 template**
+  - Indentation should be 4 spaces
+  - Quotes contained in HTML tags should be double quotes
+  - Quotes contained in Jinja2 expression should be single quote
+
+- **CSS**
+  - Indentation should be 4 spaces
+  - Quotes should be double quotes
+
+- **JavaScript**
+  - Indentation should be 4 spaces
+  - Quotes inside function should be single quote
+  - Quotes inside constants should be double quotes
+
+- **Python**
+  - Indentation should be 4 spaces
+  - Quotes should always be double-quotes except in dictionary access (for instance: `my_dict['key']`)
+
+- **README**
+  - Indentation should be 2 spaces
+
 ## Goals
 
 - [ ] Add Chocolate Factory stats viewer
@@ -101,11 +143,3 @@ code displays "This is the tooltip text" when hovering the `<p>` element.
 - [ ] Add icon for every field
 - [x] Add and complete a page about user data, credits, legals...
 
-## Bug reporting guide
-
-To report a bug, one must open an issue and fill in the following information :
-
-- Reported behavior : What is the website actually doing
-- Expected behavior : What the website should be doing
-- Step to reproduce the bug
-- Other information (only if relevant)
