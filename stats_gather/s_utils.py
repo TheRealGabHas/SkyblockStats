@@ -77,7 +77,6 @@ def get_context_for_profile(player: Profile, profile_name: str = "selected"):
         misc_data = player.get_misc_stats(profile_name)
     except Exception:
         misc_data = None
-
     try:
         chocolate_data = player.get_chocolate_factory_stats(profile_name)
     except Exception:

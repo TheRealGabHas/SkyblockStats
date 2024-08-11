@@ -63,7 +63,6 @@ async def stats(request: Request, name: str, profile: str = "selected"):
     p = data_pickup.Profile(uuid=_uuid)
     p.gather_rank()  # Send API request to fetch the player's Hypixel rank (and a list of SkyBlock profiles)
     result = p.gather_stats()  # Send API request to Hypixel to fetch the player's stats
-    p.get_chocolate_factory_stats()
 
     if not result:
         return templates.TemplateResponse("home.html",
