@@ -128,6 +128,8 @@ When editing and contributing to the project, one must follow these few rules:
 - [x] Add profile selector
 - [x] Add icon for every field
 - [x] Add and complete a page about user data, credits, legals...
+- [ ] Implement a caching system with a 5 minutes caching duration
+- [ ] Take skill level cap into account (Runecrafting, Taming, Foraging...)
 
 ## The tooltip system
 
