@@ -56,7 +56,7 @@ async def stats(request: Request, name: str, profile: str = "selected"):
                                            "message": f"Minecraft account not found for {name}"})
 
     player_data = player_data.json()
-    _uuid: str = player_data["data"]["player"]["id"]
+    _uuid: str = player_data['data']['player']['id']
 
     skin_link: str = f"https://crafthead.net/avatar/{_uuid}/256"
 

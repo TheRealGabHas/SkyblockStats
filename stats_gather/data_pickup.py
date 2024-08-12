@@ -60,7 +60,7 @@ class Profile:
         """
         if self.data is None:
             return {}
-        if self.data.get('profiles') is None:
+        if self.data.get("profiles") is None:
             return {}
 
         for profile in self.data['profiles']:
@@ -77,7 +77,7 @@ class Profile:
 
         if self.data is None:
             return profile_list
-        if self.data.get('profiles') is None:
+        if self.data.get("profiles") is None:
             return profile_list
 
         for profile in self.data['profiles']:
@@ -85,7 +85,7 @@ class Profile:
                 "uuid": profile['profile_id'],
                 "name": profile['cute_name'],
                 "selected": profile['selected'],
-                "game_mode": profile.get('game_mode', 'normal')  # This field is only defined if custom game mode
+                "game_mode": profile.get("game_mode", "normal")  # This field is only defined if custom game mode
             })
 
         return profile_list
@@ -179,7 +179,7 @@ class Profile:
         final_dict: dict = {}
 
         for boss in sl_data:
-            if (c := sl_data[boss].get('xp')) is not None:
+            if (c := sl_data[boss].get("xp")) is not None:
                 current_xp = f"{c:,}"
                 next_level_xp = find_next_xp_req(boss, xp=int(c))
             else:
@@ -188,7 +188,7 @@ class Profile:
 
             boss_kills = []
             for i in range(5):
-                if (v := sl_data[boss].get(f'boss_kills_tier_{i}')) is not None:
+                if (v := sl_data[boss].get(f"boss_kills_tier_{i}")) is not None:
                     boss_kills.append({f"Tier {i + 1}": f"{v:,}"})
                 elif SLAYER_MAX_BOSS_TIER[boss] >= i + 1:  # A boss of Tier 5 exists
                     boss_kills.append({f"Tier {i + 1}": 0})
@@ -219,17 +219,17 @@ class Profile:
 
         global_rift = self.get_profile_data("rift", profile=profile)
 
-        trophies = global_rift.get('gallery', {}).get('secured_trophies')
-        souls = global_rift.get('enigma', {}).get('found_souls', [])
-        lonely = global_rift.get('village_plaza', {}).get('lonely', {}).get('seconds_sitting')
-        montezuma = global_rift.get('dead_cats', {})
-        burger = global_rift.get('castle', {}).get('grubber_stacks', 0)
+        trophies = global_rift.get("gallery", {}).get("secured_trophies")
+        souls = global_rift.get("enigma", {}).get("found_souls", [])
+        lonely = global_rift.get("village_plaza", {}).get("lonely", {}).get("seconds_sitting")
+        montezuma = global_rift.get("dead_cats", {})
+        burger = global_rift.get("castle", {}).get("grubber_stacks", 0)
 
-        current_motes = int(self.get_profile_data('motes_purse', profile=profile))
+        current_motes = int(self.get_profile_data("motes_purse", profile=profile))
 
-        stats = self.get_profile_data('stats', profile=profile)
-        lifetime_motes = int(stats.get('rift_lifetime_motes_earned', 0))
-        orb_picked = int(stats.get('rift_motes_orb_pickup', 0))
+        stats = self.get_profile_data("stats", profile=profile)
+        lifetime_motes = int(stats.get("rift_lifetime_motes_earned", 0))
+        orb_picked = int(stats.get("rift_motes_orb_pickup", 0))
 
         missing_trophies = []
         found_trophies = []
@@ -274,7 +274,7 @@ class Profile:
 
         # Amount of Montezuma soul fragments found
         rift_data['montezuma'] = {
-            "value": len(montezuma.get('found_cats', [])),
+            "value": len(montezuma.get("found_cats", [])),
             "icon_path": "/images/Montezuma.webp"
         }
 
@@ -308,7 +308,7 @@ class Profile:
         coin_purse = self.get_profile_data("coin_purse", profile=profile)
         bank_level = self.get_profile_data("personal_bank_upgrade", profile=profile)
 
-        first_join = datetime.datetime.fromtimestamp(int(join_date / 1000)).strftime('%Y-%m-%d %H:%M:%S')
+        first_join = datetime.datetime.fromtimestamp(int(join_date / 1000)).strftime("%Y-%m-%d %H:%M:%S")
 
         if soulflow is None:
             soulflow = 0
@@ -352,7 +352,7 @@ class Profile:
         if trophy_stats is None:
             return None
 
-        if trophy_stats.get('total_caught', 0) < 1:
+        if trophy_stats.get("total_caught", 0) < 1:
             return None
 
         fishes = list(trophy_stats.keys())
@@ -363,9 +363,9 @@ class Profile:
         fishes = {_key: trophy_stats[_key] for _key in fishes}
 
         # Check if the reward level is at least 1
-        if len(trophy_stats.get('rewards', [])) == 0:
+        if len(trophy_stats.get("rewards", [])) == 0:
             reward_tier = "No claimed reward"
-        elif (s := trophy_stats.get('rewards', [0])[-1]) > 0:
+        elif (s := trophy_stats.get("rewards", [0])[-1]) > 0:
             reward_tier = consts.TROPHY_REWARDS[s-1]
         else:
             reward_tier = "No claimed reward"
@@ -427,13 +427,13 @@ class Profile:
         }
 
         employees = {
-            'rabbit_bro': 0,
-            'rabbit_cousin': 0,
-            'rabbit_sis': 0,
-            'rabbit_father': 0,
-            'rabbit_grandma': 0,
-            'rabbit_uncle': 0,
-            'rabbit_dog': 0,
+            "rabbit_bro": 0,
+            "rabbit_cousin": 0,
+            "rabbit_sis": 0,
+            "rabbit_father": 0,
+            "rabbit_grandma": 0,
+            "rabbit_uncle": 0,
+            "rabbit_dog": 0,
         }
 
         for employee, level in cf.get("employees", {}).items():
@@ -456,9 +456,9 @@ class Profile:
             collection[str(rabbit_name).replace("_", " ").capitalize()] = quantity
 
         if collection.get("Collected eggs") is not None:
-            del collection["Collected eggs"]
+            del collection['Collected eggs']
         if collection.get("Collected locations") is not None:
-            del collection["Collected locations"]
+            del collection['Collected locations']
 
         # Fetch the chocolate factory upgrades level
         upgrades: dict = {
@@ -483,9 +483,9 @@ class Profile:
             "chocolate_bar_counter": cf.get("supreme_chocolate_bars", 0),
             "shop_spent": cf.get("shop", {}).get("chocolate_spent", 0),
         }
-        misc["shop_milestone"] = utils.get_shop_milestone(misc["shop_spent"])
-        misc["chocolate_bar_counter"] = f"{misc["chocolate_bar_counter"]:,.0f}"
-        misc['shop_spent'] = f"{misc["shop_spent"]:,.0f}"
+        misc['shop_milestone'] = utils.get_shop_milestone(misc['shop_spent'])
+        misc['chocolate_bar_counter'] = f"{misc['chocolate_bar_counter']:,.0f}"
+        misc['shop_spent'] = f"{misc['shop_spent']:,.0f}"
 
         return {
             "employees": employees,

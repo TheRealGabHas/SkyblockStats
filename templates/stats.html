@@ -30,7 +30,7 @@
         	<span style="color: {{ rank_data['color'] }}" class="text-shadow">{{ rank_data['rank'] }}</span>
         {% endif %}
         {% if leveling_data != None %}
-            <span style="color: {{ leveling_data["Global"]["color"] }}" class="text-shadow brackets">{{ (leveling_data["Global"]["xp"] / 100) | int }}</span>
+            <span style="color: {{ leveling_data['Global']['color'] }}" class="text-shadow brackets">{{ (leveling_data['Global']['xp'] / 100) | int }}</span>
         {% endif %}
         {{ player_name }}
     </h2>
@@ -43,17 +43,17 @@
             {% if displayed_profile == "Selected" %}
                 {% for profile in profiles_data %}
                     {% if profile['selected'] == True %}
-                        <option selected>{{ profile['name'] }} ({{ profile['game_mode'] | replace('island', 'stranded') }})</option>
+                        <option selected>{{ profile['name'] }} ({{ profile['game_mode'] | replace("island", "stranded") }})</option>
                     {% else %}
-                        <option>{{ profile['name'] }} ({{ profile['game_mode'] | replace('island', 'stranded') }})</option>
+                        <option>{{ profile['name'] }} ({{ profile['game_mode'] | replace("island", "stranded") }})</option>
                     {% endif %}
                 {% endfor %}
             {% else %}
                 {% for profile in profiles_data %}
                     {% if (profile['name'].startswith(displayed_profile))  %}
-                        <option selected>{{ profile['name'] }} ({{ profile['game_mode'] | replace('island', 'stranded') }})</option>
+                        <option selected>{{ profile['name'] }} ({{ profile['game_mode'] | replace("island", "stranded") }})</option>
                     {% else %}
-                        <option>{{ profile['name'] }} ({{ profile['game_mode'] | replace('island', 'stranded')}})</option>
+                        <option>{{ profile['name'] }} ({{ profile['game_mode'] | replace("island", "stranded")}})</option>
                     {% endif %}
                 {% endfor %}
             {% endif %}
@@ -68,7 +68,7 @@
                 <p class="tooltip-container color-b" data-tooltip="Format: YYYY-dd-MM hh:mm:ss">
                     First joined
                     <span class="color-f bold">
-                        : {{ misc_data["First Join"]['value'] }}
+                        : {{ misc_data['First Join']['value'] }}
                     </span>
                 </p>
             </div>
@@ -93,10 +93,10 @@
     {% endif %}
     {% if leveling_data != None %}
         <div class="icon-text text-shadow">
-        <img src="{{ leveling_data["Global"]["icon_path"] }}" alt="{{ skill }} Icon" width="30" height="30">
+        <img src="{{ leveling_data['Global']['icon_path'] }}" alt="{{ skill }} Icon" width="30" height="30">
         <p class="center color-b">Skyblock Level
             <span class="color-f bold">
-                : {{ leveling_data["Global"]["xp"] / 100 }}
+                : {{ leveling_data['Global']['xp'] / 100 }}
             </span>
         </p>
     </div>
@@ -121,11 +121,11 @@
                 <div class="skill-container blurry-bg">
                     <div class="skill-progression">
                         <div class="icon-text">
-                            <img src="{{ leveling_data[skill]["icon_path"] }}" alt="{{ skill }} Icon" width="30" height="30">
+                            <img src="{{ leveling_data[skill]['icon_path'] }}" alt="{{ skill }} Icon" width="30" height="30">
                             <p id="{{ skill.lower() }}-info" class="skills-info tooltip-container color-b" data-tooltip="{{ leveling_data[skill]["xp"] }} EXP">
                             {{ skill | replace("2", "") }}
                                 <span class="color-f bold">
-                                    : {{ leveling_data[skill]["level"] | replace('-1', '0') }}
+                                    : {{ leveling_data[skill]['level'] | replace("-1", "0") }}
                                 </span>
                             </p>
                         </div>
@@ -160,18 +160,18 @@
 	{% for boss in slayer_data %}
 		<div id="{{ boss.lower() }}" class="slayer-boss-div center">
 			<div class="slayer-title-container icon-text">
-				<img src="{{ slayer_data[boss]["icon_path"] }}" alt="{{ boss.lower().capitalize() }} Icon" width="30" height="30">
+				<img src="{{ slayer_data[boss]['icon_path'] }}" alt="{{ boss.lower().capitalize() }} Icon" width="30" height="30">
 				<h3 class="{{ boss.lower() }}-boss-level boss-title center text-shadow color-7">
-					{{ boss }} - LVL {{ slayer_data[boss]["current_level"] }}
+					{{ boss }} - LVL {{ slayer_data[boss]['current_level'] }}
 				</h3>
 			</div>
 			<p class="{{ boss.lower() }}-boss-xp boss-xp center text-shadow">
-                <strong class="color-d">{{ slayer_data[boss]["xp"] }}</strong>
+                <strong class="color-d">{{ slayer_data[boss]['xp'] }}</strong>
                 <strong class="color-5">/</strong>
-                {% if slayer_data[boss]["next_lvl_xp"] == "MAX LEVEL" %}
-                    <strong class="color-5">{{ slayer_data[boss]["next_lvl_xp"] }}</strong>
+                {% if slayer_data[boss]['next_lvl_xp'] == "MAX LEVEL" %}
+                    <strong class="color-5">{{ slayer_data[boss]['next_lvl_xp'] }}</strong>
                 {% else %}
-                    <strong class="color-d">{{ slayer_data[boss]["next_lvl_xp"] }}
+                    <strong class="color-d">{{ slayer_data[boss]['next_lvl_xp'] }}
                         <span class="color-5">EXP</span>
                     </strong>
                 {% endif %}
@@ -179,7 +179,7 @@
             </p>
 			<hr class="slayer-separator">
 			<div id="{{ boss.lower() }}-boss-killed" class="slayer-boss-killed">
-				{% for kill in slayer_data[boss]["boss_kills"] %}
+				{% for kill in slayer_data[boss]['boss_kills'] %}
 					<p id="{{ boss.lower() }}-{{ kill.keys() | first | lower | replace(" ", "-") }}-kills"
 					   class="slayer-boss-tier-killed text-shadow color-2">
                         {{ kill.keys() | first }}
