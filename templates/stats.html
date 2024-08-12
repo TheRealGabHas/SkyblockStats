@@ -134,7 +134,7 @@
                             <span class="color-3">{{ '{value:,.0f}'.format(value=leveling_data[skill]['level_xp']) }}</span>
                             <span class="color-9 bold">/</span>
                             {% if leveling_data[skill]['next_level_xp'] == 0 %}
-                                <i class="color-b bold">MAX LEVEL</i>
+                                <span class="color-9 bold">MAX LEVEL</span>
                             {% else %}
                                 <span class="color-3">{{ '{value:,.0f}'.format(value=leveling_data[skill]['next_level_xp']) }}</span>
                                 <span class="color-9 bold">EXP</span>

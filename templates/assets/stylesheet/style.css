@@ -298,6 +298,11 @@ footer {
     border: none;
 }
 
+.skill-container progress::-moz-progress-bar,
+.skill-container progress::-webkit-progress-value {
+    background: linear-gradient(90deg, var(--§9) 19%, var(--§3) 95%);
+}
+
 .skill-progression {
     width: 100%;
     display: grid;
@@ -416,8 +421,8 @@ footer {
 
 #trophy-fish-count {
     display: grid;
-    grid-template-rows: repeat(5, 1fr);
     grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
     grid-row-gap: 10px;
     grid-column-gap: 10px;
 }
@@ -489,14 +494,15 @@ footer {
     }
 }
 
+@media screen and (max-width: 1150px) {
+    #trophy-fish-count {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 @media screen and (max-width: 1020px) {
     #skills-container {
         grid-template-columns: 1fr;
-    }
-
-    #trophy-fish-count {
-        grid-template-rows: repeat(6, 1fr);
-        grid-template-columns: repeat(3, 1fr);
     }
 
     .divider-2 {
@@ -545,7 +551,6 @@ footer {
     }
 
     #trophy-fish-count {
-        grid-template-rows: repeat(18, 1fr);
         grid-template-columns: repeat(1, 1fr);
     }
 
