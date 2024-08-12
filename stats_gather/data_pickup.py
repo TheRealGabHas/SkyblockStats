@@ -150,8 +150,6 @@ class Profile:
                 xp_data[key]['level_xp'] = progression['current_xp']
                 xp_data[key]['next_level_xp'] = progression['required_xp']
 
-        # TODO: Take the Taming and Runecrafting level cap into account
-
         return xp_data
 
     def get_slayer_data(self, profile: str = "selected") -> dict:
