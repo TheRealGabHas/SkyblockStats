@@ -284,18 +284,25 @@ footer {
 }
 
 .skill-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 20px;
     padding: 5px;
     border-radius: 5px;
 }
 
 .skill-container progress {
-    border-radius: 20px;
+    width: 100%;
+    display: flex;
+    border-radius: 5px;
     border: none;
 }
 
-.skill-container .icon-text {
-    justify-content: left;
-    text-align: left;
+.skill-progression {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
 }
 
 #slayer-cards, .slayer-boss-killed {
@@ -476,7 +483,17 @@ footer {
     color: var(--§8);
 }
 
+@media screen and (max-width: 1450px) {
+    #skills-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media screen and (max-width: 1020px) {
+    #skills-container {
+        grid-template-columns: 1fr;
+    }
+
     #trophy-fish-count {
         grid-template-rows: repeat(6, 1fr);
         grid-template-columns: repeat(3, 1fr);
