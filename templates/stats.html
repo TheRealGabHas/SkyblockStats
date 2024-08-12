@@ -112,10 +112,6 @@
 <div id="skills-stats" class="stats-div">
 	<h2 class="section-title center">Skills & Level</h2>
 {% if leveling_data != None %}
-	<div class="icon-text">
-		<img src="{{ leveling_data["Global"]["icon_path"] }}" alt="{{ skill }} Icon" width="30" height="30">
-		<h2 id="sb-level" class="title">Skyblock Level: {{ leveling_data["Global"]["xp"] / 100 }}</h2>
-	</div>
     <div id="skills-container">
     	{% for skill in leveling_data %}
             {% if skill != "Global" %}
