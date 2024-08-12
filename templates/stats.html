@@ -12,11 +12,13 @@
 
 <div id="core-content">
 <a href="/" target="_self">Home</a>
+
 {% if api_warning == True %}
     <h3 class="center text-shadow color-4 blurry-bg">
         Some data couldn't be retrieved. This is usually because the in-game API settings are turned off.
     </h3>
 {% endif %}
+
 <div id="head-section">
 <div id="head-section-data" class="blurry-bg">
 	<div class="flex-wrapper">
@@ -109,6 +111,7 @@
     {% endif %}
     </div>
 </div>
+
 <div id="skills-stats" class="stats-div">
 	<h2 class="section-title center">Skills & Level</h2>
 {% if leveling_data != None %}
@@ -145,7 +148,6 @@
             {% endif %}
 	    {% endfor %}
     </div>
-
 {% else %}
 	<h3 class="center">Skills data not found for this player.</h3>
 {% endif %}
@@ -311,8 +313,11 @@
     <div class="blurry-bg">
 		{% for stats in misc_data %}
             <div class="icon-text">
-            <img src="{{ misc_data[stats]['icon_path'] }}" alt="{{ stats }}" width="30" height="30">
-                <p class="misc-data"><strong>{{ stats }}:</strong> {{ misc_data[stats]['value'] }}</p>
+                <img src="{{ misc_data[stats]['icon_path'] }}" alt="{{ stats }}" width="30" height="30">
+                <p class="misc-data color-f bold">
+                    <span class="color-b">{{ stats }}</span>
+                    : {{ misc_data[stats]['value'] }}
+                </p>
             </div>
 		{% endfor %}
     </div>
@@ -329,11 +334,11 @@
 	<div id="trophy-fish-misc">
     <div class="icon-text">
         <img src="{{ trophy_data[1]['Claimed reward']['icon_path'] }}" alt="Reward icon" width="30" height="30">
-        <p><strong>Claimed reward</strong>: {{ trophy_data[1]['Claimed reward']['name'] }}</p>
+        <p class="color-f bold"><span class="color-b">Claimed reward</span>: {{ trophy_data[1]['Claimed reward']['name'] }}</p>
     </div>
     <div class="icon-text">
         <img src="{{ trophy_data[1]['Trophy fished']['icon_path'] }}" alt="Trophy icon" width="30" height="30">
-        <p><strong>Trophy fished</strong>: {{ trophy_data[1]['Trophy fished']['amount'] }}</p>
+        <p class="color-f bold"><span class="color-b">Trophy fished</span>: {{ trophy_data[1]['Trophy fished']['amount'] }}</p>
     </div>
 	</div>
 
