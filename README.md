@@ -86,6 +86,12 @@ templates
 
 The [`main.py`](main.py) file runs the web server, references the routes and send the data to the Jinja2 templates.
 
+The Python packages requirements are listed in the [`requirements.txt`](requirements.txt) file. They can be installed 
+with :
+```shell
+python -m pip install requirements.txt
+```
+
 ## Bug reporting guide
 
 To report a bug, one must open an issue and fill in the following information :
