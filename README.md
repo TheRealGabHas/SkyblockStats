@@ -109,8 +109,7 @@ When editing and contributing to the project, one must follow these few rules:
 
 - **JavaScript**
   - Indentation should be 4 spaces
-  - Quotes inside function should be single quote
-  - Quotes inside constants should be double quotes
+  - Quotes should always be double quotes
 
 - **Python**
   - Indentation should be 4 spaces
