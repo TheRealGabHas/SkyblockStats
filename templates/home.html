@@ -8,16 +8,6 @@
 	<link href="{{ url_for('style', path='style.css') }}" rel="stylesheet">
 </head>
 <body>
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        document.getElementById("player-form").addEventListener("submit", () => {
-            const myForm = document.getElementById("player-form");
-            const field = document.getElementById("player-name-input");
-
-            myForm.action = "/p/" + field.value.toString();
-        });
-    });
-</script>
 <div id="video-container">
 	<video id="background-video" playsinline autoplay muted loop>
 		<source src="/video/background.mp4" type="video/mp4">
@@ -53,5 +43,13 @@
 		<a href="/info">More information</a>
 	</div>
 </footer>
+<script>
+    document.getElementById("player-form").addEventListener("submit", () => {
+        const myForm = document.getElementById("player-form");
+        const field = document.getElementById("player-name-input");
+
+        myForm.action = "/p/" + field.value.toString();
+    });
+</script>
 </body>
 </html>
