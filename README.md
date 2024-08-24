@@ -17,17 +17,19 @@ This project doesn't have any grand ambitions, it's just for fun and training.
 ## Technologies
 
 This website is built with FastAPI in Python 3.12. A route is created for each page and a filled Jinja2 template is 
-returned as an HTML document.
+returned as an HTML document. The retrieved data are cached for a default period of 5 minutes to save up some internet 
+traffic and shorten the page loading time.
 
 <p align="center">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=python,fastapi,html,css,javascript"/>
+    <img src="https://skillicons.dev/icons?i=python,fastapi,redis,html,css,javascript"/>
   </a>
 </p>
 
 - [Python 3.12+](https://python.org)
 - [FastAPI](https://fastapi.tiangolo.com/)
 - [Jinja2 Templates](https://jinja.palletsprojects.com/en/2.10.x/)
+- [Redis](https://redis.io/)
 
 **Note:** This project utilize some feature from Python 3.12 (like some f-string shenanigans) that could be easily 
 adapted for older version of Python.
@@ -44,9 +46,17 @@ The Hypixel API key must go in the `stats_gather/credentials.json` file followin
 
 ## Deployment
 
+**Note:** A Redis database must be up and running in order for the project to run. 
+(The connection can be configured on line 21 of the [`main.py`](main.py) file)
+
 To run the project, the first step is to clone the repository :
 ```shell
-git clone https://github.com/TheRealGabHas/SkyblockStats 
+git clone https://github.com/TheRealGabHas/SkyblockStats
+```
+
+Install the dependencies required to run the project :
+```shell
+pip install -r requirements.txt
 ```
 
 The use uvicorn to run the server :

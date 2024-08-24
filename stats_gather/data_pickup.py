@@ -23,12 +23,17 @@ class Profile:
     def __init__(self, uuid: str):
         self.data = None
         self.uuid: str = uuid
+        self.rank_data = None
         self.rank: str = "None"
         self.rank_color: str = "0xfff"
         self.skyblock_profiles: list = []
 
     def gather_rank(self):
-        rank_data = requests.get(f"https://api.hypixel.net/v2/player?uuid={self.uuid}", headers=header).json()
+        if self.rank_data is None:
+            self.rank_data = requests.get(f"https://api.hypixel.net/v2/player?uuid={self.uuid}", headers=header).json()
+
+        rank_data = self.rank_data
+
         if rank_data is not None:
             if rank_data.get('player') is not None:
                 self.rank = rank_data['player'].get('newPackageRank', "None")
