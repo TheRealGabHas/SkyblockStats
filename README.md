@@ -46,9 +46,17 @@ The Hypixel API key must go in the `stats_gather/credentials.json` file followin
 
 ## Deployment
 
+**Note:** A Redis database must be up and running in order for the project to run. 
+(The connection can be configured on line 21 of the [`main.py`](main.py) file)
+
 To run the project, the first step is to clone the repository :
 ```shell
-git clone https://github.com/TheRealGabHas/SkyblockStats 
+git clone https://github.com/TheRealGabHas/SkyblockStats
+```
+
+Install the dependencies required to run the project :
+```shell
+pip install -r requirements.txt
 ```
 
 The use uvicorn to run the server :
