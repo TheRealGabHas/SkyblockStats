@@ -16,7 +16,7 @@ from stats_gather import data_pickup
 from stats_gather import s_utils
 
 
-CACHE_RETENTION: int = 60 * 5
+CACHE_RETENTION: int = 10
 
 db: redis.Redis = redis.Redis("localhost", port=6379, decode_responses=True)
 
@@ -80,6 +80,7 @@ async def stats(request: Request, name: str, profile: str = "selected"):
         p.data = ast.literal_eval(base64.b64decode(player_stats).decode())
         p.rank_data = ast.literal_eval(base64.b64decode(player_rank).decode())
 
+        p.gather_rank()
         result = True
     else:
         p.gather_rank()  # Send API request to fetch the player's Hypixel rank (and a list of SkyBlock profiles)
