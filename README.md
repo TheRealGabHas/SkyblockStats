@@ -17,17 +17,19 @@ This project doesn't have any grand ambitions, it's just for fun and training.
 ## Technologies
 
 This website is built with FastAPI in Python 3.12. A route is created for each page and a filled Jinja2 template is 
-returned as an HTML document.
+returned as an HTML document. The retrieved data are cached for a default period of 5 minutes to save up some internet 
+traffic and shorten the page loading time.
 
 <p align="center">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=python,fastapi,html,css,javascript"/>
+    <img src="https://skillicons.dev/icons?i=python,fastapi,redis,html,css,javascript"/>
   </a>
 </p>
 
 - [Python 3.12+](https://python.org)
 - [FastAPI](https://fastapi.tiangolo.com/)
 - [Jinja2 Templates](https://jinja.palletsprojects.com/en/2.10.x/)
+- [Redis](https://redis.io/)
 
 **Note:** This project utilize some feature from Python 3.12 (like some f-string shenanigans) that could be easily 
 adapted for older version of Python.
