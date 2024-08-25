@@ -16,7 +16,7 @@ from stats_gather import data_pickup
 from stats_gather import s_utils
 
 
-CACHE_RETENTION: int = 10
+CACHE_RETENTION: int = 60 * 5
 
 db: redis.Redis = redis.Redis("localhost", port=6379, decode_responses=True)
 
