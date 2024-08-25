@@ -73,7 +73,6 @@ async def stats(request: Request, name: str, profile: str = "selected"):
 
     # Check if this profile is already stored in cache
     if db.get(f"{name.lower()}:stats") is not None:
-        print("cache hit")
         player_stats = db.get(f"{name.lower()}:stats")
         player_rank = db.get(f"{name.lower()}:rank")
 
