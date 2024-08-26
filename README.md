@@ -59,7 +59,9 @@ Install the dependencies required to run the project :
 pip install -r requirements.txt
 ```
 
-The use uvicorn to run the server :
+Then create the `stats_gather/credentials.json` file as described in the [API Key](#api-key) section.
+
+Finally, use uvicorn to run the server :
 ```shell
 python -m uvicorn main:app --reload --no-server-header
 ```
