@@ -443,32 +443,41 @@
             </p>
         </div>
         <div class="icon-text">
+            <img src="/images/Hoppity.webp" alt="Hoppity" width="30" height="30">
+            <p class="color-a">
+                Found Rabbits
+                <span class="color-f">
+                    : {{ chocolate_data['misc']['total_rabbit'] }}
+                </span>
+                <i class="parenthesis color-7">Duplicates included</i>
+            </p>
+        </div>
+        <div class="icon-text">
             <img src="/images/Fence.webp" alt="Barn" width="30" height="30">
             <p class="color-a">
                 Barn capacity
                 <span class="color-f">
                     : {{ chocolate_data['upgrades']['barn_slots'] }}
                 </span>
-                <i class="color-7">
-                    (Tier {{ chocolate_data['upgrades']['barn'] }})
+                <i class="parenthesis color-7">
+                    Tier {{ chocolate_data['upgrades']['barn'] }}
                 </i>
             </p>
         </div>
     </div>
-
     <div id="factory-upgrades" class="blurry-bg">
 
         <h3 class="color-f center">Factory upgrades</h3>
 
         <div class="icon-text">
-        <img src="/images/Cookie.webp" alt="Cookie" width="30" height="30">
-        <p class="color-d text-shadow">
-            Hand-Baked Chocolate
-            <span class="color-f">
-                : {{ chocolate_data['upgrades']['click'] }}
-            </span>
-        </p>
-    </div>
+            <img src="/images/Cookie.webp" alt="Cookie" width="30" height="30">
+            <p class="color-d text-shadow">
+                Hand-Baked Chocolate
+                <span class="color-f">
+                    : {{ chocolate_data['upgrades']['click'] }}
+                </span>
+            </p>
+        </div>
 
         <div class="icon-text">
             <img src="/images/Clock.webp" alt="Time Tower" width="30" height="30">
@@ -478,13 +487,13 @@
                     : {{ chocolate_data['upgrades']['tower'] }}
                 </span>
                 {% if chocolate_data['upgrades']['tower'] > 0 %}
-                    <i class="color-7">
-                    (x{{ chocolate_data['upgrades']['tower'] / 10 }} multiplier)
+                    <i class="parenthesis color-7">
+                    x{{ chocolate_data['upgrades']['tower'] / 10 }} multiplier
                     </i>
                 {% endif %}
                 {% if chocolate_data['misc']['shop_milestone'] >= 12 %}
-                    <i class="color-7">
-                    (+ x0.7 shop milestone 12)
+                    <i class="parenthesis color-7">
+                    + x0.7 shop milestone 12
                     </i>
                 {% endif %}
             </p>
@@ -498,8 +507,8 @@
                     : {{ chocolate_data['upgrades']['shrine'] }}
                 </span>
                 {% if chocolate_data['upgrades']['shrine'] > 0 %}
-                    <i class="color-7">
-                        (+{{ chocolate_data['upgrades']['shrine'] }}% to find rare rabbits)
+                    <i class="parenthesis color-7">
+                        +{{ chocolate_data['upgrades']['shrine'] }}% to find rare rabbits
                     </i>
                 {% endif %}
             </p>
@@ -514,11 +523,10 @@
             </span>
 
             {% if chocolate_data['upgrades']['jackrabbit'] > 0 %}
-                <i class="color-7">
-                    (x{{ chocolate_data['upgrades']['jackrabbit'] / 100 }} multiplier)
+                <i class="parenthesis color-7">
+                    x{{ chocolate_data['upgrades']['jackrabbit'] / 100 }} multiplier
                 </i>
             {% endif %}
-
             </p>
         </div>
 
@@ -535,8 +543,8 @@
                 <span class="color-f">
                     : {{ chocolate_data['misc']['shop_spent'] }}
                 </span>
-                <i class="color-7">
-                    (milestone {{ chocolate_data['misc']['shop_milestone'] }})
+                <i class="parenthesis color-7">
+                    milestone {{ chocolate_data['misc']['shop_milestone'] }}
                 </i>
             </p>
         </div>
