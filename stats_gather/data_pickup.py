@@ -487,6 +487,7 @@ class Profile:
         misc: dict = {
             "chocolate_bar_counter": cf.get("supreme_chocolate_bars", 0),
             "shop_spent": cf.get("shop", {}).get("chocolate_spent", 0),
+            "unique_rabbit": f"{len(collection.keys()):,.0f}",
             "total_rabbit": f"{sum(collection.values()):,.0f}"
         }
         misc['shop_milestone'] = utils.get_shop_milestone(misc['shop_spent'])
