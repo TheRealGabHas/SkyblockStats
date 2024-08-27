@@ -48,7 +48,7 @@ class Profile:
                         self.skyblock_profiles.append((str(lib_uuid.UUID(profile_id)), profile_data['cute_name']))
 
     def gather_stats(self) -> bool:
-        _data = requests.get(f"https://api.hypixel.net/skyblock/profiles?uuid={self.uuid}", headers=header).json()
+        _data = requests.get(f"https://api.hypixel.net/v2/skyblock/profiles?uuid={self.uuid}", headers=header).json()
 
         if _data['success']:
             self.data = _data
