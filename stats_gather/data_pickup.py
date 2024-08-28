@@ -128,14 +128,16 @@ class Profile:
             "color": f"#{level_color:06x}",
         }
 
+        skill_field = self.get_profile_data("player_data", profile=profile)['experience']
+
         for skill in SKILLS:
             key = skill.lower().capitalize()
-            value = self.get_profile_data(f'experience_skill_{skill.lower()}', profile=profile)
+            value = skill_field[f'SKILL_{skill}']
 
             if value is None:
                 value = 0
 
-            if key == "Social2":
+            if key == "Social":
                 skill_table = consts.SOCIAL_XP_REQUIREMENTS
             elif key == "Runecrafting":
                 skill_table = consts.RUNECRAFTING_XP_REQUIREMENTS
@@ -158,8 +160,8 @@ class Profile:
         return xp_data
 
     def get_slayer_data(self, profile: str = "selected") -> dict:
-        searched_field: str = "slayer_bosses"
-        sl_data = self.get_profile_data(searched_field, profile=profile)
+        searched_field: str = "slayer"
+        sl_data = self.get_profile_data(searched_field, profile=profile)["slayer_bosses"]
 
         def find_next_xp_req(_boss: str, xp: int):
             """
@@ -227,14 +229,14 @@ class Profile:
         trophies = global_rift.get("gallery", {}).get("secured_trophies")
         souls = global_rift.get("enigma", {}).get("found_souls", [])
         lonely = global_rift.get("village_plaza", {}).get("lonely", {}).get("seconds_sitting")
-        montezuma = global_rift.get("dead_cats", {})
+        montezuma = global_rift.get("dead_cats", {}).get("found_cats", [])
         burger = global_rift.get("castle", {}).get("grubber_stacks", 0)
 
-        current_motes = int(self.get_profile_data("motes_purse", profile=profile))
+        current_motes = int(self.get_profile_data("currencies", profile=profile).get("motes_purse", 0))
 
-        stats = self.get_profile_data("stats", profile=profile)
-        lifetime_motes = int(stats.get("rift_lifetime_motes_earned", 0))
-        orb_picked = int(stats.get("rift_motes_orb_pickup", 0))
+        stats = self.get_profile_data("player_stats", profile=profile).get("rift", {})
+        lifetime_motes = int(stats.get("lifetime_motes_earned", 0))
+        orb_picked = int(stats.get("motes_orb_pickup", 0))
 
         missing_trophies = []
         found_trophies = []
@@ -279,7 +281,7 @@ class Profile:
 
         # Amount of Montezuma soul fragments found
         rift_data['montezuma'] = {
-            "value": len(montezuma.get("found_cats", [])),
+            "value": len(montezuma),
             "icon_path": "/images/Montezuma.webp"
         }
 
@@ -306,12 +308,15 @@ class Profile:
         return rift_data
 
     def get_misc_stats(self, profile: str = "selected"):
-        join_date = self.get_profile_data("first_join", profile=profile)
-        soulflow = self.get_profile_data("soulflow", profile=profile)
-        fishing_treasures = self.get_profile_data("fishing_treasure_caught", profile=profile)
-        fairy_souls = self.get_profile_data("fairy_souls_collected", profile=profile)
-        coin_purse = self.get_profile_data("coin_purse", profile=profile)
-        bank_level = self.get_profile_data("personal_bank_upgrade", profile=profile)
+
+        profile_data = self.get_profile_data("profile", profile=profile)
+
+        join_date = profile_data.get("first_join")
+        soulflow = self.get_profile_data("item_data", profile=profile).get("soulflow", 0)
+        fishing_treasures = self.get_profile_data("player_stats", profile=profile).get("items_fished", {}).get("treasure", 0)
+        fairy_souls = self.get_profile_data("fairy_soul", profile=profile).get("total_collected", 0)
+        coin_purse = self.get_profile_data("currencies", profile=profile).get("coin_purse", 0)
+        bank_level = profile_data.get("personal_bank_upgrade", 0)
 
         first_join = datetime.datetime.fromtimestamp(int(join_date / 1000)).strftime("%Y-%m-%d %H:%M:%S")
 
