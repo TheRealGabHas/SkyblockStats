@@ -93,6 +93,7 @@ templates
   - [`s_utils.py`](stats_gather/s_utils.py) : Some utility functions in Python
   - [`credentials.json`](stats_gather/credentials.json) : JSON file in which the API-Key must be filled 
   (see [API Key](#api-key))
+  - [`miscellaneous`](stats_gather/miscellaneous) : A folder that will store some utility scripts and assets.
   
 - [`templates`](templates) : Contains all the Jinja2 templates and web resources (images, stylesheets...)
 
