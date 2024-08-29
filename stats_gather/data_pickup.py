@@ -462,13 +462,41 @@ class Profile:
 
         # Fetch the rabbit collection (Rabbit name, number of found time)
         collection: dict = {}
-        for rabbit_name, quantity in cf.get("rabbits", {}).items():
-            collection[str(rabbit_name).replace("_", " ").capitalize()] = quantity
 
-        if collection.get("Collected eggs") is not None:
-            del collection['Collected eggs']
-        if collection.get("Collected locations") is not None:
-            del collection['Collected locations']
+        for rabbit_name, quantity in cf.get("rabbits", {}).items():
+            beautified_name = " ".join(word.capitalize() for word in str(rabbit_name).split("_"))
+            collection[beautified_name] = quantity
+
+
+        # Removing useless keys
+        if collection.get("Collected Eggs") is not None:
+            del collection['Collected Eggs']
+        if collection.get("Collected Locations") is not None:
+            del collection['Collected Locations']
+
+        # This name isn't correctly beautified by the above piece of code
+        if collection.get("Hop A Long"):
+            collection['Hop-a-long'] = collection["Hop A Long"]
+            del collection["Hop A Long"]
+
+        rabbit_collection: dict = {
+            "COMMON": [],
+            "UNCOMMON": [],
+            "RARE": [],
+            "EPIC": [],
+            "LEGENDARY": [],
+            "MYTHIC": [],
+            "DIVINE": [],
+        }
+        with open("stats_gather/miscellaneous/rabbits.json", "r") as rabbit_file:
+            rabbits_list = json.load(rabbit_file)
+
+            for i, rabbit_data in enumerate(rabbits_list.copy()):
+                rabbits_list[i]['amount'] = collection.get(rabbit_data['name'], 0)
+                rabbits_list[i]['img'] = consts.RABBIT_ICONS[rabbit_data['rarity']]
+                rabbit_collection[rabbit_data['rarity']].append(rabbits_list[i])
+
+        print(rabbit_collection)
 
         # Fetch the chocolate factory upgrades level
         upgrades: dict = {
@@ -501,7 +529,7 @@ class Profile:
 
         return {
             "employees": employees,
-            # "collection": collection,
+            "collection": rabbit_collection,
             "upgrades": upgrades,
             "chocolate": chocolate,
             "misc": misc,

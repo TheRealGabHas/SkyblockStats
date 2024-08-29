@@ -560,6 +560,43 @@
     </div>
 </div>
 
+<div class="blurry-bg">
+    {% set rabbit_rarity_colors = dict({
+        "COMMON": "#ffffff",
+        "UNCOMMON": "#3ffe3f",
+        "RARE": "#3f3ffe",
+        "EPIC": "#be00be",
+        "LEGENDARY": "#d9a334",
+        "MYTHIC": "#fe3ffe",
+        "DIVINE": "#3ffefe",
+    }) %}
+
+    {% for rarity in chocolate_data['collection'] %}
+        <div class="{{ rarity }}-rabbit-div">
+        <h3 class="text-shadow color-f center">
+            {% set count = namespace(value=0) %}
+            {% for rab in chocolate_data['collection'][rarity] %}
+                {% if rab['amount'] > 0 %}
+                    {% set count.value = count.value + 1 %}
+                {% endif %}
+            {% endfor %}
+            {{ rarity }} ({{ count.value }}/{{ chocolate_data['collection'][rarity] | length }})
+        </h3>
+            {% for rabbit in chocolate_data['collection'][rarity] %}
+            <div class="icon-text rabbit-div" style="width: auto;">
+                <img src="{{ rabbit['img'] }}" alt="{{ rabbit['name'] }}" width="30" height="30" loading="lazy">
+                <p class="text-shadow color-f">
+                    <span class="bold" style="color: {{ rabbit_rarity_colors[rabbit['rarity']] }}">
+                         {{ rabbit['name'] }}
+                    </span>
+                    <span class="parenthesis">{{ rabbit['amount'] }}</span>
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+</div>
+
 {% else %}
     <h3 class="center">Chocolate Factory data not found for this player.</h3>
 {% endif %}

@@ -166,3 +166,13 @@ CHOCOLATE_SHOP_MILESTONES: list[int] = [
     50_000_000_000, 100_000_000_000, 150_000_000_000, 200_000_000_000, 250_000_000_000, 300_000_000_000,
     350_000_000_000, 400_000_000_000, 500_000_000_000, 600_000_000_000, 700_000_000_000, 800_000_000_000
 ]
+
+RABBIT_ICONS: dict = {
+    "COMMON": "/images/chocolate/common_rabbit.webp",
+    "UNCOMMON": "/images/chocolate/uncommon_rabbit.webp",
+    "RARE": "/images/chocolate/rare_rabbit.webp",
+    "EPIC": "/images/chocolate/epic_rabbit.webp",
+    "LEGENDARY": "/images/chocolate/legendary_rabbit.webp",
+    "MYTHIC": "/images/chocolate/mythic_rabbit.webp",
+    "DIVINE": "/images/chocolate/divine_rabbit.webp",
+}
