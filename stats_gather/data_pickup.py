@@ -479,6 +479,7 @@ class Profile:
             collection['Hop-a-long'] = collection["Hop A Long"]
             del collection["Hop A Long"]
 
+        # The dicts that will be passed in the template
         rabbit_collection: dict = {
             "COMMON": [],
             "UNCOMMON": [],
@@ -488,6 +489,7 @@ class Profile:
             "MYTHIC": [],
             "DIVINE": [],
         }
+        collection_data: dict = __import__("copy").deepcopy(rabbit_collection)
         with open("stats_gather/miscellaneous/rabbits.json", "r") as rabbit_file:
             rabbits_list = json.load(rabbit_file)
 
@@ -495,8 +497,15 @@ class Profile:
                 rabbits_list[i]['amount'] = collection.get(rabbit_data['name'], 0)
                 rabbits_list[i]['img'] = consts.RABBIT_ICONS[rabbit_data['rarity']]
                 rabbit_collection[rabbit_data['rarity']].append(rabbits_list[i])
-
+        print(collection_data)
         print(rabbit_collection)
+        # Filling the data dictionary
+        for rarity, rabbit_list in rabbit_collection.items():
+
+            collection_data[rarity] = {
+                "total_unique": len(rabbit_list),
+                "found_unique": sum(1 for rb in rabbit_list if rb['amount'] > 0),  # Adds 1 if the rabbit has been found at least 1 time
+            }
 
         # Fetch the chocolate factory upgrades level
         upgrades: dict = {
@@ -530,6 +539,7 @@ class Profile:
         return {
             "employees": employees,
             "collection": rabbit_collection,
+            "collection_data": collection_data,
             "upgrades": upgrades,
             "chocolate": chocolate,
             "misc": misc,
