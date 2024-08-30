@@ -489,7 +489,7 @@ class Profile:
             "MYTHIC": [],
             "DIVINE": [],
         }
-        collection_data: dict = __import__("copy").deepcopy(rabbit_collection)
+        collection_data: dict = {}
         with open("stats_gather/miscellaneous/rabbits.json", "r") as rabbit_file:
             rabbits_list = json.load(rabbit_file)
 
@@ -497,8 +497,8 @@ class Profile:
                 rabbits_list[i]['amount'] = collection.get(rabbit_data['name'], 0)
                 rabbits_list[i]['img'] = consts.RABBIT_ICONS[rabbit_data['rarity']]
                 rabbit_collection[rabbit_data['rarity']].append(rabbits_list[i])
-        print(collection_data)
-        print(rabbit_collection)
+
+
         # Filling the data dictionary
         for rarity, rabbit_list in rabbit_collection.items():
 
