@@ -27,9 +27,3 @@ const rarityColor = {
 document.querySelectorAll(".trophy-count p strong").forEach(element => {
     element.style.color = rarityColor[element.innerHTML.toString()]
 })
-
-
-// Set the loading of every image to lazy
-document.querySelectorAll("img").forEach(element => {
-    element.loading = "lazy"
-})

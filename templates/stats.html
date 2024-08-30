@@ -22,7 +22,7 @@
 <div id="head-section">
 <div id="head-section-data" class="blurry-bg">
 	<div class="flex-wrapper">
-		<img id="main-skin-img" src="{{ skin_link }}" width="128" height="128" alt="{{ player_name }}">
+		<img loading="lazy" id="main-skin-img" src="{{ skin_link }}" width="128" height="128" alt="{{ player_name }}">
 	</div>
 
 	<h2 class="center color-f text-shadow">
@@ -37,7 +37,7 @@
     <div class="center text-shadow">
     {% if profiles_data != None %}
         <div class="icon-text">
-            <img src="/images/Nametag.webp" alt="Profile" width="30" height="30">
+            <img loading="lazy" src="/images/Nametag.webp" alt="Profile" width="30" height="30">
             <label for="profile-selector" class="color-b">Profile <span class="color-f bold">:</span></label>
             <select id="profile-selector" class="blurry-bg">
             {% if displayed_profile == "Selected" %}
@@ -64,7 +64,7 @@
     {% if misc_data != None %}
         <div class="flex-wrapper text-shadow">
             <div class="icon-text">
-                <img src="{{ misc_data['First Join']['icon_path'] }}" alt="First joined" width="30" height="30">
+                <img loading="lazy" src="{{ misc_data['First Join']['icon_path'] }}" alt="First joined" width="30" height="30">
                 <p class="tooltip-container color-b" data-tooltip="Format: YYYY-dd-MM hh:mm:ss">
                     First joined
                     <span class="color-f bold">
@@ -74,7 +74,7 @@
             </div>
         </div>
         <div class="icon-text text-shadow">
-            <img src="{{ misc_data['Purse']['icon_path'] }}" alt="Purse" width="30" height="30">
+            <img loading="lazy" src="{{ misc_data['Purse']['icon_path'] }}" alt="Purse" width="30" height="30">
             <p class="color-b">
                 Purse
                 <span class="color-f bold">: {{ misc_data['Purse']['value'] }}</span>
@@ -93,7 +93,7 @@
     {% endif %}
     {% if leveling_data != None %}
         <div class="icon-text text-shadow">
-        <img src="{{ leveling_data['Global']['icon_path'] }}" alt="{{ skill }} Icon" width="30" height="30">
+        <img loading="lazy" src="{{ leveling_data['Global']['icon_path'] }}" alt="{{ skill }} Icon" width="30" height="30">
         <p class="center color-b">Skyblock Level
             <span class="color-f bold">
                 : {{ leveling_data['Global']['xp'] / 100 }}
@@ -102,7 +102,7 @@
     </div>
     {% else %}
         <div class="icon-text text-shadow">
-        <img src="/images/Skyblock_Levels.webp" alt="{{ skill }} Icon" width="30" height="30">
+        <img loading="lazy" src="/images/Skyblock_Levels.webp" alt="{{ skill }} Icon" width="30" height="30">
         <p class="center color-b">
             Skyblock Level:
             <span class="color-c"> -</span>
@@ -121,7 +121,7 @@
                 <div class="skill-container blurry-bg">
                     <div class="skill-progression">
                         <div class="icon-text">
-                            <img src="{{ leveling_data[skill]['icon_path'] }}" alt="{{ skill }} Icon" width="30" height="30">
+                            <img loading="lazy" src="{{ leveling_data[skill]['icon_path'] }}" alt="{{ skill }} Icon" width="30" height="30">
                             <p id="{{ skill.lower() }}-info" class="skills-info tooltip-container color-b" data-tooltip="{{ leveling_data[skill]["xp"] }} EXP">
                             {{ skill | replace("2", "") }}
                                 <span class="color-f bold">
@@ -160,7 +160,7 @@
 	{% for boss in slayer_data %}
 		<div id="{{ boss.lower() }}" class="slayer-boss-div center">
 			<div class="slayer-title-container icon-text">
-				<img src="{{ slayer_data[boss]['icon_path'] }}" alt="{{ boss.lower().capitalize() }} Icon" width="30" height="30">
+				<img loading="lazy" src="{{ slayer_data[boss]['icon_path'] }}" alt="{{ boss.lower().capitalize() }} Icon" width="30" height="30">
 				<h3 class="{{ boss.lower() }}-boss-level boss-title center text-shadow color-7">
 					{{ boss }} - LVL {{ slayer_data[boss]['current_level'] }}
 				</h3>
@@ -206,7 +206,7 @@
 			<div id="unlocked-timecharms">
 				{% for trophy in rift_data['trophies'] %}
                     <div class="icon-text blurry-bg rift-trophy-div">
-                    <img src="{{ trophy['icon_path'] }}" alt="{{ trophy['type'] }}" width="30" height="30">
+                    <img loading="lazy" src="{{ trophy['icon_path'] }}" alt="{{ trophy['type'] }}" width="30" height="30">
                         <div class="rift-trophy">
                             <p class="text-shadow color-a bold">{{ trophy['type'] }}</p>
                             <p class="text-shadow color-7"><i>Unlocked after {{ trophy['visits'] }} visits</i></p>
@@ -220,7 +220,7 @@
 			<div id="missing-timecharm">
 				{% for trophy in rift_data['missing_trophies'] %}
                     <div class="icon-text blurry-bg rift-trophy-div rift-missing-trophy">
-                    <img src="{{ trophy['icon_path'] }}" alt="{{ trophy['type'] }}" width="30" height="30">
+                    <img loading="lazy" src="{{ trophy['icon_path'] }}" alt="{{ trophy['type'] }}" width="30" height="30">
                         <div class="rift-trophy">
                             <p class="text-shadow color-c bold">{{ trophy['type'] }}</p>
                             <p class="text-shadow color-7"><i>Not unlocked</i></p>
@@ -234,7 +234,7 @@
         <div id="rift-misc" class="blurry-bg">
             <h3 class="text-shadow color-f center">Progression</h3>
             <div class="icon-text">
-                <img src="{{ rift_data['souls']['icon_path'] }}" alt="Enigma Soul" width="30" height="30">
+                <img loading="lazy" src="{{ rift_data['souls']['icon_path'] }}" alt="Enigma Soul" width="30" height="30">
                 <p class="text-shadow color-5 bold">
                     Enigma Souls found
                     <span class="color-f">
@@ -243,7 +243,7 @@
                 </p>
             </div>
             <div class="icon-text">
-                <img src="{{ rift_data['montezuma']['icon_path'] }}" alt="Montezuma" width="30" height="30">
+                <img loading="lazy" src="{{ rift_data['montezuma']['icon_path'] }}" alt="Montezuma" width="30" height="30">
                 <p class="text-shadow color-5 bold">
                     Montezuma fragments
                     <span class="color-f">
@@ -252,7 +252,7 @@
                 </p>
             </div>
             <div class="icon-text">
-                <img src="{{ rift_data['burger']['icon_path'] }}" alt="McGrubber's Burger" width="30" height="30">
+                <img loading="lazy" src="{{ rift_data['burger']['icon_path'] }}" alt="McGrubber's Burger" width="30" height="30">
                 <p class="text-shadow color-5 bold">
                     McGrubber's Burger eaten
                     <span class="color-f">
@@ -261,7 +261,7 @@
                 </p>
             </div>
             <div class="icon-text">
-                <img src="{{ rift_data['time_sitting']['icon_path'] }}" alt="Oak Stairs" width="30" height="30">
+                <img loading="lazy" src="{{ rift_data['time_sitting']['icon_path'] }}" alt="Oak Stairs" width="30" height="30">
                 <p class="text-shadow color-5 bold">
                     Time spent sitting
                     <span class="color-f">
@@ -273,7 +273,7 @@
         <div id="rift-motes" class="blurry-bg">
             <h3 class="text-shadow color-f center">Motes</h3>
             <div class="icon-text">
-                <img src="{{ rift_data['motes']['icon_path'] }}" alt="Oak Stairs" width="30" height="30">
+                <img loading="lazy" src="{{ rift_data['motes']['icon_path'] }}" alt="Oak Stairs" width="30" height="30">
                 <p class="text-shadow color-5 bold">
                     Motes purse
                     <span class="color-f">
@@ -282,7 +282,7 @@
                 </p>
             </div>
             <div class="icon-text">
-                <img src="{{ rift_data['lifetime_motes']['icon_path'] }}" alt="Oak Stairs" width="30" height="30">
+                <img loading="lazy" src="{{ rift_data['lifetime_motes']['icon_path'] }}" alt="Oak Stairs" width="30" height="30">
                 <p class="text-shadow color-5 bold">
                     Lifetime earned motes
                     <span class="color-f">
@@ -291,7 +291,7 @@
                 </p>
             </div>
             <div class="icon-text">
-                <img src="{{ rift_data['orbs']['icon_path'] }}" alt="Oak Stairs" width="30" height="30">
+                <img loading="lazy" src="{{ rift_data['orbs']['icon_path'] }}" alt="Oak Stairs" width="30" height="30">
                 <p class="text-shadow color-5 bold">
                     Orb picked-up
                     <span class="color-f">
@@ -313,7 +313,7 @@
     <div class="blurry-bg">
 		{% for stats in misc_data %}
             <div class="icon-text">
-                <img src="{{ misc_data[stats]['icon_path'] }}" alt="{{ stats }}" width="30" height="30">
+                <img loading="lazy" src="{{ misc_data[stats]['icon_path'] }}" alt="{{ stats }}" width="30" height="30">
                 <p class="misc-data color-f bold">
                     <span class="color-b">{{ stats }}</span>
                     : {{ misc_data[stats]['value'] }}
@@ -333,11 +333,11 @@
 {% if trophy_data != None %}
 	<div id="trophy-fish-misc">
     <div class="icon-text">
-        <img src="{{ trophy_data[1]['Claimed reward']['icon_path'] }}" alt="Reward icon" width="30" height="30">
+        <img loading="lazy" src="{{ trophy_data[1]['Claimed reward']['icon_path'] }}" alt="Reward icon" width="30" height="30">
         <p class="color-f bold"><span class="color-b">Claimed reward</span>: {{ trophy_data[1]['Claimed reward']['name'] }}</p>
     </div>
     <div class="icon-text">
-        <img src="{{ trophy_data[1]['Trophy fished']['icon_path'] }}" alt="Trophy icon" width="30" height="30">
+        <img loading="lazy" src="{{ trophy_data[1]['Trophy fished']['icon_path'] }}" alt="Trophy icon" width="30" height="30">
         <p class="color-f bold"><span class="color-b">Trophy fished</span>: {{ trophy_data[1]['Trophy fished']['amount'] }}</p>
     </div>
 	</div>
@@ -346,7 +346,7 @@
 		{% for trophy in trophy_data[0] %}
 			<div id="{{ trophy.keys() | first }}-summary" class="fish-card">
 				<div class="icon-text center">
-					<img src="{{ trophy['icon_path'] | replace(" ", "_") }}" alt="{{ trophy.keys() | first }} Icon" width="30" height="30">
+					<img loading="lazy" src="{{ trophy['icon_path'] | replace(" ", "_") }}" alt="{{ trophy.keys() | first }} Icon" width="30" height="30">
 					<h3 id="{{ trophy.keys() | first }}-title" class="center">{{ trophy.keys() | first }}</h3>
 				</div>
 				<div class="trophy-count">
@@ -370,7 +370,7 @@
     <div id="factory-production" class="blurry-bg">
     <h3 class="color-f center">Chocolate production</h3>
     <div class="icon-text">
-        <img src="/images/Dropper.webp" alt="Prestige" width="30" height="30">
+        <img loading="lazy" src="/images/Dropper.webp" alt="Prestige" width="30" height="30">
         <p class="color-6 text-shadow">
             Factory Prestige
             <span class="color-f">
@@ -382,7 +382,7 @@
         </p>
     </div>
     <div class="icon-text">
-        <img src="/images/Chocolate_Muffin.webp" alt="Prestige Chocolate" width="30" height="30">
+        <img loading="lazy" src="/images/Chocolate_Muffin.webp" alt="Prestige Chocolate" width="30" height="30">
         <p class="color-6 text-shadow">
             Chocolate this prestige
             <span class="color-f">
@@ -391,7 +391,7 @@
         </p>
     </div>
     <div class="icon-text">
-        <img src="/images/Chocolate_Cube.webp" alt="All-time Chocolate" width="30" height="30">
+        <img loading="lazy" src="/images/Chocolate_Cube.webp" alt="All-time Chocolate" width="30" height="30">
         <p class="color-6 text-shadow">
             All-time chocolate
             <span class="color-f">
@@ -400,7 +400,7 @@
         </p>
     </div>
     <div class="icon-text">
-        <img src="/images/Chocolate_Sphere.webp" alt="Current Chocolate" width="30" height="30">
+        <img loading="lazy" src="/images/Chocolate_Sphere.webp" alt="Current Chocolate" width="30" height="30">
         <p class="color-6 text-shadow">
             Current chocolate
             <span class="color-f">
@@ -413,7 +413,7 @@
     <h3 class="color-f center">Rabbit employees</h3>
         {% for rabbit in chocolate_data['employees'] %}
         <div class="icon-text">
-            <img src="{{ chocolate_data['employees'][rabbit]['icon_path'] }}" alt="{{ rabbit }} icon" width="30" height="30">
+            <img loading="lazy" src="{{ chocolate_data['employees'][rabbit]['icon_path'] }}" alt="{{ rabbit }} icon" width="30" height="30">
             <p class="color-f">
                 <span class="brackets color-7">
                     {{ chocolate_data['employees'][rabbit]['level'] }}
@@ -434,7 +434,7 @@
     <div id="factory-collection" class="blurry-bg">
         <h3 class="color-f center">Hoppity's collection</h3>
         <div class="icon-text">
-            <img src="/images/Hoppity.webp" alt="Hoppity" width="30" height="30">
+            <img loading="lazy" src="/images/Hoppity.webp" alt="Hoppity" width="30" height="30">
             <p class="color-a">
                 Found Rabbits
                 <span class="color-f">
@@ -443,7 +443,7 @@
             </p>
         </div>
         <div class="icon-text">
-            <img src="/images/Hoppity.webp" alt="Hoppity" width="30" height="30">
+            <img loading="lazy" src="/images/Hoppity.webp" alt="Hoppity" width="30" height="30">
             <p class="color-a">
                 Found Rabbits
                 <span class="color-f">
@@ -453,7 +453,7 @@
             </p>
         </div>
         <div class="icon-text">
-            <img src="/images/Fence.webp" alt="Barn" width="30" height="30">
+            <img loading="lazy" src="/images/Fence.webp" alt="Barn" width="30" height="30">
             <p class="color-a">
                 Barn capacity
                 <span class="color-f">
@@ -470,7 +470,7 @@
         <h3 class="color-f center">Factory upgrades</h3>
 
         <div class="icon-text">
-            <img src="/images/Cookie.webp" alt="Cookie" width="30" height="30">
+            <img loading="lazy" src="/images/Cookie.webp" alt="Cookie" width="30" height="30">
             <p class="color-d text-shadow">
                 Hand-Baked Chocolate
                 <span class="color-f">
@@ -480,7 +480,7 @@
         </div>
 
         <div class="icon-text">
-            <img src="/images/Clock.webp" alt="Time Tower" width="30" height="30">
+            <img loading="lazy" src="/images/Clock.webp" alt="Time Tower" width="30" height="30">
             <p class="color-d text-shadow">
                 Time Tower
                 <span class="color-f">
@@ -500,7 +500,7 @@
         </div>
 
         <div class="icon-text">
-            <img src="/images/Rabbit_Foot.webp" alt="Rabbit Shrine" width="30" height="30">
+            <img loading="lazy" src="/images/Rabbit_Foot.webp" alt="Rabbit Shrine" width="30" height="30">
             <p class="color-d text-shadow">
                 Rabbit Shrine
                 <span class="color-f">
@@ -515,7 +515,7 @@
         </div>
 
         <div class="icon-text">
-            <img src="/images/chocolate/coach_jackrabbit.webp" alt="Coach Jackrabbit" width="30" height="30">
+            <img loading="lazy" src="/images/chocolate/coach_jackrabbit.webp" alt="Coach Jackrabbit" width="30" height="30">
             <p class="color-d text-shadow">
                 Coach Jackrabbit
             <span class="color-f">
@@ -537,7 +537,7 @@
     <div id="factory-misc" class="blurry-bg">
         <h3 class="color-f center">Other stats</h3>
         <div class="icon-text">
-            <img src="/images/Emerald.webp" alt="Shop" width="30" height="30">
+            <img loading="lazy" src="/images/Emerald.webp" alt="Shop" width="30" height="30">
             <p class="color-a text-shadow">
                 Chocolate spent in shop
                 <span class="color-f">
@@ -549,7 +549,7 @@
             </p>
         </div>
         <div class="icon-text">
-            <img src="/images/Chocolate_Bar.webp" alt="Chocolate Bar" width="30" height="30">
+            <img loading="lazy" src="/images/Chocolate_Bar.webp" alt="Chocolate Bar" width="30" height="30">
             <p class="color-a text-shadow">
                 Chocolate bar bought
                 <span class="color-f">
@@ -578,7 +578,7 @@
         </h3>
             {% for rabbit in chocolate_data['collection'][rarity] %}
             <div class="icon-text rabbit-div" style="width: auto;">
-                <img src="{{ rabbit['img'] }}" alt="{{ rabbit['name'] }}" width="30" height="30" loading="lazy">
+                <img loading="lazy" src="{{ rabbit['img'] }}" alt="{{ rabbit['name'] }}" width="30" height="30">
                 <p class="text-shadow color-f">
                     <span class="bold" style="color: {{ rabbit_rarity_colors[rabbit['rarity']] }}">
                          {{ rabbit['name'] }}
