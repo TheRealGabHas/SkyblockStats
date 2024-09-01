@@ -257,7 +257,7 @@ class Profile:
             if trophy not in (tr['type'] for tr in rift_data['trophies']):
                 missing_trophies.append({
                     "type": trophy,
-                    "icon_path": f"/images/rift/{" ".join(word.lower() for word in trophy.replace("_", " ").split())}.png"
+                    "icon_path": f"/images/rift/{" ".join(word.lower() for word in trophy.replace("_", " ").split())}.png".replace(" ", "_")
                 })
 
         rift_data['missing_trophies'] = missing_trophies

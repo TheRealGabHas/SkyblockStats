@@ -472,6 +472,12 @@ footer {
     justify-content: left;
 }
 
+#rabbit-dashboard-rarity {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .parenthesis::before {
     content: "(";
     color: var(--§8);

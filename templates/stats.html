@@ -368,46 +368,46 @@
 
 <div class="divider-2">
     <div id="factory-production" class="blurry-bg">
-    <h3 class="color-f center">Chocolate production</h3>
-    <div class="icon-text">
-        <img loading="lazy" src="/images/Dropper.webp" alt="Prestige" width="30" height="30">
-        <p class="color-6 text-shadow">
-            Factory Prestige
-            <span class="color-f">
-                : {{ chocolate_data['chocolate']['factory_level'] }}
-            </span>
-            {% if chocolate_data['chocolate']['factory_level'] == 6 %}
-                <i class="parenthesis color-b bold">MAX LEVEL</i>
-            {% endif %}
-        </p>
-    </div>
-    <div class="icon-text">
-        <img loading="lazy" src="/images/Chocolate_Muffin.webp" alt="Prestige Chocolate" width="30" height="30">
-        <p class="color-6 text-shadow">
-            Chocolate this prestige
-            <span class="color-f">
-                : {{ chocolate_data['chocolate']['prestige_chocolate'] }}
-            </span>
-        </p>
-    </div>
-    <div class="icon-text">
-        <img loading="lazy" src="/images/Chocolate_Cube.webp" alt="All-time Chocolate" width="30" height="30">
-        <p class="color-6 text-shadow">
-            All-time chocolate
-            <span class="color-f">
-                : {{ chocolate_data['chocolate']['alltime_chocolate'] }}
-            </span>
-        </p>
-    </div>
-    <div class="icon-text">
-        <img loading="lazy" src="/images/Chocolate_Sphere.webp" alt="Current Chocolate" width="30" height="30">
-        <p class="color-6 text-shadow">
-            Current chocolate
-            <span class="color-f">
-                : {{ chocolate_data['chocolate']['current_chocolate'] }}
-            </span>
-        </p>
-    </div>
+        <h3 class="color-f center">Chocolate production</h3>
+        <div class="icon-text">
+            <img loading="lazy" src="/images/Dropper.webp" alt="Prestige" width="30" height="30">
+            <p class="color-6 text-shadow">
+                Factory Prestige
+                <span class="color-f">
+                    : {{ chocolate_data['chocolate']['factory_level'] }}
+                </span>
+                {% if chocolate_data['chocolate']['factory_level'] == 6 %}
+                    <i class="parenthesis color-b bold">MAX LEVEL</i>
+                {% endif %}
+            </p>
+        </div>
+        <div class="icon-text">
+            <img loading="lazy" src="/images/Chocolate_Muffin.webp" alt="Prestige Chocolate" width="30" height="30">
+            <p class="color-6 text-shadow">
+                Chocolate this prestige
+                <span class="color-f">
+                    : {{ chocolate_data['chocolate']['prestige_chocolate'] }}
+                </span>
+            </p>
+        </div>
+        <div class="icon-text">
+            <img loading="lazy" src="/images/Chocolate_Cube.webp" alt="All-time Chocolate" width="30" height="30">
+            <p class="color-6 text-shadow">
+                All-time chocolate
+                <span class="color-f">
+                    : {{ chocolate_data['chocolate']['alltime_chocolate'] }}
+                </span>
+            </p>
+        </div>
+        <div class="icon-text">
+            <img loading="lazy" src="/images/Chocolate_Sphere.webp" alt="Current Chocolate" width="30" height="30">
+            <p class="color-6 text-shadow">
+                Current chocolate
+                <span class="color-f">
+                    : {{ chocolate_data['chocolate']['current_chocolate'] }}
+                </span>
+            </p>
+        </div>
     </div>
     <div id="factory-employees" class="blurry-bg">
     <h3 class="color-f center">Rabbit employees</h3>
@@ -559,18 +559,30 @@
         </div>
     </div>
 </div>
+<br>
+<div class="stats-div">
+{% set rabbit_rarity_colors = dict({
+    "COMMON": "#ffffff",
+    "UNCOMMON": "#3ffe3f",
+    "RARE": "#3f3ffe",
+    "EPIC": "#be00be",
+    "LEGENDARY": "#d9a334",
+    "MYTHIC": "#fe3ffe",
+    "DIVINE": "#3ffefe",
+}) %}
 
-<div class="blurry-bg">
-    {% set rabbit_rarity_colors = dict({
-        "COMMON": "#ffffff",
-        "UNCOMMON": "#3ffe3f",
-        "RARE": "#3f3ffe",
-        "EPIC": "#be00be",
-        "LEGENDARY": "#d9a334",
-        "MYTHIC": "#fe3ffe",
-        "DIVINE": "#3ffefe",
-    }) %}
+<div id="rabbit-collection-dashboard" class="blurry-bg">
+    <h3 class="color-f bold text-shadow center">Select which rarity to display</h3>
+    <form id="rabbit-dashboard-rarity">
+        {% for rarity in chocolate_data['collection'] %}
+            <label for="{{ rarity }}" class="text-shadow bold" style="color: {{ rabbit_rarity_colors[rarity] }}">{{ rarity | lower | capitalize }}</label>
+            <input type="checkbox" checked value="{{ rarity }}"  name="{{ rarity }}">
+        {% endfor %}
+        <input type="button" value="Sort!">
+    </form>
+</div>
 
+<div id="rabbits-collection" class="blurry-bg">
     {% for rarity in chocolate_data['collection'] %}
         <div class="{{ rarity }}-rabbit-div">
         <h3 class="text-shadow color-f center">
@@ -590,6 +602,8 @@
         </div>
     {% endfor %}
 </div>
+</div>
+
 
 {% else %}
     <h3 class="center">Chocolate Factory data not found for this player.</h3>
