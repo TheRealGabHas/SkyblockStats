@@ -27,3 +27,20 @@ const rarityColor = {
 document.querySelectorAll(".trophy-count p strong").forEach(element => {
     element.style.color = rarityColor[element.innerHTML.toString()]
 })
+
+// Script for the detailed rabbit collection dashboard
+const dashboardBtn = document.getElementById("rabbit-dashboard-btn")
+const rabbitRarities = ["COMMON", "UNCOMMON", "RARE", "EPIC", "LEGENDARY", "MYTHIC", "DIVINE"]
+
+dashboardBtn.addEventListener("click", () => {
+    for (let i = 0; i < rabbitRarities.length; i++) {
+        const tickBox = document.querySelector("input[value=" + rabbitRarities[i] + "]")
+        const rabbitsDiv = document.getElementsByClassName(rabbitRarities[i] + "-rabbit-div")[0]
+        console.log(tickBox)
+        if (!tickBox.checked) {
+            rabbitsDiv.style.display = "none"
+        } else {
+            rabbitsDiv.style.display = "block"
+        }
+    }
+})

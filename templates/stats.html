@@ -578,7 +578,7 @@
             <label for="{{ rarity }}" class="text-shadow bold" style="color: {{ rabbit_rarity_colors[rarity] }}">{{ rarity | lower | capitalize }}</label>
             <input type="checkbox" checked value="{{ rarity }}"  name="{{ rarity }}">
         {% endfor %}
-        <input type="button" value="Sort!">
+        <input type="button" value="Sort!" id="rabbit-dashboard-btn">
     </form>
 </div>
 
