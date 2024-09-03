@@ -466,10 +466,15 @@ footer {
 }
 
 #chocolate-stats .divider-2 > div > p,
-#chocolate-stats .divider-2 > div > .icon-text {
+#chocolate-stats .divider-2 > div > .icon-text,
+#chocolate-prod-breakdown {
     width: 100%;
     padding-left: 5%;
     justify-content: left;
+}
+
+#chocolate-prod-breakdown {
+    padding-left: 7%;
 }
 
 #rabbit-dashboard-rarity {

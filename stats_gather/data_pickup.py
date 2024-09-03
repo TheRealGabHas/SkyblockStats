@@ -9,7 +9,8 @@ import stats_gather.consts
 import stats_gather.s_utils as utils
 import stats_gather.consts as consts
 from stats_gather.consts import (SKILLS, SLAYER_XP_REQUIREMENTS, SLAYER_MAX_BOSS_TIER, SLAYER_BOSS_ICONS, TIMECHARMS,
-                                 RANKS_COLOR, LEVELS_COLOR)
+                                 RANKS_COLOR, LEVELS_COLOR, EMPLOYEE_PROD_PER_LVL, FACTORY_PRESTIGE_BUFF,
+                                 EMPLOYEE_COLLECTION_PROD, EMPLOYEE_COLLECTION_MUL)
 
 
 with open("stats_gather/credentials.json", "r") as file:
@@ -536,6 +537,65 @@ class Profile:
         misc['chocolate_bar_counter'] = f"{misc['chocolate_bar_counter']:,.0f}"
         misc['shop_spent'] = f"{misc['shop_spent']:,.0f}"
 
+
+        # Estimating the factory production
+        production: dict = {
+            "per_sec": 0,
+            "per_sec_with_tower": 0,
+            "production": [],
+            "multiplier": []
+        }
+
+        cookie_buff = self.get_profile_data("profile", profile=profile).get("cookie_buff_active", False)
+        cookie_buff = 0.25 if cookie_buff else 0
+
+        employee_prod: int = 0
+        for employee, employee_data in employees.items():
+            employee_prod += EMPLOYEE_PROD_PER_LVL[employee] * employee_data['level']
+
+        prestige_multiplier: float = FACTORY_PRESTIGE_BUFF[chocolate['factory_level']]
+        jackrabbit_multiplier: float = upgrades['jackrabbit'] * 0.01
+        collection_multiplier: float = 0
+        collection_production: float = 0
+
+        for rarity, data in collection_data.items():
+            collection_multiplier += EMPLOYEE_COLLECTION_MUL[rarity] * data['found_unique']
+            collection_production += EMPLOYEE_COLLECTION_PROD[rarity] * data['found_unique']
+
+        # Some mythic gives unique bonus
+        if collection.get('Dante', 0) > 0:
+            collection_production += 50
+        if collection.get('Galaxy', 0) > 0:
+            collection_multiplier += 0.05
+        if collection.get('Sigma', 0) > 0:
+            collection_production += 5 * len(collection_data['MYTHIC'])
+        if collection.get('Zest Zephyr', 0) > 0:
+            collection_multiplier += 0.03
+            collection_production += 30
+
+        # TODO: Retrieve if player has talisman
+        talisman_prod: int = 50  # Assuming the talisman is at the max tier
+        collection_multiplier = round(collection_multiplier, 3)
+
+        production['production'].append({"Employees": f"{employee_prod:,}"})
+        production['production'].append({"Hoppity collection": collection_production}) # Inaccurate
+        production['production'].append({"Chocolate Talisman": talisman_prod}) # Assuming maxed
+
+        production['multiplier'].append({"Hoppity collection": collection_multiplier})  # Inaccurate
+        production['multiplier'].append({"Jackrabbit": jackrabbit_multiplier})
+        production['multiplier'].append({"Factory Prestige": prestige_multiplier})
+        production['multiplier'].append({"Booster Cookie": cookie_buff})
+
+        total_prod: int = employee_prod + collection_production + talisman_prod
+        total_mul: float = prestige_multiplier + jackrabbit_multiplier + collection_multiplier + cookie_buff
+        tower_bonus: float = (upgrades['tower'] / 10) + 0.7 * bool(misc['shop_milestone'] >= 12)
+
+        production['per_sec'] = f"{(total_prod * total_mul):,.2f}"
+        production['per_sec_with_tower'] = f"{(total_prod * (total_mul + tower_bonus)):,.2f}"
+        production['total_prod'] = f"{total_prod:,}"
+        production['total_mul'] = f"{total_mul:,.3f}"
+        production['tower_bonus'] = f"{tower_bonus:,.1f}"
+
         return {
             "employees": employees,
             "collection": rabbit_collection,
@@ -543,4 +603,5 @@ class Profile:
             "upgrades": upgrades,
             "chocolate": chocolate,
             "misc": misc,
+            "production": production,
         }

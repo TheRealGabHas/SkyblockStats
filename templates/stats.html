@@ -365,7 +365,7 @@
 <div id="chocolate-stats" class="stats-div">
     <h2 class="section-title center">Chocolate Factory</h2>
 {% if chocolate_data != None and chocolate_data != {} %}
-
+<p class="color-f bold text-shadow">{{ chocolate_data['production'] }}</p>
 <div class="divider-2">
     <div id="factory-production" class="blurry-bg">
         <h3 class="color-f center">Chocolate production</h3>
@@ -558,6 +558,45 @@
             </p>
         </div>
     </div>
+<div id="factory-prod" class="blurry-bg">
+    <h3 class="color-f center">Estimated Production</h3>
+    <div class="icon-text">
+        <img loading="lazy" src="/images/Cookie.webp" alt="Cookie" width="30" height="30">
+        <p class="color-6 text-shadow">
+            Chocolate per second
+            <span class="color-f bold">: {{ chocolate_data['production']['per_sec'] }}</span>
+        </p>
+    </div>
+    <div class="icon-text">
+        <img loading="lazy" src="/images/Cookie.webp" alt="Cookie" width="30" height="30">
+        <p class="color-6 text-shadow">
+            Chocolate per second (with Tower)
+            <span class="color-f bold">: {{ chocolate_data['production']['per_sec_with_tower'] }}</span>
+        </p>
+    </div>
+    <div class="icon-text">
+        <img loading="lazy" src="/images/Cookie.webp" alt="Cookie" width="30" height="30">
+        <p class="color-6 text-shadow">
+            Calculation breakdown
+            <span class="color-f bold">:</span>
+        </p>
+    </div>
+    <div id="chocolate-prod-breakdown">
+        <span class="color-6"> --- Production ({{ chocolate_data['production']['total_prod'] }}) --- </span>
+        {% for prod_source in chocolate_data['production']['production'] %}
+            <br>
+            <span class="color-a">{{ prod_source.keys() | first }}</span>
+            <span class="color-f bold">: {{ prod_source.values() | first }}</span>
+        {% endfor %}
+        <br>
+        <span class="color-6"> --- Multiplier ({{ chocolate_data['production']['total_mul'] }}) --- </span>
+        {% for prod_source in chocolate_data['production']['multiplier'] %}
+            <br>
+            <span class="color-a">{{ prod_source.keys() | first }}</span>
+            <span class="color-f bold">: x{{ prod_source.values() | first }}</span>
+        {% endfor %}
+    </div>
+</div>
 </div>
 <br>
 <div class="stats-div">
@@ -591,12 +630,22 @@
             {% for rabbit in chocolate_data['collection'][rarity] %}
             <div class="icon-text rabbit-div" style="width: auto;">
                 <img loading="lazy" src="{{ rabbit['img'] }}" alt="{{ rabbit['name'] }}" width="30" height="30">
+                {% if rabbit['amount'] == 0 %}
+                <i class="text-shadow color-7">
+                    <span class="bold">
+                         {{ rabbit['name'] }}
+                    </span>
+                    <span class="parenthesis color-8">{{ rabbit['amount'] }}</span>
+                </i>
+                {% else %}
                 <p class="text-shadow color-f">
                     <span class="bold" style="color: {{ rabbit_rarity_colors[rabbit['rarity']] }}">
                          {{ rabbit['name'] }}
                     </span>
                     <span class="parenthesis">{{ rabbit['amount'] }}</span>
                 </p>
+                {% endif %}
+
             </div>
             {% endfor %}
         </div>

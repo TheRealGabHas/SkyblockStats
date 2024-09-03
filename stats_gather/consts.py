@@ -176,3 +176,43 @@ RABBIT_ICONS: dict = {
     "MYTHIC": "/images/chocolate/mythic_rabbit.webp",
     "DIVINE": "/images/chocolate/divine_rabbit.webp",
 }
+
+EMPLOYEE_PROD_PER_LVL: dict = {
+    "rabbit_bro": 1,
+    "rabbit_cousin": 2,
+    "rabbit_sis": 3,
+    "rabbit_father": 4,
+    "rabbit_grandma": 5,
+    "rabbit_uncle": 6,
+    "rabbit_dog": 7,
+}
+
+FACTORY_PRESTIGE_BUFF: dict = {
+    0: 1,
+    1: 1,
+    2: 1.1,
+    3: 1.25,
+    4: 1.5,
+    5: 2,
+    6: 2.5
+}
+
+EMPLOYEE_COLLECTION_PROD: dict = {
+    "COMMON": 1,
+    "UNCOMMON": 2,
+    "RARE": 4,
+    "EPIC": 10,
+    "LEGENDARY": 0,
+    "MYTHIC": 0,  # Depends on which rabbit
+    "DIVINE": 0,
+}
+
+EMPLOYEE_COLLECTION_MUL: dict = {
+    "COMMON": 0.002,
+    "UNCOMMON": 0.003,
+    "RARE": 0.004,
+    "EPIC": 0.005,
+    "LEGENDARY": 0.02,
+    "MYTHIC": 0,  # Depends on which rabbit
+    "DIVINE": 0.025,
+}
