@@ -578,10 +578,10 @@ class Profile:
         collection_multiplier = round(collection_multiplier, 3)
 
         production['production'].append({"Employees": f"{employee_prod:,}"})
-        production['production'].append({"Hoppity collection": collection_production}) # Inaccurate
-        production['production'].append({"Chocolate Talisman": talisman_prod}) # Assuming maxed
+        production['production'].append({"Hoppity collection": collection_production, "comment": "This value may be inaccurate"}) # Inaccurate
+        production['production'].append({"Chocolate Talisman": talisman_prod, "comment": "Assuming the max talisman is unlocked"}) # Assuming maxed
 
-        production['multiplier'].append({"Hoppity collection": collection_multiplier})  # Inaccurate
+        production['multiplier'].append({"Hoppity collection": collection_multiplier, "comment": "This value may be inaccurate"})  # Inaccurate
         production['multiplier'].append({"Jackrabbit": jackrabbit_multiplier})
         production['multiplier'].append({"Factory Prestige": prestige_multiplier})
         production['multiplier'].append({"Booster Cookie": cookie_buff})

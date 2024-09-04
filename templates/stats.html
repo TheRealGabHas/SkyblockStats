@@ -570,13 +570,6 @@
     <div class="icon-text">
         <img loading="lazy" src="/images/Cookie.webp" alt="Cookie" width="30" height="30">
         <p class="color-6 text-shadow">
-            Chocolate per second (with Tower)
-            <span class="color-f bold">: {{ chocolate_data['production']['per_sec_with_tower'] }}</span>
-        </p>
-    </div>
-    <div class="icon-text">
-        <img loading="lazy" src="/images/Cookie.webp" alt="Cookie" width="30" height="30">
-        <p class="color-6 text-shadow">
             Calculation breakdown
             <span class="color-f bold">:</span>
         </p>
@@ -585,16 +578,31 @@
         <span class="color-6"> --- Production ({{ chocolate_data['production']['total_prod'] }}) --- </span>
         {% for prod_source in chocolate_data['production']['production'] %}
             <br>
-            <span class="color-a">{{ prod_source.keys() | first }}</span>
+            {% if prod_source['comment'] != None %}
+            	<span class="color-a" data-tooltip="{{ prod_source['comment'] }}">{{ prod_source.keys() | first }}</span>
+            {% else %}
+                <span class="color-a">{{ prod_source.keys() | first }}</span>
+            {% endif %}
             <span class="color-f bold">: {{ prod_source.values() | first }}</span>
         {% endfor %}
         <br>
         <span class="color-6"> --- Multiplier ({{ chocolate_data['production']['total_mul'] }}) --- </span>
         {% for prod_source in chocolate_data['production']['multiplier'] %}
             <br>
-            <span class="color-a">{{ prod_source.keys() | first }}</span>
+            {% if prod_source['comment'] %}
+            	<span class="color-a" data-tooltip="{{ prod_source['comment'] }}">{{ prod_source.keys() | first }}</span>
+            {% else %}
+                <span class="color-a">{{ prod_source.keys() | first }}</span>
+            {% endif %}
             <span class="color-f bold">: x{{ prod_source.values() | first }}</span>
         {% endfor %}
+    </div>
+    <div class="icon-text">
+        <img loading="lazy" src="/images/Cookie.webp" alt="Cookie" width="30" height="30">
+        <p class="color-6 text-shadow">
+            Chocolate per second (with Tower)
+            <span class="color-f bold">: {{ chocolate_data['production']['per_sec_with_tower'] }}</span>
+        </p>
     </div>
 </div>
 </div>
