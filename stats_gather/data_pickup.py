@@ -48,13 +48,14 @@ class Profile:
                     for profile_id, profile_data in _profiles.items():
                         self.skyblock_profiles.append((str(lib_uuid.UUID(profile_id)), profile_data['cute_name']))
 
-    def gather_stats(self) -> bool:
-        _data = requests.get(f"https://api.hypixel.net/v2/skyblock/profiles?uuid={self.uuid}", headers=header).json()
+    def gather_stats(self) -> tuple[bool, int]:
+        api_request = requests.get(f"https://api.hypixel.net/v2/skyblock/profiles?uuid={self.uuid}", headers=header)
 
+        _data = api_request.json()
         if _data['success']:
             self.data = _data
 
-        return _data['success']
+        return _data['success'], api_request.status_code
 
     def get_stats(self) -> dict:
         return self.data

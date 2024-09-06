@@ -1,6 +1,7 @@
 # Built-ins
 import base64
 import ast
+from pyexpat.errors import messages
 
 # Downloaded
 import requests
@@ -89,10 +90,16 @@ async def stats(request: Request, name: str, profile: str = "selected"):
         db.set(f"{name.lower()}:stats", base64.b64encode(str(p.data).encode()), ex=CACHE_RETENTION)
         db.set(f"{name.lower()}:rank", base64.b64encode(str(p.rank_data).encode()), ex=CACHE_RETENTION)
 
-    if not result:
+    if not result[0]:
+        error_code = result[1]
+        message = "An error occurred during the Hypixel API request"
+
+        if error_code == 429:
+            message = "Too many requests to Hypixel have been made. Try again in 5 minutes."
+
         return templates.TemplateResponse("home.html",
                                           {"request": request,
-                                           "message": "An error occurred during the Hypixel API request"})
+                                           "message": message})
 
     context = s_utils.get_context_for_profile(player=p, profile_name=profile)
 
