@@ -1,7 +1,7 @@
 # Built-ins
 import base64
 import ast
-from pyexpat.errors import messages
+import json
 
 # Downloaded
 import requests
@@ -16,10 +16,15 @@ import redis
 from stats_gather import data_pickup
 from stats_gather import s_utils
 
+# Loading the configuration file
+with open("config/settings.json", "r") as config_file:
+    config = json.load(config_file)
 
-CACHE_RETENTION: int = 60 * 5
+    CACHE_RETENTION: int = config['redis']['cache-retention-duration']
+    REDIS_HOST: str = config['redis']['host']
+    REDIS_PORT: int = config['redis']['port']
 
-db: redis.Redis = redis.Redis("localhost", port=6379, decode_responses=True)
+db: redis.Redis = redis.Redis(REDIS_HOST, port=REDIS_PORT, decode_responses=True)
 
 # Disabling the default routes
 app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None, swagger_ui_oauth2_redirect_url=None)
@@ -81,7 +86,7 @@ async def stats(request: Request, name: str, profile: str = "selected"):
         p.rank_data = ast.literal_eval(base64.b64decode(player_rank).decode())
 
         p.gather_rank()
-        result = True
+        result = (True, 200)
     else:
         p.gather_rank()  # Send API request to fetch the player's Hypixel rank (and a list of SkyBlock profiles)
         result = p.gather_stats()  # Send API request to Hypixel to fetch the player's stats

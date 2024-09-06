@@ -13,10 +13,18 @@ from stats_gather.consts import (SKILLS, SLAYER_XP_REQUIREMENTS, SLAYER_MAX_BOSS
                                  EMPLOYEE_COLLECTION_PROD, EMPLOYEE_COLLECTION_MUL)
 
 
-with open("stats_gather/credentials.json", "r") as file:
-    header = json.load(file)
-    if header.get("API-Key") is None:
-        sys.exit(1)
+# Retrieve the API key from the configuration file
+with open("config/settings.json", "r") as config_file:
+    config = json.load(config_file)
+
+    API_KEY: str = config['hypixel-api-key']
+    # Simple check to ensure the field isn't empty
+    if len(API_KEY) != 36:
+        sys.exit("Invalid Hypixel API key in the config/settings.json file.")
+
+    header = {
+        "API-Key": API_KEY
+    }
 
 
 class Profile:

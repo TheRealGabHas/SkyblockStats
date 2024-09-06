@@ -34,12 +34,23 @@ traffic and shorten the page loading time.
 **Note:** This project utilize some feature from Python 3.12 (like some f-string shenanigans) that could be easily 
 adapted for older version of Python.
 
-## API Key
+## Configuration file and API Key
 
-The Hypixel API key must go in the `stats_gather/credentials.json` file following this format : 
+The project configuration file is `config/settings.json`. It must be manually created and follow this format :
+The Hypixel API key must be replaced with a real one.
+A copy of this configuration can be found in [`config/default_settings.json`](config/default_settings.json).
 ```json
 {
-    "API-Key": "00000000-0000-0000-0000-000000000000"
+  "hypixel-api-key": "00000000-0000-0000-0000-000000000000",
+  "redis": {
+    "host": "localhost",
+    "port": 6379,
+    "cache-retention-duration": 300
+  },
+  "logging": {
+    "enabled": false,
+    "log-file-path": "/dev/null"
+  }
 }
 ```
 **Note:** You must create this file.
@@ -91,7 +102,7 @@ templates
   - [`data_pickup.py`](stats_gather/data_pickup.py) : The file that collects every data and format it before sending 
   it to the template.
   - [`s_utils.py`](stats_gather/s_utils.py) : Some utility functions in Python
-  - [`credentials.json`](stats_gather/credentials.json) : JSON file in which the API-Key must be filled 
+  - [`settings.json`](config/settings.json) : JSON file in which the API-Key must be filled 
   (see [API Key](#api-key))
   - [`miscellaneous`](stats_gather/miscellaneous) : A folder that will store some utility scripts and assets.
   
