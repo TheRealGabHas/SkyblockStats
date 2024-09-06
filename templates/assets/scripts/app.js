@@ -36,7 +36,7 @@ dashboardBtn.addEventListener("click", () => {
     for (let i = 0; i < rabbitRarities.length; i++) {
         const tickBox = document.querySelector("input[value=" + rabbitRarities[i] + "]")
         const rabbitsDiv = document.getElementsByClassName(rabbitRarities[i] + "-rabbit-div")[0]
-        console.log(tickBox)
+
         if (!tickBox.checked) {
             rabbitsDiv.style.display = "none"
         } else {

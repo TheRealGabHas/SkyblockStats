@@ -365,7 +365,6 @@
 <div id="chocolate-stats" class="stats-div">
     <h2 class="section-title center">Chocolate Factory</h2>
 {% if chocolate_data != None and chocolate_data != {} %}
-<p class="color-f bold text-shadow">{{ chocolate_data['production'] }}</p>
 <div class="divider-2">
     <div id="factory-production" class="blurry-bg">
         <h3 class="color-f center">Chocolate production</h3>
@@ -558,7 +557,7 @@
             </p>
         </div>
     </div>
-<div id="factory-prod" class="blurry-bg">
+    <div id="factory-prod" class="blurry-bg">
     <h3 class="color-f center">Estimated Production</h3>
     <div class="icon-text">
         <img loading="lazy" src="/images/Cookie.webp" alt="Cookie" width="30" height="30">
@@ -578,7 +577,7 @@
         <span class="color-6"> --- Production ({{ chocolate_data['production']['total_prod'] }}) --- </span>
         {% for prod_source in chocolate_data['production']['production'] %}
             <br>
-            {% if prod_source['comment'] != None %}
+            {% if prod_source['comment'] %}
             	<span class="color-a" data-tooltip="{{ prod_source['comment'] }}">{{ prod_source.keys() | first }}</span>
             {% else %}
                 <span class="color-a">{{ prod_source.keys() | first }}</span>
@@ -620,21 +619,30 @@
 
 <div id="rabbit-collection-dashboard" class="blurry-bg">
     <h3 class="color-f bold text-shadow center">Select which rarity to display</h3>
+
     <form id="rabbit-dashboard-rarity">
         {% for rarity in chocolate_data['collection'] %}
-            <label for="{{ rarity }}" class="text-shadow bold" style="color: {{ rabbit_rarity_colors[rarity] }}">{{ rarity | lower | capitalize }}</label>
-            <input type="checkbox" checked value="{{ rarity }}"  name="{{ rarity }}">
-        {% endfor %}
-        <input type="button" value="Sort!" id="rabbit-dashboard-btn">
-    </form>
-</div>
+            <div class="rabbit-dashboard-entry">
 
+                <label for="{{ rarity }}" class="text-shadow bold" style="color: {{ rabbit_rarity_colors[rarity] }}">
+                    <input type="checkbox" checked value="{{ rarity }}"  name="{{ rarity }}"> {{ rarity | lower | capitalize }}
+                </label>
+            </div>
+        {% endfor %}
+    </form>
+
+    <input type="button" value="Update" id="rabbit-dashboard-btn">
+</div>
+<br>
 <div id="rabbits-collection" class="blurry-bg">
     {% for rarity in chocolate_data['collection'] %}
-        <div class="{{ rarity }}-rabbit-div">
         <h3 class="text-shadow color-f center">
-            {{ rarity }} ({{ chocolate_data['collection_data'][rarity]["found_unique"] }}/{{ chocolate_data['collection_data'][rarity]["total_unique"] }})
+            {{ rarity }}
+            <span class="color-7 bold">{{ chocolate_data['collection_data'][rarity]["found_unique"] }}</span>
+            <span class="color-8">/</span>
+            <span class="color-7 bold">{{ chocolate_data['collection_data'][rarity]["total_unique"] }}</span>
         </h3>
+        <div class="{{ rarity }}-rabbit-div">
             {% for rabbit in chocolate_data['collection'][rarity] %}
             <div class="icon-text rabbit-div" style="width: auto;">
                 <img loading="lazy" src="{{ rabbit['img'] }}" alt="{{ rabbit['name'] }}" width="30" height="30">
