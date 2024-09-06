@@ -2,6 +2,7 @@
 import base64
 import ast
 import json
+import re
 
 # Downloaded
 import requests
@@ -16,14 +17,19 @@ import redis
 from stats_gather import data_pickup
 from stats_gather import s_utils
 
+# Minecraft username are max 16 characters long, and follow this regex:
+MC_USERNAME_REGEX: str = "^[a-zA-Z0-9_]{2,16}$"
+
 # Loading the configuration file
 with open("config/settings.json", "r") as config_file:
     config = json.load(config_file)
 
+    # Redis data
     CACHE_RETENTION: int = config['redis']['cache-retention-duration']
     REDIS_HOST: str = config['redis']['host']
     REDIS_PORT: int = config['redis']['port']
 
+# Initiating the Redis database
 db: redis.Redis = redis.Redis(REDIS_HOST, port=REDIS_PORT, decode_responses=True)
 
 # Disabling the default routes
@@ -63,6 +69,13 @@ async def stats(request: Request, name: str, profile: str = "selected"):
     :param profile: Set to "selected" to specify that the retrieved data will be for the selected profile
     :return:
     """
+    # Check the username validity
+    if re.search(MC_USERNAME_REGEX, name) is None:
+        return templates.TemplateResponse("home.html",
+                                          {"request": request,
+                                           "message": f"Invalid username submitted ({name})."})
+
+
     player_data = requests.get(f"https://playerdb.co/api/player/minecraft/{name}")
     # If this Minecraft account doesn't exist → 404 Not Found
     if not player_data.ok:
@@ -86,7 +99,7 @@ async def stats(request: Request, name: str, profile: str = "selected"):
         p.rank_data = ast.literal_eval(base64.b64decode(player_rank).decode())
 
         p.gather_rank()
-        result = (True, 200)
+        result = (True, 200)  # Equivalent to a successful API request (200 = Success)
     else:
         p.gather_rank()  # Send API request to fetch the player's Hypixel rank (and a list of SkyBlock profiles)
         result = p.gather_stats()  # Send API request to Hypixel to fetch the player's stats
