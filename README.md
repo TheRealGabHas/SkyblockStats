@@ -139,15 +139,21 @@ When editing and contributing to the project, one must follow these few rules:
 
 ## Goals
 
-- [ ] Add Chocolate Factory stats viewer
+- [x] Add Chocolate Factory stats viewer
   - [x] Make it responsive
-  - [ ] Add the rabbit list (can be toggled and sorted)
-  - [ ] Add the chocolate per second rate
+  - [x] Add the rabbit list (can be toggled and sorted)
+  - [x] Add the chocolate per second rate
 - [x] Add profile selector
 - [x] Add icon for every field
 - [x] Add and complete a page about user data, credits, legals...
 - [x] Implement a caching system with a 5 minutes caching duration
 - [ ] Take skill level cap into account (Runecrafting, Taming, Foraging...)
+- [ ] Read items from inventory and accessory bag
+  - [ ] Magical power calculator
+  - [ ] Detect the chocolate talisman to more accurately estimate the chocolate production
+- [ ] Add a logging system
+- [ ] Perform some basic check on the user form input to prevent injection
+- [ ] Rework the file structure of the project to implement a "config" section
 
 ## The tooltip system
 
