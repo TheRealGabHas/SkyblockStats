@@ -70,7 +70,7 @@ Install the dependencies required to run the project :
 pip install -r requirements.txt
 ```
 
-Then create the `stats_gather/credentials.json` file as described in the [API Key](#api-key) section.
+Then create the `config/settings.json` file as described in the [Configuration file and API Key](#configuration-file-and-api-key) section.
 
 Finally, use uvicorn to run the server :
 ```shell
@@ -164,7 +164,7 @@ When editing and contributing to the project, one must follow these few rules:
   - [ ] Detect the chocolate talisman to more accurately estimate the chocolate production
 - [ ] Add a logging system
 - [ ] Perform some basic check on the user form input to prevent injection
-- [ ] Rework the file structure of the project to implement a "config" section
+- [x] Rework the file structure of the project to implement a "config" section
 
 ## The tooltip system
 
