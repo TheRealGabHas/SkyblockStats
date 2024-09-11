@@ -7,7 +7,7 @@ import json
 
 # This file contains the <tbody> with all the rabbits from the Fandom page:
 # https://hypixel-skyblock.fandom.com/wiki/Chocolate_Rabbits/List
-with open("../../.tests/rabbits.html", "r") as file:
+with open("../../../.tests/rabbits.html", "r") as file:
     content = file.read()
 
 soup = BeautifulSoup(content, "html.parser")

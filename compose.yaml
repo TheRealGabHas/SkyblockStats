@@ -1,0 +1,14 @@
+name: "skyblockstats"
+
+services:
+  database:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
+
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - "./src/config:/app/config"

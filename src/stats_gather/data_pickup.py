@@ -9,8 +9,8 @@ import stats_gather.consts
 import stats_gather.s_utils as utils
 import stats_gather.consts as consts
 from stats_gather.consts import (SKILLS, SLAYER_XP_REQUIREMENTS, SLAYER_MAX_BOSS_TIER, SLAYER_BOSS_ICONS, TIMECHARMS,
-                                 RANKS_COLOR, LEVELS_COLOR, EMPLOYEE_PROD_PER_LVL, FACTORY_PRESTIGE_BUFF,
-                                 EMPLOYEE_COLLECTION_PROD, EMPLOYEE_COLLECTION_MUL)
+                                     RANKS_COLOR, LEVELS_COLOR, EMPLOYEE_PROD_PER_LVL, FACTORY_PRESTIGE_BUFF,
+                                     EMPLOYEE_COLLECTION_PROD, EMPLOYEE_COLLECTION_MUL)
 
 
 # Retrieve the API key from the configuration file
@@ -386,7 +386,7 @@ class Profile:
         if len(trophy_stats.get("rewards", [])) == 0:
             reward_tier = "No claimed reward"
         elif (s := trophy_stats.get("rewards", [0])[-1]) > 0:
-            reward_tier = consts.TROPHY_REWARDS[s-1]
+            reward_tier = consts.TROPHY_REWARDS[s - 1]
         else:
             reward_tier = "No claimed reward"
 
