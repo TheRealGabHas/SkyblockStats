@@ -3,11 +3,13 @@ name: "skyblockstats"
 services:
   database:
     image: "redis:alpine"
+    container_name: "skyblockstats-database"
     ports:
       - "6379:6379"
 
   app:
     build: .
+    container_name: "skyblockstats-app"
     ports:
       - "8000:8000"
     volumes:

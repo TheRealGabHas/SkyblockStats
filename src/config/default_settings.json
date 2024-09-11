@@ -1,7 +1,7 @@
 {
   "hypixel-api-key": "00000000-0000-0000-0000-000000000000",
   "redis": {
-    "host": "localhost",
+    "host": "skyblockstats-database",
     "port": 6379,
     "cache-retention-duration": 300
   },

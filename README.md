@@ -78,7 +78,7 @@ The `src/config/settings.json` file should look like this:
 {
   "hypixel-api-key": "00000000-0000-0000-0000-000000000000",
   "redis": {
-    "host": "localhost",
+    "host": "skyblockstats-database",
     "port": 6379,
     "cache-retention-duration": 300
   },
@@ -129,6 +129,8 @@ You should now create the `src/config/settings.json` file based on
 ```shell
 cp src/config/default_settings.json src/config/settings.json
 ```
+
+**Note:** Make sure to change the `host` value in the `redis` section to `localhost`.
 
 The `src/config/settings.json` file should look like this:
 ```json
@@ -183,7 +185,7 @@ update it in the `src/config/settings.json` file:
 {
   ...
   "redis": {
-    "host": "localhost",
+    "host": "skyblockstats-database",
     "port": 6379,
     "cache-retention-duration": 300
   },
@@ -213,6 +215,7 @@ If you Redis database is running on a non-default port (not 6379), you should ed
   ...
 }
 ```
+**Note:** Make sure to change the `host` value in the `redis` section to `localhost`.
 
 ### Example of reverse proxy
 
