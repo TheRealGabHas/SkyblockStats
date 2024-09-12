@@ -32,7 +32,7 @@ document.querySelectorAll(".trophy-count p strong").forEach(element => {
 const dashboardBtn = document.getElementById("rabbit-dashboard-btn")
 const rabbitRarities = ["COMMON", "UNCOMMON", "RARE", "EPIC", "LEGENDARY", "MYTHIC", "DIVINE"]
 
-dashboardBtn.addEventListener("click", () => {
+function updateRabbitDisplay() {
     for (let i = 0; i < rabbitRarities.length; i++) {
         const tickBox = document.querySelector("input[value=" + rabbitRarities[i] + "]")
         const rabbitsDiv = document.getElementsByClassName(rabbitRarities[i] + "-rabbit-div")[0]
@@ -43,4 +43,7 @@ dashboardBtn.addEventListener("click", () => {
             rabbitsDiv.style.display = "block"
         }
     }
-})
+}
+
+dashboardBtn.addEventListener("click", updateRabbitDisplay)
+document.addEventListener("DOMContentLoaded", updateRabbitDisplay)
