@@ -31,6 +31,9 @@ document.querySelectorAll(".trophy-count p strong").forEach(element => {
 // Script for the detailed rabbit collection dashboard
 const dashboardBtn = document.getElementById("rabbit-dashboard-btn")
 const rabbitRarities = ["COMMON", "UNCOMMON", "RARE", "EPIC", "LEGENDARY", "MYTHIC", "DIVINE"]
+const displayFoundBtn = document.getElementById("found-rabbit")
+const displayNotFoundBtn = document.getElementById("not-found-rabbit")
+
 
 function updateRabbitDisplay() {
     for (let i = 0; i < rabbitRarities.length; i++) {
@@ -42,6 +45,40 @@ function updateRabbitDisplay() {
         } else {
             rabbitsDiv.style.display = "block"
         }
+    }
+
+    const displayFound = displayFoundBtn.checked
+    const displayNotFound = displayNotFoundBtn.checked
+    const rabbitDivList = document.querySelectorAll("div.rabbit-div")
+
+    // Should display rabbit that have been found at least once
+    if (displayFound) {
+        rabbitDivList.forEach((element) => {
+            if (element.attributes.found.value > 0) {
+                element.style.display = "inline-flex"
+            }
+        })
+    } else {
+        rabbitDivList.forEach((element) => {
+            if (element.attributes.found.value > 0) {
+                element.style.display = "none"
+            }
+        })
+    }
+
+    // Should display rabbit that haven't been found yet
+    if (displayNotFound) {
+        rabbitDivList.forEach((element) => {
+            if (element.attributes.found.value.toString() === "0") {
+                element.style.display = "inline-flex"
+            }
+        })
+    } else {
+        rabbitDivList.forEach((element) => {
+            if (element.attributes.found.value.toString() === "0") {
+                element.style.display = "none"
+            }
+        })
     }
 }
 

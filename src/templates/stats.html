@@ -623,7 +623,6 @@
     <form id="rabbit-dashboard-rarity">
         {% for rarity in chocolate_data['collection'] %}
             <div class="rabbit-dashboard-entry">
-
                 <label for="{{ rarity }}" class="text-shadow bold" style="color: {{ rabbit_rarity_colors[rarity] }}">
                     <input type="checkbox" checked value="{{ rarity }}"  name="{{ rarity }}"> {{ rarity | lower | capitalize }}
                 </label>
@@ -631,6 +630,19 @@
         {% endfor %}
     </form>
 
+    <h3 class="color-f bold text-shadow center">Select which rabbits to display</h3>
+    <form id="rabbit-dashboard-found">
+        <div class="rabbit-dashboard-entry">
+            <label class="text-shadow bold color-a">
+                <input type="checkbox" checked id="found-rabbit"> Found
+            </label>
+        </div>
+        <div class="rabbit-dashboard-entry">
+            <label class="text-shadow bold color-7">
+                <input type="checkbox" checked id="not-found-rabbit"> Not Found
+            </label>
+        </div>
+    </form>
     <input type="button" value="Update" id="rabbit-dashboard-btn">
 </div>
 <br>
@@ -644,7 +656,7 @@
         </h3>
         <div class="{{ rarity }}-rabbit-div">
             {% for rabbit in chocolate_data['collection'][rarity] %}
-            <div class="icon-text rabbit-div" style="width: auto;">
+            <div class="icon-text rabbit-div" found="{{ rabbit['amount'] }}" style="width: auto;">
                 <img loading="lazy" src="{{ rabbit['img'] }}" alt="{{ rabbit['name'] }}" width="30" height="30">
                 {% if rabbit['amount'] == 0 %}
                 <i class="text-shadow color-7">

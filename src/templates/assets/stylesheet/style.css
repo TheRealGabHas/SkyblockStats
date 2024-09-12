@@ -490,7 +490,7 @@ footer {
     padding-bottom: 10px;
 }
 
-#rabbit-dashboard-rarity {
+#rabbit-dashboard-rarity, #rabbit-dashboard-found {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
