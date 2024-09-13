@@ -1,5 +1,5 @@
 /*
-    Javascript file for the statistics page (/p/{name}/ and /p/{name}/{profile})
+    Javascript file for the statistics page (/p/{name} and /p/{name}/{profile})
  */
 
 

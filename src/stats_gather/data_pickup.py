@@ -18,7 +18,7 @@ with open("config/settings.json", "r") as config_file:
     config = json.load(config_file)
 
     API_KEY: str = config['hypixel-api-key']
-    # Simple check to ensure the field isn't empty
+    # Simple check to ensure the field is filled with a correctly sized API key string
     if len(API_KEY) != 36:
         sys.exit("Invalid Hypixel API key in the config/settings.json file.")
 
@@ -583,7 +583,7 @@ class Profile:
             collection_production += 30
 
         # TODO: Retrieve if player has talisman
-        talisman_prod: int = 50  # Assuming the talisman is at the max tier
+        talisman_prod: int = 50  # Assuming the talisman is at the max tier (+50 chocolate per second)
         collection_multiplier = round(collection_multiplier, 3)
 
         production['production'].append({"Employees": f"{employee_prod:,}"})
