@@ -139,6 +139,7 @@ class Profile:
         }
 
         skill_field = self.get_profile_data("player_data", profile=profile)['experience']
+        skill_average: float = 0.0
 
         for skill in SKILLS:
             key = skill.lower().capitalize()
@@ -166,6 +167,12 @@ class Profile:
                 progression = utils.get_level_info_from_xp(f"{round(value):,}", skill_table=skill_table)
                 xp_data[key]['level_xp'] = progression['current_xp']
                 xp_data[key]['next_level_xp'] = progression['required_xp']
+
+            if key not in ["Social", "Runecrafting"]:
+                skill_average += float(xp_data[key]['level'])
+
+        skill_average /= (len(SKILLS) - 2)
+        xp_data['Global']['skill_average'] = skill_average
 
         return xp_data
 

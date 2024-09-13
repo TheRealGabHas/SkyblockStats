@@ -114,7 +114,12 @@
 
 <div id="skills-stats" class="stats-div">
 	<h2 class="section-title center">Skills & Level</h2>
+
 {% if leveling_data != None %}
+    <p class="color-b center">
+        Skill average
+        <span class="bold color-f">: {{ leveling_data['Global']['skill_average'] }}</span>
+    </p>
     <div id="skills-container">
     	{% for skill in leveling_data %}
             {% if skill != "Global" %}
@@ -673,7 +678,6 @@
                     <span class="parenthesis">{{ rabbit['amount'] }}</span>
                 </p>
                 {% endif %}
-
             </div>
             {% endfor %}
         </div>

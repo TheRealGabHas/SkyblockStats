@@ -258,7 +258,7 @@ footer {
 }
 
 .white-text, .section-title,
-.stats-div > *, #profile-selector {
+.stats-div > *:not(p), #profile-selector {
     color: white;
     text-shadow: #000000 1px 0 10px;
 }
