@@ -34,6 +34,12 @@ traffic and shorten the page loading time.
 **Note:** This project utilize some feature from Python 3.12 (like some f-string shenanigans) that could be easily 
 adapted for older version of Python.
 
+> <img src="https://skillicons.dev/icons?i=docker"/> 
+>
+>This web application can also be deployed with [Docker](https://docker.com),
+see the [docker deployment](#docker-deployment-recommended) section.
+
+
 ## Configuration file and API Key
 
 The project configuration file is `config/settings.json`. It must be manually created and follow this format :
