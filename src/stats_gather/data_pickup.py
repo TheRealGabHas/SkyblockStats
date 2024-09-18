@@ -566,10 +566,9 @@ class Profile:
         cookie_buff = 0.25 if cookie_buff else 0
 
         talisman_prod: int = 0
-        talisman_bag = self.get_profile_data("inventory",
-                                             profile=profile).get("bag_contents", {}).get("talisman_bag", {}).get("data", {})
+        talisman_bag = self.get_profile_data("inventory", profile=profile)
 
-        if talisman_bag != {}:
+        if talisman_bag is not None and talisman_bag != {}:
             talisman_bag = utils.process_inv(talisman_bag)
 
             for talisman, buff in consts.CHOCOLATE_TALISMAN_BUFF.items():
@@ -633,7 +632,10 @@ class Profile:
 
     def get_magical_power(self, profile: str = "selected") -> dict:
         talisman_bag = self.get_profile_data("inventory",
-                                             profile=profile).get("bag_contents", {}).get("talisman_bag", {}).get("data", {})
+                                             profile=profile)
+
+        if talisman_bag is not None:
+            talisman_bag = talisman_bag.get("bag_contents", {}).get("talisman_bag", {}).get("data", {})
 
         final_dict: dict = {
             "magical_power": 0,
@@ -657,7 +659,7 @@ class Profile:
             }
         }
 
-        if talisman_bag == {}:
+        if (talisman_bag == {}) or (talisman_bag is None):
             return final_dict
 
         talisman_bag = utils.process_inv(talisman_bag)
