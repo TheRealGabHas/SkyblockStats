@@ -216,3 +216,24 @@ EMPLOYEE_COLLECTION_MUL: dict = {
     "MYTHIC": 0,  # Depends on which rabbit
     "DIVINE": 0.025,
 }
+
+# Each tier grants a different amount of chocolate per second
+CHOCOLATE_TALISMAN_BUFF: dict = {
+    "NIBBLE_CHOCOLATE_STICK": 10,
+    "SMOOTH_CHOCOLATE_BAR": 20,
+    "RICH_CHOCOLATE_CHUNK": 30,
+    "GANACHE_CHOCOLATE_SLAB": 40,
+    "PRESTIGE_CHOCOLATE_REALM": 50,
+}
+
+# --- ACCESSORIES ---
+
+MAGICAL_POWER_VALUE: dict[str, int] = {
+    "special": 0,
+    "mythic": 0,
+    "legendary": 0,
+    "epic": 0,
+    "rare": 0,
+    "uncommon": 0,
+    "common": 0,
+}

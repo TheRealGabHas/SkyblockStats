@@ -565,6 +565,17 @@ class Profile:
         cookie_buff = self.get_profile_data("profile", profile=profile).get("cookie_buff_active", False)
         cookie_buff = 0.25 if cookie_buff else 0
 
+        talisman_prod: int = 0
+        talisman_bag = self.get_profile_data("inventory",
+                                             profile=profile).get("bag_contents", {}).get("talisman_bag", {}).get("data", {})
+
+        if talisman_bag != {}:
+            talisman_bag = utils.process_inv(talisman_bag)
+
+            for talisman, buff in consts.CHOCOLATE_TALISMAN_BUFF.items():
+                if talisman in talisman_bag:
+                    talisman_prod = buff
+
         employee_prod: int = 0
         for employee, employee_data in employees.items():
             employee_prod += EMPLOYEE_PROD_PER_LVL[employee] * employee_data['level']
@@ -589,13 +600,11 @@ class Profile:
             collection_multiplier += 0.03
             collection_production += 30
 
-        # TODO: Retrieve if player has talisman
-        talisman_prod: int = 50  # Assuming the talisman is at the max tier (+50 chocolate per second)
         collection_multiplier = round(collection_multiplier, 3)
 
         production['production'].append({"Employees": f"{employee_prod:,}"})
         production['production'].append({"Hoppity collection": collection_production, "comment": "This value may be inaccurate"}) # Inaccurate
-        production['production'].append({"Chocolate Talisman": talisman_prod, "comment": "Assuming the max talisman is unlocked"}) # Assuming maxed
+        production['production'].append({"Chocolate Talisman": talisman_prod, "comment": f"Tier {talisman_prod/10:.0f}"}) # Assuming maxed
 
         production['multiplier'].append({"Hoppity collection": collection_multiplier, "comment": "This value may be inaccurate"})  # Inaccurate
         production['multiplier'].append({"Jackrabbit": jackrabbit_multiplier})
@@ -621,3 +630,44 @@ class Profile:
             "misc": misc,
             "production": production,
         }
+
+    def get_magical_power(self, profile: str = "selected") -> dict:
+        talisman_bag = self.get_profile_data("inventory",
+                                             profile=profile).get("bag_contents", {}).get("talisman_bag", {}).get("data", {})
+
+        final_dict: dict = {
+            "magical_power": 0,
+            "accessories": {
+                "special": 0,
+                "mythic": 0,
+                "legendary": 0,
+                "epic": 0,
+                "rare": 0,
+                "uncommon": 0,
+                "common": 0,
+            },
+            "duplicates": {
+                "special": [],
+                "mythic": [],
+                "legendary": [],
+                "epic": [],
+                "rare": [],
+                "uncommon": [],
+                "common": [],
+            }
+        }
+
+        if talisman_bag == {}:
+            return final_dict
+
+        talisman_bag = utils.process_inv(talisman_bag)
+
+        special_count: int = talisman_bag.count("SPECIAL")
+        mythic_count: int = talisman_bag.count("MYTHIC ACCESSORY")
+        legendary_count: int = talisman_bag.count("LEGENDARY ACCESSORY")
+        epic_count: int = talisman_bag.count("EPIC ACCESSORY")
+        rare_count: int = talisman_bag.count("RARE ACCESSORY")
+        uncommon_count: int = talisman_bag.count("UNCOMMON ACCESSORY")
+        common_count: int = talisman_bag.count("COMMON ACCESSORY")
+
+        return final_dict
