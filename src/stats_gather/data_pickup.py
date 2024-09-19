@@ -568,12 +568,14 @@ class Profile:
         talisman_prod: int = 0
         talisman_bag = self.get_profile_data("inventory", profile=profile)
 
-        if talisman_bag is not None and talisman_bag != {}:
-            talisman_bag = utils.process_inv(talisman_bag)
+        if talisman_bag is not None and isinstance(talisman_bag, dict):
+            talisman_bag = talisman_bag.get("bag_contents", {}).get("talisman_bag", {}).get("data", {})
+            if talisman_bag != {}:
+                talisman_bag = utils.process_inv(talisman_bag)
 
-            for talisman, buff in consts.CHOCOLATE_TALISMAN_BUFF.items():
-                if talisman in talisman_bag:
-                    talisman_prod = buff
+                for talisman, buff in consts.CHOCOLATE_TALISMAN_BUFF.items():
+                    if talisman in talisman_bag:
+                        talisman_prod = buff
 
         employee_prod: int = 0
         for employee, employee_data in employees.items():
