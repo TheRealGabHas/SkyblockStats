@@ -128,6 +128,8 @@ async def stats(request: Request, name: str, profile: str = "selected"):
     context['skin_link'] = skin_link
     context['displayed_profile'] = profile.lower().capitalize()
 
+    p.get_magical_power()
+
     return templates.TemplateResponse("stats.html", context=context)
 
 

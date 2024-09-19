@@ -34,6 +34,12 @@ traffic and shorten the page loading time.
 **Note:** This project utilize some feature from Python 3.12 (like some f-string shenanigans) that could be easily 
 adapted for older version of Python.
 
+> <img src="https://skillicons.dev/icons?i=docker"/> 
+>
+>This web application can also be deployed with [Docker](https://docker.com),
+see the [docker deployment](#docker-deployment-recommended) section.
+
+
 ## Configuration file and API Key
 
 The project configuration file is `config/settings.json`. It must be manually created and follow this format :
@@ -183,13 +189,11 @@ You can also change the port used by Redis in the [`compose.yaml`](compose.yaml)
 update it in the `src/config/settings.json` file:
 ```json
 {
-  ...
   "redis": {
     "host": "skyblockstats-database",
     "port": 6379,
     "cache-retention-duration": 300
-  },
-  ...
+  }
 }
 ```
 
@@ -206,13 +210,11 @@ For more information, see the list of all the uvicorn [command line options](htt
 If you Redis database is running on a non-default port (not 6379), you should edit the `src/config/settings.json` file:
 ```json
 {
-  ...
   "redis": {
     "host": "localhost",
     "port": 6379,
     "cache-retention-duration": 300
-  },
-  ...
+  }
 }
 ```
 **Note:** Make sure to change the `host` value in the `redis` section to `localhost`.
@@ -306,9 +308,9 @@ When editing and contributing to the project, one must follow these few rules:
 - [ ] Take skill level cap into account (Runecrafting, Taming, Foraging...)
 - [ ] Read items from inventory and accessory bag
   - [ ] Magical power calculator
-  - [ ] Detect the chocolate talisman to more accurately estimate the chocolate production
+  - [x] Detect the chocolate talisman to more accurately estimate the chocolate production
 - [ ] Add a logging system
-- [ ] Perform some basic check on the user form input to prevent injection
+- [x] Perform some basic check on the user form input to prevent injection
 - [x] Rework the file structure of the project to implement a "config" section
 
 ## The tooltip system
