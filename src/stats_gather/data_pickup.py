@@ -152,6 +152,8 @@ class Profile:
                 skill_table = consts.SOCIAL_XP_REQUIREMENTS
             elif key == "Runecrafting":
                 skill_table = consts.RUNECRAFTING_XP_REQUIREMENTS
+            elif key == "Foraging":  # Capped at 50 level (and not 60)
+                skill_table = consts.SKILLS_XP_REQUIREMENTS[:-10]
             else:
                 skill_table = consts.SKILLS_XP_REQUIREMENTS
 
