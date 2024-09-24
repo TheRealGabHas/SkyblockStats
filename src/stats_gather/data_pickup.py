@@ -168,11 +168,20 @@ class Profile:
                 xp_data[key]['level_xp'] = progression['current_xp']
                 xp_data[key]['next_level_xp'] = progression['required_xp']
 
+            # Take the level cap into account
+            if key == "Taming":
+                given_pets: list = self.get_profile_data("pets_data", profile=profile).get("pet_care", {}).get("pet_types_sacrificed", [])
+                cap = 60 - (10 - len(given_pets))
+
+                if xp_data[key]['level'] > cap:
+                    xp_data[key]['level'] = cap
+
+
             if key not in ["Social", "Runecrafting"]:
                 skill_average += float(xp_data[key]['level'])
 
         skill_average /= (len(SKILLS) - 2)
-        xp_data['Global']['skill_average'] = skill_average
+        xp_data['Global']['skill_average'] = f"{skill_average:.1f}"
 
         return xp_data
 
