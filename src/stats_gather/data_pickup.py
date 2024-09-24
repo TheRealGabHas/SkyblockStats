@@ -661,7 +661,7 @@ class Profile:
             }
         }
 
-        if (talisman_bag == {}) or (talisman_bag is None):
+        if talisman_bag == {} or talisman_bag is None:
             return final_dict
 
         talisman_bag = utils.process_inv(talisman_bag)

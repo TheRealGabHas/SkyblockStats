@@ -52,7 +52,6 @@ def get_level_info_from_xp(xp: str, skill_table: list[int]):
     level = get_level_from_xp(xp, skill_table)
 
     current_xp = skill_xp - sum(skill_table[0:level]) if skill_xp > sum(skill_table[0:level]) else skill_table[-1] - (sum(skill_table) - skill_xp)
-    next_xp = int()
 
     # Player is at max level and has more XP than needed
     if skill_xp >= sum(skill_table):
