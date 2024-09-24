@@ -135,7 +135,6 @@ def get_shop_milestone(chocolate_spent: int):
 
     while chocolate_spent > consts.CHOCOLATE_SHOP_MILESTONES[i]:
         i += 1
-        continue
 
     return i
 
@@ -154,7 +153,6 @@ def get_rabbit_employee_data(employee_level: int) -> tuple:
         if i + 1 >= len(level_list):
             break
         i += 1
-        continue
 
     if employee_level >= 220:
         rank = consts.RABBITS_LEVEL[220]
