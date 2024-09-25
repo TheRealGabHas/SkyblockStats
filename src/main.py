@@ -3,6 +3,7 @@ import base64
 import ast
 import json
 import re
+import time
 
 # Downloaded
 import requests
@@ -12,6 +13,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 import redis
+import aiofiles
 
 # Project
 from stats_gather import data_pickup
@@ -29,11 +31,31 @@ with open("config/settings.json", "r") as config_file:
     REDIS_HOST: str = config['redis']['host']
     REDIS_PORT: int = config['redis']['port']
 
+    # Logger data
+    LOGGER_ENABLED: bool = config['logging']['enabled']
+    LOG_FILE: str = config['logging']['log-file-path']
+
 # Initiating the Redis database
 db: redis.Redis = redis.Redis(REDIS_HOST, port=REDIS_PORT, decode_responses=True)
 
 # Disabling the default routes
 app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None, swagger_ui_oauth2_redirect_url=None)
+
+
+# Add a logging middleware before processing the requests
+if LOGGER_ENABLED:
+    print(f"[v] Logging enabled. Log file: {LOG_FILE}\nThis can be configured in the src/config/settings.json")
+
+    @app.middleware("http")
+    async def request_logging(request: Request, call_next):
+        response = await call_next(request)
+
+        async with aiofiles.open(LOG_FILE, mode='a') as log_file:
+            await log_file.write(f"[{time.time() * 1_000}] {request.client.host}:{request.client.port} "
+                                 f"{request.url.scheme.upper()} {request.method} {request.url.path}\n")
+
+        return response
+
 
 # Mounting all the directories
 app.mount("/style", StaticFiles(directory="./templates/assets/stylesheet"), name="style")

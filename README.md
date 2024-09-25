@@ -309,7 +309,7 @@ When editing and contributing to the project, one must follow these few rules:
 - [ ] Read items from inventory and accessory bag
   - [ ] Magical power calculator
   - [x] Detect the chocolate talisman to more accurately estimate the chocolate production
-- [ ] Add a logging system
+- [x] Add a logging system
 - [x] Perform some basic check on the user form input to prevent injection
 - [x] Rework the file structure of the project to implement a "config" section
 
