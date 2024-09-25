@@ -163,7 +163,6 @@ python -m uvicorn main:app --reload --no-server-header
 
 At this point, accessing `http://127.0.0.1:8000` should display the web application.
 
-
 ### Changing the ports
 
 #### Docker
@@ -231,6 +230,29 @@ For security purpose, consider using a reverse proxy. Here is minimal example wi
     ProxyPassReverse / http://127.0.0.1:8000/
 </VirtualHost>
 ```
+
+
+### Logging
+
+To enabled request logging, the `enabled` value in the `config/settings.json` must be set to `true` as show here:
+```json
+{
+  "hypixel-api-key": "00000000-0000-0000-0000-000000000000",
+  "redis": {
+    "host": "localhost",
+    "port": 6379,
+    "cache-retention-duration": 300
+  },
+  "logging": {
+    "enabled": true,
+    "log-file-path": "/dev/null"
+  }
+}
+```
+
+**Note:** The `log-file-path` must also be changed to a valid file. Permissions must be configured so that the program
+can write in this file.
+
 
 ## Files and folders
 
