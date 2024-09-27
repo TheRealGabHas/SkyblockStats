@@ -14,3 +14,4 @@ services:
       - "8000:8000"
     volumes:
       - "./src/config:/app/config"
+      - "./src/log:/app/log"
