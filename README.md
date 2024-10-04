@@ -327,7 +327,10 @@ When editing and contributing to the project, one must follow these few rules:
 - [x] Add icon for every field
 - [x] Add and complete a page about user data, credits, legals...
 - [x] Implement a caching system with a 5 minutes caching duration
-- [ ] Take skill level cap into account (Runecrafting, Taming, Foraging...)
+- [ ] Take skill level cap into account
+  -  [x] Taming
+  -  [x] Foraging
+  -  [ ] Runecrafting
 - [ ] Read items from inventory and accessory bag
   - [ ] Magical power calculator
   - [x] Detect the chocolate talisman to more accurately estimate the chocolate production
