@@ -4,3 +4,4 @@ test_main.http
 .gitignore
 __pycache__
 src/config/settings.json
+src/log/*
