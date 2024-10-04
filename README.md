@@ -245,7 +245,7 @@ To enabled request logging, the `enabled` value in the `config/settings.json` mu
   },
   "logging": {
     "enabled": true,
-    "log-file-path": "/dev/null"
+    "log-file-path": "log/sbs.log"
   }
 }
 ```
