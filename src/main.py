@@ -3,7 +3,7 @@ import base64
 import ast
 import json
 import re
-import time
+import datetime
 
 # Downloaded
 import requests
@@ -44,15 +44,16 @@ app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None, swagger_ui_oauth2
 
 # Add a logging middleware before processing the requests
 if LOGGER_ENABLED:
-    print(f"[v] Logging enabled. Log file: {LOG_FILE}\nThis can be configured in the src/config/settings.json")
+    print(f"[v] Logging enabled. Log file: {LOG_FILE}\nThis can be configured in src/config/settings.json")
 
     @app.middleware("http")
     async def request_logging(request: Request, call_next):
         response = await call_next(request)
 
         async with aiofiles.open(LOG_FILE, mode='a') as log_file:
-            await log_file.write(f"[{time.time() * 1_000}] {request.client.host}:{request.client.port} "
-                                 f"{request.url.scheme.upper()} {request.method} {request.url.path}\n")
+            await log_file.write(f"[{datetime.datetime.now(datetime.timezone.utc).isoformat()}] <INFO> "
+                                 f"{request.client.host}:{request.client.port} {request.url.scheme.upper()} "
+                                 f"{request.method} \"{request.url.path}\"\n")
 
         return response
 

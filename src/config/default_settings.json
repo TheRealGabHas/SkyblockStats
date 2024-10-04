@@ -7,6 +7,6 @@
   },
   "logging": {
     "enabled": false,
-    "log-file-path": "/tmp/sbs.log"
+    "log-file-path": "log/sbs.log"
   }
 }
