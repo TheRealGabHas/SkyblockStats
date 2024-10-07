@@ -690,6 +690,9 @@ class Profile:
     def get_jacob_stats(self, profile: str = "selected") -> dict:
         jacob_stats = self.get_profile_data("jacobs_contest", profile=profile)
 
+        if jacob_stats is None:
+            jacob_stats = {}
+
         personal_bests = {
             "PUMPKIN": 0,
             "MUSHROOM_COLLECTION": 0,
