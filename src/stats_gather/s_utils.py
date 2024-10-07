@@ -92,6 +92,7 @@ def get_context_for_profile(player: Profile, profile_name: str = "selected"):
         chocolate_data = None
 
     trophy_data = player.get_trophy_stats(profile_name)
+    jacob_data = player.get_jacob_stats(profile_name)
 
     rank_data = {
         "rank": player.rank,
@@ -103,7 +104,7 @@ def get_context_for_profile(player: Profile, profile_name: str = "selected"):
     context: dict = {
                      "leveling_data": leveling_data, "slayer_data": slayer_data, "rift_data": rift_data,
                      "misc_data": misc_data, "trophy_data": trophy_data, "rank_data": rank_data,
-                     "profiles_data": profiles_data, "chocolate_data": chocolate_data
+                     "profiles_data": profiles_data, "chocolate_data": chocolate_data, "jacob_data": jacob_data
                      }
 
     # Add a field if some data hasn't been correctly retrieved

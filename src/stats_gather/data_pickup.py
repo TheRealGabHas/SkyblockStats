@@ -686,3 +686,37 @@ class Profile:
         common_count: int = talisman_bag.count("COMMON ACCESSORY")
 
         return final_dict
+
+    def get_jacob_stats(self, profile: str = "selected") -> dict:
+        jacob_stats = self.get_profile_data("jacobs_contest", profile=profile)
+
+        personal_bests = {
+            "PUMPKIN": 0,
+            "MUSHROOM_COLLECTION": 0,
+            "CARROT_ITEM": 0,
+            "WHEAT": 0,
+            "NETHER_STALK": 0,
+            "INK_SACK:3": 0,
+            "POTATO_ITEM": 0,
+            "SUGAR_CANE": 0,
+            "MELON": 0
+        }
+        fetch_personal_bests: dict = jacob_stats.get("personal_bests", {})
+
+        for key, value in fetch_personal_bests.items():
+            personal_bests[key] = value
+
+        medal_record: dict[str, list] = {"bronze": [], "silver": [], "gold": [], "platinum": [], "diamond": []}
+        fetch_medal_record = jacob_stats.get("unique_brackets", {})
+
+        for key, value in fetch_medal_record.items():
+            medal_record[key] = value
+
+
+        medals_inv = jacob_stats.get("medals_inv", {"bronze": 0, "silver": 0, "gold": 0})
+
+        return {
+            "medals": medal_record,
+            "bests": personal_bests,
+            "medals_inv": medals_inv,
+        }
