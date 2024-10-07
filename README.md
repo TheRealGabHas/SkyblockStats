@@ -276,6 +276,11 @@ templates
   - [`miscellaneous`](src/stats_gather/miscellaneous) : A folder that will store some utility scripts and assets.
   
 - [`templates`](src/templates) : Contains all the Jinja2 templates and web resources (images, stylesheets...)
+  - [`assets`](src/templates/assets) : A folder containing all the media ressources used in the template (images, video...)
+  - [`components`](src/templates/components) : Contains small pieces of templates that will be used in the stats one.
+  - [`home.html`](src/templates/home.html) : The home page.
+  - [`info.html`](src/templates/info.html) : A page listing all the credits and useful information about the project.
+  - [`stats.html`](src/templates/stats.html) : Template that is rendered to show player's statistics.
 
 The [`main.py`](src/main.py) file runs the web server, references the routes and send the data to the Jinja2 templates.
 
