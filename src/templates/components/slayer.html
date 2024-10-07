@@ -1,0 +1,36 @@
+<div id="slayer-cards">
+{% for boss in slayer_data %}
+    <div id="{{ boss.lower() }}" class="slayer-boss-div center">
+        <div class="slayer-title-container icon-text">
+            <img loading="lazy" src="{{ slayer_data[boss]['icon_path'] }}" alt="{{ boss.lower().capitalize() }} Icon" width="30" height="30">
+            <h3 class="{{ boss.lower() }}-boss-level boss-title center text-shadow color-7">
+                {{ boss }} - LVL {{ slayer_data[boss]['current_level'] }}
+            </h3>
+        </div>
+        <p class="{{ boss.lower() }}-boss-xp boss-xp center text-shadow">
+            <strong class="color-d">{{ slayer_data[boss]['xp'] }}</strong>
+            <strong class="color-5">/</strong>
+            {% if slayer_data[boss]['next_lvl_xp'] == "MAX LEVEL" %}
+                <strong class="color-5">{{ slayer_data[boss]['next_lvl_xp'] }}</strong>
+            {% else %}
+                <strong class="color-d">{{ slayer_data[boss]['next_lvl_xp'] }}
+                    <span class="color-5">EXP</span>
+                </strong>
+            {% endif %}
+
+        </p>
+        <hr class="slayer-separator">
+        <div id="{{ boss.lower() }}-boss-killed" class="slayer-boss-killed">
+            {% for kill in slayer_data[boss]['boss_kills'] %}
+                <p id="{{ boss.lower() }}-{{ kill.keys() | first | lower | replace(" ", "-") }}-kills"
+                   class="slayer-boss-tier-killed text-shadow color-2">
+                    {{ kill.keys() | first }}
+                    <span class="color-a bold">
+                       : {{ kill.values() | first }}
+                    </span>
+                </p>
+            {% endfor %}
+        </div>
+    </div>
+{% endfor %}
+</div>

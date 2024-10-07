@@ -1,0 +1,90 @@
+<div id="head-section-data" class="blurry-bg">
+<div class="flex-wrapper">
+    <img loading="lazy" id="main-skin-img" src="{{ skin_link }}" width="128" height="128" alt="{{ player_name }}">
+</div>
+
+<h2 class="center color-f text-shadow">
+    {% if rank_data['rank'] != "None" %}
+        <span style="color: {{ rank_data['color'] }}" class="text-shadow">{{ rank_data['rank'] }}</span>
+    {% endif %}
+    {% if leveling_data != None %}
+        <span style="color: {{ leveling_data['Global']['color'] }}" class="text-shadow brackets">{{ (leveling_data['Global']['xp'] / 100) | int }}</span>
+    {% endif %}
+    {{ player_name }}
+</h2>
+<div class="center text-shadow">
+{% if profiles_data != None %}
+    <div class="icon-text">
+        <img loading="lazy" src="/images/Nametag.webp" alt="Profile" width="30" height="30">
+        <label for="profile-selector" class="color-b">Profile <span class="color-f bold">:</span></label>
+        <select id="profile-selector" class="blurry-bg">
+        {% if displayed_profile == "Selected" %}
+            {% for profile in profiles_data %}
+                {% if profile['selected'] == True %}
+                    <option selected>{{ profile['name'] }} ({{ profile['game_mode'] | replace("island", "stranded") }})</option>
+                {% else %}
+                    <option>{{ profile['name'] }} ({{ profile['game_mode'] | replace("island", "stranded") }})</option>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            {% for profile in profiles_data %}
+                {% if (profile['name'].startswith(displayed_profile))  %}
+                    <option selected>{{ profile['name'] }} ({{ profile['game_mode'] | replace("island", "stranded") }})</option>
+                {% else %}
+                    <option>{{ profile['name'] }} ({{ profile['game_mode'] | replace("island", "stranded")}})</option>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        </select>
+    </div>
+{% endif %}
+</div>
+{% if misc_data != None %}
+    <div class="flex-wrapper text-shadow">
+        <div class="icon-text">
+            <img loading="lazy" src="{{ misc_data['First Join']['icon_path'] }}" alt="First joined" width="30" height="30">
+            <p class="tooltip-container color-b" data-tooltip="Format: YYYY-dd-MM hh:mm:ss">
+                First joined
+                <span class="color-f bold">
+                    : {{ misc_data['First Join']['value'] }}
+                </span>
+            </p>
+        </div>
+    </div>
+    <div class="icon-text text-shadow">
+        <img loading="lazy" src="{{ misc_data['Purse']['icon_path'] }}" alt="Purse" width="30" height="30">
+        <p class="color-b">
+            Purse
+            <span class="color-f bold">: {{ misc_data['Purse']['value'] }}</span>
+            <span class="color-6"> coins</span>
+        </p>
+    </div>
+{% else %}
+    <p class="center color-b bold">
+        First joined:
+        <span class="color-c"> -</span>
+    </p>
+    <p class="center color-b bold">
+        Purse:
+        <span class="color-c"> -</span>
+    </p>
+{% endif %}
+{% if leveling_data != None %}
+    <div class="icon-text text-shadow">
+    <img loading="lazy" src="{{ leveling_data['Global']['icon_path'] }}" alt="{{ skill }} Icon" width="30" height="30">
+    <p class="center color-b">Skyblock Level
+        <span class="color-f bold">
+            : {{ leveling_data['Global']['xp'] / 100 }}
+        </span>
+    </p>
+</div>
+{% else %}
+    <div class="icon-text text-shadow">
+    <img loading="lazy" src="/images/Skyblock_Levels.webp" alt="{{ skill }} Icon" width="30" height="30">
+    <p class="center color-b">
+        Skyblock Level:
+        <span class="color-c"> -</span>
+    </p>
+</div>
+{% endif %}
+</div>

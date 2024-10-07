@@ -1,0 +1,37 @@
+<p class="color-b center">
+    Skill average
+    <span class="bold color-f">: {{ leveling_data['Global']['skill_average'] }}</span>
+</p>
+<div id="skills-container">
+    {% for skill in leveling_data %}
+        {% if skill != "Global" %}
+            <div class="skill-container blurry-bg">
+                <div class="skill-progression">
+                    <div class="icon-text">
+                        <img loading="lazy" src="{{ leveling_data[skill]['icon_path'] }}" alt="{{ skill }} Icon" width="30" height="30">
+                        <p id="{{ skill.lower() }}-info" class="skills-info tooltip-container color-b" data-tooltip="{{ leveling_data[skill]["xp"] }} EXP">
+                        {{ skill | replace("2", "") }}
+                            <span class="color-f bold">
+                                : {{ leveling_data[skill]['level'] | replace("-1", "0") }}
+                            </span>
+                        </p>
+                    </div>
+                    <label for="{{ skill }}-progress">
+                        <span class="color-3">{{ '{value:,.0f}'.format(value=leveling_data[skill]['level_xp']) }}</span>
+                        <span class="color-9 bold">/</span>
+                        {% if leveling_data[skill]['next_level_xp'] == 0 %}
+                            <span class="color-9 bold">MAX LEVEL</span>
+                        {% else %}
+                            <span class="color-3">{{ '{value:,.0f}'.format(value=leveling_data[skill]['next_level_xp']) }}</span>
+                            <span class="color-9 bold">EXP</span>
+                        {% endif %}
+                    </label>
+                </div>
+                <progress id="{{ skill }}-progress" max="{{ leveling_data[skill]['next_level_xp'] }}"
+                          value="{{ leveling_data[skill]['level_xp'] }}">
+                    {{ leveling_data[skill]['level_xp'] }}/{{ leveling_data[skill]['next_level_xp'] }}
+                </progress>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
