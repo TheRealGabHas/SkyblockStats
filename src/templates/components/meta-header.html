@@ -1,0 +1,50 @@
+{% if leveling_data != None %}
+    {% set level = (leveling_data['Global']['xp'] / 100) | int %}
+    {% set skill_average = leveling_data['Global']['skill_average'] %}
+{% else %}
+    {% set level = "-" %}
+    {% set skill_average = "-" %}
+{% endif %}
+
+{% set profile_info = namespace(name="", mode="") %}
+
+{% if displayed_profile == "Selected" %}
+    {% for profile in profiles_data %}
+        {% if profile['selected'] == True %}
+            {% set profile_info.name = profile['name'] %}
+            {% set profile_info.mode = profile['game_mode'] | replace("island", "stranded") | capitalize %}
+        {% endif %}
+    {% endfor %}
+{% else %}
+    {% for profile in profiles_data %}
+        {% if (profile['name'].startswith(displayed_profile))  %}
+            {% set profile_info.name = profile['name'] %}
+            {% set profile_info.mode = profile['game_mode'] | replace("island", "stranded") | capitalize %}
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="{{ player_name }} - {{ profile_info.name }}">
+    <meta name="description" content="Level: {{ level }}
+    Profile: {{ profile_info.mode }}
+    Skill average: {{ skill_average }}">
+    <meta property="og:image" content="{{ skin_link }}">
+
+    <!-- Open Graph & Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sbs.gabhas.fr/{{ player_name }}/{{ profile_info.name }}" >
+    <meta property="og:title" content="{{ player_name }} - {{ profile_info.name }}">
+    <meta property="og:description" content="Level: {{ level }}
+    Profile: {{ profile_info.mode }}
+    Skill average: {{ skill_average }}">
+    <meta property="og:image" content="{{ skin_link }}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://sbs.gabhas.fr/{{ player_name }}/{{ profile_info.name }}">
+    <meta property="twitter:title" content="{{ player_name }} - {{ profile_info.name }}">
+    <meta property="twitter:description" content="Level: {{ level }}
+    Profile: {{ profile_info.mode }}
+    Skill average: {{ skill_average }}">
+    <meta property="twitter:image" content="{{ skin_link }}">

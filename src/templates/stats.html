@@ -5,8 +5,11 @@
 	<title>{{ player_name }} | SBStats</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="icon" href="{{ skin_link }}">
-	<link href="/style/style.css" rel="stylesheet">
+    <link href="/style/style.css" rel="stylesheet">
     <link href="/style/tooltip.css" rel="stylesheet">
+
+    {% include "components/meta-header.html" %}
+
 </head>
 <body>
 
@@ -20,14 +23,14 @@
 {% endif %}
 
 <div id="head-section">
-    {% include 'components/head.html' %}
+    {% include "components/profile.html" %}
 </div>
 
 <div id="skills-stats" class="stats-div">
 	<h2 class="section-title center">Skills & Level</h2>
 
     {% if leveling_data != None %}
-        {% include 'components/skills.html' %}
+        {% include "components/skills.html" %}
     {% else %}
         <h3 class="center">Skills data not found for this player.</h3>
     {% endif %}
@@ -37,7 +40,7 @@
 	<h2 class="section-title center">Slayer</h2>
 
     {% if slayer_data != None %}
-        {% include 'components/slayer.html' %}
+        {% include "components/slayer.html" %}
     {% else %}
         <h3 class="center">Slayer data not found for this player.</h3>
     {% endif %}
@@ -47,7 +50,7 @@
 	<h2 class="section-title center">Rift</h2>
 
     {% if rift_data != None %}
-        {% include 'components/rift.html' %}
+        {% include "components/rift.html" %}
     {% else %}
         <h3 class="center">Rift data not found for this player.</h3>
     {% endif %}
@@ -57,7 +60,7 @@
 	<h2 class="section-title center">Miscellaneous</h2>
 
     {% if misc_data != None %}
-        {% include 'components/misc.html' %}
+        {% include "components/misc.html" %}
     {% else %}
         <h3 class="center">Misc data not found for this player.</h3>
     {% endif %}
@@ -67,7 +70,7 @@
 	<h2 class="section-title center">Trophy Fishing</h2>
 
     {% if trophy_data != None %}
-        {% include 'components/trophy-fish.html' %}
+        {% include "components/trophy-fish.html" %}
     {% else %}
         <h3 class="center">Trophy fishing data not found for this player.</h3>
     {% endif %}
@@ -77,7 +80,7 @@
     <h2 class="section-title center">Chocolate Factory</h2>
 
     {% if chocolate_data != None and chocolate_data != {} %}
-        {% include 'components/chocolate-factory.html' %}
+        {% include "components/chocolate-factory.html" %}
     {% else %}
         <h3 class="center">Chocolate Factory data not found for this player.</h3>
     {% endif %}
