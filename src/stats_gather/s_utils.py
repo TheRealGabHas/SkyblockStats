@@ -1,8 +1,4 @@
-import io
-import base64
-
 import stats_gather.consts as consts
-import nbt
 
 
 type Profile = object  # Figurehead for the class defined in data_pickup.py
@@ -160,16 +156,3 @@ def get_rabbit_employee_data(employee_level: int) -> tuple:
         rank = consts.RABBITS_LEVEL[level_list[i - 1]]
 
     return rank, f"#{consts.RABBITS_RANK_COLOR[rank]:06x}"
-
-
-def process_inv(inventory: str):
-    """
-    :param inventory: A base64 encoded string representing the inventory
-    :return: NBT Tree of an inventory
-    """
-    inv_data = base64.b64decode(inventory)
-    inv_data = nbt.nbt.NBTFile(fileobj=io.BytesIO(inv_data))
-
-    return inv_data.pretty_tree()
-
-
