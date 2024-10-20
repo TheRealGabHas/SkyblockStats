@@ -14,6 +14,22 @@ The retrieved data are for the latest played profile.
 
 This project doesn't have any grand ambitions, it's just for fun and training.
 
+## Summary
+
+- [Technologies](#technologies)
+- [Configuration file and API Key](#configuration-file-and-api-key)
+- [Deployment](#deployment)
+  - [Docker deployment](#docker-deployment-recommended)
+  - [Manual deployment](#manual-deployment)
+  - [Changing the ports](#changing-the-ports)
+  - [Example of Reverse Proxy](#example-of-reverse-proxy)
+  - [Logging](#logging)
+- [Files and folders](#files-and-folders)
+- [Bug reporting guide](#bug-reporting-guide)
+- [Style guidelines](#style-guidelines)
+- [Goals](#goals)
+- [The tooltip system](#the-tooltip-system)
+
 ## Technologies
 
 This website is built with FastAPI in Python 3.12. A route is created for each page and a filled Jinja2 template is 
@@ -252,6 +268,9 @@ To enabled request logging, the `enabled` value in the `config/settings.json` mu
 
 **Note:** The `log-file-path` must also be changed to a valid file. Permissions must be configured so that the program
 can write in this file.
+
+> **Warning:** If you opt for the Docker deployment, the host address logged will always be the IP from the 
+> Docker interface. Consider using some lower-level logging if you need this information.
 
 
 ## Files and folders
