@@ -77,6 +77,8 @@ async def root(request: Request):
 async def wrong_scheme(request: Request, page: str):
     if page == "info":
         return templates.TemplateResponse("info.html", {"request": request})
+    if page == "robots.txt":
+        return templates.TemplateResponse("robots.txt", {"request": request}, media_type='text/plain')
 
     return templates.TemplateResponse("home.html",
                                       {"request": request,
