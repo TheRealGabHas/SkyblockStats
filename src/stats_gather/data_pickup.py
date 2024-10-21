@@ -672,6 +672,19 @@ class Profile:
             }
         }
 
+        if talisman_bag == {} or talisman_bag is None:
+            return final_dict
+
+        talisman_bag = utils.process_inv(talisman_bag)
+
+        special_count: int = talisman_bag.count("SPECIAL")
+        mythic_count: int = talisman_bag.count("MYTHIC ACCESSORY")
+        legendary_count: int = talisman_bag.count("LEGENDARY ACCESSORY")
+        epic_count: int = talisman_bag.count("EPIC ACCESSORY")
+        rare_count: int = talisman_bag.count("RARE ACCESSORY")
+        uncommon_count: int = talisman_bag.count("UNCOMMON ACCESSORY")
+        common_count: int = talisman_bag.count("COMMON ACCESSORY")
+
         return final_dict
 
     def get_jacob_stats(self, profile: str = "selected") -> dict:
