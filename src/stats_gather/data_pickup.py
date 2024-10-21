@@ -412,7 +412,7 @@ class Profile:
             "No claimed reward": "/images/Barrier.webp",
             "Bronze Hunter Reward": "/images/Leather_Tunic.webp",
             "Silver Hunter Reward": "/images/Iron_Chestplate.webp",
-            "Gold Hunter Reward": "/images/Gold_Chestplate.webp",
+            "Gold Hunter Reward": "/images/Golden_Chestplate.webp",
             "Diamond Hunter Reward": "/images/Diamond_Chestplate.webp",
         }
 
