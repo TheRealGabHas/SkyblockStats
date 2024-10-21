@@ -87,6 +87,16 @@
     {% endif %}
 </div>
 
+<div id="jacob-stats" class="stats-div">
+    <h2 class="section-title center">Jacob Contests</h2>
+
+    {% if jacob_data != None %}
+        {% include "components/jacob.html" %}
+    {% else %}
+        <h3 class="center">Jacob Contest data could not be found for this player.</h3>
+    {% endif %}
+</div>
+
 </div>
 <script src="/script/app.js" type="application/javascript"></script>
 </body>

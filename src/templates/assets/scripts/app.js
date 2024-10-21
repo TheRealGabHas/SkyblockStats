@@ -16,15 +16,20 @@ profileSelector.addEventListener("change", () => {
 })
 
 
-// Set the color for the Trophy fish rarities
+// Set the color for the Trophy fish rarities and Jacob medals
 const rarityColor = {
     "Bronze": "var(--§c)",
     "Silver": "var(--§7)",
     "Gold": "var(--§6)",
     "Diamond": "var(--§b)",
+    "Platinum": "var(--§3)"
 }
 
 document.querySelectorAll(".trophy-count p strong").forEach(element => {
+    element.style.color = rarityColor[element.innerHTML.toString()]
+})
+
+document.querySelectorAll(".medal-title > p").forEach(element => {
     element.style.color = rarityColor[element.innerHTML.toString()]
 })
 

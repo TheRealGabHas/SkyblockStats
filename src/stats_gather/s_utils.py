@@ -171,5 +171,3 @@ def process_inv(inventory: str):
     inv_data = nbt.nbt.NBTFile(fileobj=io.BytesIO(inv_data))
 
     return inv_data.pretty_tree()
-
-

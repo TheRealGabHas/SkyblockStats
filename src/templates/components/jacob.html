@@ -1,0 +1,66 @@
+<div class="divider-2">
+    <div id="jacob-medals" class="blurry-bg">
+        <div class="icon-text">
+            <img loading="lazy" src="/images/farming/Ench_diamond_hoe.gif" alt="medal" width="30" height="30">
+            <h3 class="center color-f bold text-shadow">Medals</h3>
+        </div>
+
+        {% for medal in jacob_data['medals'] %}
+            <div class="medal-title">
+                <p class="bold center">{{ medal | title }}</p>
+                <span>
+                    <span class="color-7">{{ jacob_data['medals'][medal] | length }}</span>
+                    <span class="color-8">/</span>
+                    <span class="color-7">10</span>
+                </span>
+            </div>
+
+            {% if (jacob_data['medals'][medal] | length) == 0 %}
+                <div class="icon-text jacob-medal">
+                    <img loading="lazy" src="/images/Barrier.webp" alt="empty-category" width="30" height="30">
+                    <p class="color-7">No medal for this category</p>
+                </div>
+            {% endif %}
+            {% for category in jacob_data['medals'][medal] %}
+                <div class="icon-text jacob-medal">
+                    <img loading="lazy" src="{{ jacob_data['farming_icons'][category] }}" alt="{{ category }}-{{ medal }}-icon" width="30" height="30">
+                    <p class="color-f center">{{ category | replace("_", " ") | title }}</p>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+    <div id="jacob-best" class="blurry-bg">
+        <div class="icon-text">
+            <img loading="lazy" src="/images/Cookie.webp" alt="medal" width="30" height="30">
+            <h3 class="center color-f">Personal Bests</h3>
+        </div>
+        <div id="jacob-best-content">
+        {% for category in jacob_data['bests'] %}
+            <div class="icon-text">
+                <img loading="lazy" src="{{ jacob_data['farming_icons'][category] }}" alt="{{ category }}-best-icon" width="30" height="30">
+                <p class="color-a">
+                    {{ category | replace("_", " ") | title }}
+                    <span class="color-f bold">
+                        : {{ jacob_data['bests'][category] }}
+                    </span>
+                </p>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+</div>
+<br>
+<div class="divider-2">
+    <div id="medal-inv" class="blurry-bg">
+        <h3 class="center color-f bold">Medal inventory</h3>
+        {% for medal in jacob_data['medals_inv'] %}
+        	<div class="icon-text">
+                <img loading="lazy" src="{{ jacob_data['medals_icons'][medal] }}" alt="jacob-{{ medal }}-count" width="30" height="30">
+                <p class="bold color-a text-shadow">
+                    {{ medal | title }}
+                    <span class="color-f bold">: {{ jacob_data['medals_inv'][medal] }}</span>
+                </p>
+            </div>
+        {% endfor %}
+    </div>
+</div>

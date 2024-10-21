@@ -524,6 +524,37 @@ footer {
     font-size: 12pt;
 }
 
+#jacob-stats .divider-2 > div {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 5px;
+}
+
+#jacob-medals, #jacob-best .icon-text {
+    padding-left: 5px;
+}
+
+#jacob-best-content .icon-text {
+    width: 100%;
+    padding-left: 5%;
+    justify-content: left;
+}
+
+.medal-title {
+    display: flex;
+    justify-content: center;
+}
+
+.medal-title > span {
+    padding-left: 3%;
+}
+
+.jacob-medal {
+    width: auto;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
 .parenthesis::before {
     content: "(";
     color: var(--§8);

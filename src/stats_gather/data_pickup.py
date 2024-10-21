@@ -693,33 +693,67 @@ class Profile:
         if jacob_stats is None:
             jacob_stats = {}
 
+        convenient_names: dict = {
+            "INK_SACK:3": "COCOA",
+            "POTATO_ITEM": "POTATO",
+            "CARROT_ITEM": "CARROT",
+            "NETHER_STALK": "NETHER_WART",
+            "MUSHROOM_COLLECTION": "MUSHROOM"
+        }
         personal_bests = {
             "PUMPKIN": 0,
-            "MUSHROOM_COLLECTION": 0,
-            "CARROT_ITEM": 0,
+            "MUSHROOM": 0,
+            "CARROT": 0,
             "WHEAT": 0,
-            "NETHER_STALK": 0,
-            "INK_SACK:3": 0,
-            "POTATO_ITEM": 0,
+            "NETHER_WART": 0,
+            "COCOA": 0,
+            "POTATO": 0,
             "SUGAR_CANE": 0,
-            "MELON": 0
+            "MELON": 0,
+            "CACTUS": 0,
         }
+        farming_icons: dict = {
+            "PUMPKIN": "/images/farming/Pumpkin.webp",
+            "MUSHROOM": "/images/farming/Mushroom.webp",
+            "CARROT": "/images/farming/Carrot.webp",
+            "WHEAT": '/images/farming/Wheat.webp',
+            "NETHER_WART": "/images/farming/Nether_wart.webp",
+            "COCOA": "/images/farming/Cocoa.webp",
+            "POTATO": "/images/farming/Potato.webp",
+            "SUGAR_CANE": "/images/farming/Sugar_cane.webp",
+            "MELON": "/images/farming/Melon.webp",
+            "CACTUS": "/images/farming/Cactus.webp",
+        }
+        medals_icons: dict = {
+            "bronze": "/images/Brick.webp",
+            "silver": "/images/Iron_ingot.webp",
+            "gold": "/images/Gold_ingot.webp",
+        }
+
         fetch_personal_bests: dict = jacob_stats.get("personal_bests", {})
 
         for key, value in fetch_personal_bests.items():
-            personal_bests[key] = value
+            # Replace names in the values list by convenient ones
+            key = convenient_names.get(key, key)
+            personal_bests[key] = f"{value:,}"
 
         medal_record: dict[str, list] = {"bronze": [], "silver": [], "gold": [], "platinum": [], "diamond": []}
         fetch_medal_record = jacob_stats.get("unique_brackets", {})
 
         for key, value in fetch_medal_record.items():
+            # Replace names in the values list by convenient ones
+            value = [convenient_names.get(category, category) for category in value]
             medal_record[key] = value
 
 
         medals_inv = jacob_stats.get("medals_inv", {"bronze": 0, "silver": 0, "gold": 0})
+        # Apply number formatting
+        medals_inv = {k:f"{v:,}" for k,v in medals_inv.items()}
 
         return {
             "medals": medal_record,
             "bests": personal_bests,
             "medals_inv": medals_inv,
+            "farming_icons": farming_icons,
+            "medals_icons": medals_icons
         }
