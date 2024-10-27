@@ -345,14 +345,10 @@ class Profile:
         fairy_souls = self.get_profile_data("fairy_soul", profile=profile).get("total_collected", 0)
         coin_purse = self.get_profile_data("currencies", profile=profile).get("coin_purse", 0)
         bank_level = profile_data.get("personal_bank_upgrade", 0)
+        personal_bank = profile_data.get("bank_account", 0.0)
 
         first_join = datetime.datetime.fromtimestamp(int(join_date / 1000)).strftime("%Y-%m-%d %H:%M:%S")
 
-        if soulflow is None:
-            soulflow = 0
-
-        if coin_purse is None:
-            coin_purse = 0
 
         final_dict: dict = {
             "First Join": {
@@ -373,6 +369,10 @@ class Profile:
             },
             "Purse": {
                 "value": f"{coin_purse:,.2f}",
+                "icon_path": "/images/Personal_Bank.webp"
+            },
+            "Bank Account": {
+                "value": f"{personal_bank:,.2f}",
                 "icon_path": "/images/Personal_Bank.webp"
             },
             "Personal Bank Upgrade": {
