@@ -14,7 +14,7 @@
     <div id="{{ trophy.keys() | first }}-summary" class="fish-card">
         <div class="icon-text center">
             <img loading="lazy" src="{{ trophy['icon_path'] | replace(" ", "_") }}" alt="{{ trophy.keys() | first }} Icon" width="30" height="30">
-            <h3 id="{{ trophy.keys() | first }}-title" class="center">{{ trophy.keys() | first }}</h3>
+            <h3 id="{{ trophy.keys() | first }}-title" class="center">{{ trophy.keys() | first | title }}</h3>
         </div>
         <div class="trophy-count">
             {% for fish_rarity in trophy[trophy.keys() | first] %}

@@ -6,7 +6,7 @@
                 <div class="icon-text blurry-bg rift-trophy-div">
                 <img loading="lazy" src="{{ trophy['icon_path'] }}" alt="{{ trophy['type'] }}" width="30" height="30">
                     <div class="rift-trophy">
-                        <p class="text-shadow color-a bold">{{ trophy['type'] }}</p>
+                        <p class="text-shadow color-a bold">{{ trophy['type'] | title }}</p>
                         <p class="text-shadow color-7"><i>Unlocked after {{ trophy['visits'] }} visits</i></p>
                     </div>
                 </div>
@@ -20,7 +20,7 @@
                 <div class="icon-text blurry-bg rift-trophy-div rift-missing-trophy">
                 <img loading="lazy" src="{{ trophy['icon_path'] }}" alt="{{ trophy['type'] }}" width="30" height="30">
                     <div class="rift-trophy">
-                        <p class="text-shadow color-c bold">{{ trophy['type'] }}</p>
+                        <p class="text-shadow color-c bold">{{ trophy['type'] | title }}</p>
                         <p class="text-shadow color-7"><i>Not unlocked</i></p>
                     </div>
                 </div>

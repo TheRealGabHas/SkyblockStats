@@ -275,14 +275,15 @@ class Profile:
             # (Timecharm name, unlocked at visit)
             for trophy in trophies:
                 trophy['icon_path'] = f"/images/rift/{trophy['type']}.png"
-                trophy['type'] = " ".join(word.capitalize() for word in trophy['type'].replace("_", " ").split())
+                print(trophy['type'])
+                trophy['type'] = trophy['type'].replace("_", " ")
                 del trophy['timestamp']
                 found_trophies.append(trophy)
 
         rift_data['trophies'] = found_trophies
-
+        obtained_trophies: tuple = tuple(tr['type'] for tr in rift_data['trophies'])
         for trophy in TIMECHARMS:
-            if trophy not in (tr['type'] for tr in rift_data['trophies']):
+            if trophy.lower() not in obtained_trophies:
                 missing_trophies.append({
                     "type": trophy,
                     "icon_path": f"/images/rift/{" ".join(word.lower() for word in trophy.replace("_", " ").split())}.png".replace(" ", "_")
@@ -335,8 +336,7 @@ class Profile:
 
         return rift_data
 
-    def get_misc_stats(self, profile: str = "selected"):
-
+    def get_misc_stats(self, profile: str = "selected") -> dict:
         profile_data = self.get_profile_data("profile", profile=profile)
 
         join_date = profile_data.get("first_join")
