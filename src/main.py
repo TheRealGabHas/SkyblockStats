@@ -69,12 +69,12 @@ templates = Jinja2Templates(directory="templates", trim_blocks=True, lstrip_bloc
 
 
 @app.get("/")
-async def root(request: Request):
+async def root(request: Request) -> templates.TemplateResponse:
     return templates.TemplateResponse("home.html", {"request": request})
 
 
 @app.get("/{page}")
-async def wrong_scheme(request: Request, page: str):
+async def wrong_scheme(request: Request, page: str) -> templates.TemplateResponse:
     if page == "info":
         return templates.TemplateResponse("info.html", {"request": request})
     if page == "robots.txt":
@@ -86,13 +86,13 @@ async def wrong_scheme(request: Request, page: str):
 
 
 @app.get("/p/{name}")
-async def stats(request: Request, name: str, profile: str = "selected"):
+async def stats(request: Request, name: str, profile: str = "selected") -> templates.TemplateResponse:
     """
     Return the page with the player's statistics for its currently selected profile
     :param request: Request data
     :param name: The player's name (not case-sensitive)
     :param profile: Set to "selected" to specify that the retrieved data will be for the selected profile
-    :return:
+    :return: A TemplateResponse with some context
     """
     # Check the username validity
     if re.search(MC_USERNAME_REGEX, name) is None:
@@ -133,6 +133,7 @@ async def stats(request: Request, name: str, profile: str = "selected"):
         db.set(f"{name.lower()}:stats", base64.b64encode(str(p.data).encode()), ex=CACHE_RETENTION)
         db.set(f"{name.lower()}:rank", base64.b64encode(str(p.rank_data).encode()), ex=CACHE_RETENTION)
 
+    # result is a tuple (success: bool, code: int)
     if not result[0]:
         error_code = result[1]
         message = "An error occurred during the Hypixel API request"
