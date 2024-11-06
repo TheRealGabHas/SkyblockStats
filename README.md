@@ -362,13 +362,13 @@ When editing and contributing to the project, one must follow these few rules:
 - [x] Add a logging system
 - [x] Perform some basic check on the user form input to prevent injection
 - [x] Rework the file structure of the project to implement a "config" section
-- [ ] Add a default case for every section, so that profile with no data/ API off are displayed nicely
-  - [ ] Skills
-  - [ ] Slayer
-  - [ ] Rift
-  - [ ] Miscellaneous
-  - [ ] Trophy Fishing
-  - [ ] Chocolate Factory
+- [x] Add a default case for every section, so that profile with no data/ API off are displayed nicely
+  - [x] Skills
+  - [x] Slayer
+  - [x] Rift
+  - [x] Miscellaneous
+  - [x] Trophy Fishing
+  - [x] Chocolate Factory
   - [x] Jacob Contests
 
 ## The tooltip system
