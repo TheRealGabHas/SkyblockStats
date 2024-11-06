@@ -114,16 +114,16 @@ class Profile:
         """
 
         if profile == "selected":
-            return self.get_selected_profile().get(searched_field)
+            return self.get_selected_profile().get(searched_field, {})
         for _profile in self.get_stats()['profiles']:
             if _profile['cute_name'].lower() == profile.lower():
                 if _profile['members'][self.uuid.replace("-", "")]:
-                    return _profile['members'][self.uuid.replace("-", "")].get(searched_field)
+                    return _profile['members'][self.uuid.replace("-", "")].get(searched_field, {})
 
     def get_leveling_data(self, profile: str = "selected") -> dict:
         xp_data: dict = {}
 
-        global_level = self.get_profile_data("leveling", profile=profile)['experience']
+        global_level = self.get_profile_data("leveling", profile=profile).get("experience", 0)
         level_color = 0xbebebe
 
         for level, color in LEVELS_COLOR.items():
@@ -138,15 +138,12 @@ class Profile:
             "color": f"#{level_color:06x}",
         }
 
-        skill_field = self.get_profile_data("player_data", profile=profile)['experience']
+        skill_field = self.get_profile_data("player_data", profile=profile).get("experience", {})
         skill_average: float = 0.0
 
         for skill in SKILLS:
             key = skill.lower().capitalize()
-            value = skill_field[f'SKILL_{skill}']
-
-            if value is None:
-                value = 0
+            value = skill_field.get(f'SKILL_{skill}', 1)
 
             if key == "Social":
                 skill_table = consts.SOCIAL_XP_REQUIREMENTS
@@ -178,11 +175,10 @@ class Profile:
                 if xp_data[key]['level'] > cap:
                     xp_data[key]['level'] = cap
 
-
-            if key not in ["Social", "Runecrafting"]:
+            if key not in ["Social", "Runecrafting"]:  # Not counted in the skill average
                 skill_average += float(xp_data[key]['level'])
 
-        skill_average /= (len(SKILLS) - 2)
+        skill_average /= 9  # There are 9 skills counted in the skill average
         xp_data['Global']['skill_average'] = f"{skill_average:.1f}"
 
         return xp_data
