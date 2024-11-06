@@ -339,7 +339,10 @@ class Profile:
         bank_level = profile_data.get("personal_bank_upgrade", 0)
         personal_bank = profile_data.get("bank_account", 0.0)
 
-        first_join = datetime.datetime.fromtimestamp(int(join_date / 1000)).strftime("%Y-%m-%d %H:%M:%S")
+        if join_date is None:
+            first_join = "Not found"
+        else:
+            first_join = datetime.datetime.fromtimestamp(int(join_date / 1000)).strftime("%Y-%m-%d %H:%M:%S")
 
 
         final_dict: dict = {
@@ -375,22 +378,16 @@ class Profile:
 
         return final_dict
 
-    def get_trophy_stats(self, profile: str = "selected"):
+    def get_trophy_stats(self, profile: str = "selected") -> tuple[list, dict]:
         trophy_stats = self.get_profile_data("trophy_fish", profile=profile)
 
-        # The player never fished trophy
-        if trophy_stats is None:
-            return None
-
-        if trophy_stats.get("total_caught", 0) < 1:
-            return None
-
         fishes = list(trophy_stats.keys())
+
+        # Removing misc data from the trophy fish list
         for misc_item in stats_gather.consts.TROPHY_MISC:
             fishes.remove(misc_item) if misc_item in fishes else ()
         fishes.sort()
-
-        fishes = {_key: trophy_stats[_key] for _key in fishes}
+        fishes = {_key: trophy_stats.get(_key, 0) for _key in fishes}
 
         # Check if the reward level is at least 1
         if len(trophy_stats.get("rewards", [])) == 0:
@@ -408,11 +405,11 @@ class Profile:
             "Diamond Hunter Reward": "/images/Diamond_Chestplate.webp",
         }
 
-        total_caught = f"{trophy_stats['total_caught']:,.0f}"
+        total_caught = f"{trophy_stats.get('total_caught', 0):,.0f}"
         misc_trophy_stats = {
             "Claimed reward": {
                 "name": reward_tier,
-                "icon_path": reward_icons[reward_tier]
+                "icon_path": reward_icons.get(reward_tier, "/images/Barrier.webp")
             },
             "Trophy fished": {
                 "amount": total_caught,
@@ -441,12 +438,8 @@ class Profile:
     def get_chocolate_factory_stats(self, profile: str = "selected"):
         cf = self.get_profile_data("events", profile=profile)
 
-        # If the player has no chocolate factory
-        if cf is None:
-            return {}
-
         # Fetch the chocolate factory statistics
-        cf = cf.get("easter")
+        cf = cf.get("easter", {})
 
         # Fetch the level of every rabbit employee (0 = not unlocked)
         default_state: dict = {
@@ -682,9 +675,6 @@ class Profile:
     def get_jacob_stats(self, profile: str = "selected") -> dict:
         jacob_stats = self.get_profile_data("jacobs_contest", profile=profile)
 
-        if jacob_stats is None:
-            jacob_stats = {}
-
         convenient_names: dict = {
             "INK_SACK:3": "COCOA",
             "POTATO_ITEM": "POTATO",
@@ -738,7 +728,10 @@ class Profile:
             medal_record[key] = value
 
 
-        medals_inv = jacob_stats.get("medals_inv", {"bronze": 0, "silver": 0, "gold": 0})
+        medals_inv = jacob_stats.get("medals_inv", {})  # May return {} or None, so default output is unified as {}
+        if medals_inv == {}:
+            medals_inv = {"bronze": 0, "silver": 0, "gold": 0}
+
         # Apply number formatting
         medals_inv = {k:f"{v:,}" for k,v in medals_inv.items()}
 
