@@ -149,7 +149,7 @@ class Profile:
                 skill_table = consts.SOCIAL_XP_REQUIREMENTS
             elif key == "Runecrafting":
                 skill_table = consts.RUNECRAFTING_XP_REQUIREMENTS
-            elif key == "Foraging":  # Capped at 50 level (and not 60)
+            elif key in ["Foraging", "Alchemy"]:  # Capped at 50 level (and not 60)
                 skill_table = consts.SKILLS_XP_REQUIREMENTS[:-10]
             else:
                 skill_table = consts.SKILLS_XP_REQUIREMENTS
@@ -184,8 +184,7 @@ class Profile:
         return xp_data
 
     def get_slayer_data(self, profile: str = "selected") -> dict:
-        searched_field: str = "slayer"
-        sl_data = self.get_profile_data(searched_field, profile=profile)["slayer_bosses"]
+        sl_data = self.get_profile_data("slayer", profile=profile).get("slayer_bosses", {})
 
         def find_next_xp_req(_boss: str, xp: int):
             """
@@ -210,12 +209,9 @@ class Profile:
         final_dict: dict = {}
 
         for boss in sl_data:
-            if (c := sl_data[boss].get("xp")) is not None:
-                current_xp = f"{c:,}"
-                next_level_xp = find_next_xp_req(boss, xp=int(c))
-            else:
-                current_xp = "0"
-                next_level_xp = find_next_xp_req(boss, xp=0)
+            c = sl_data[boss].get("xp", 0)
+            current_xp = f"{c:,}"
+            next_level_xp = find_next_xp_req(boss, xp=int(c))
 
             boss_kills = []
             for i in range(5):
