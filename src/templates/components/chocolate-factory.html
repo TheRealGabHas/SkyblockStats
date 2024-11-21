@@ -98,7 +98,6 @@
         </div>
     </div>
     <div id="factory-upgrades" class="blurry-bg">
-
         <h3 class="color-f center">Factory upgrades</h3>
 
         <div class="icon-text">
@@ -161,13 +160,22 @@
             {% endif %}
             </p>
         </div>
-
+        <div class="icon-text">
+            <img loading="lazy" src="/images/Bow.webp" alt="Rabbit Hitman" width="30" height="30">
+            <p class="color-d text-shadow">
+                Rabbit Hitman
+                <span class="color-f">
+                    : {{ chocolate_data['upgrades']['hitmen'] }}/28
+                </span>
+            </p>
+        </div>
     </div>
 </div>
 <br>
 <div class="divider-2">
     <div id="factory-misc" class="blurry-bg">
         <h3 class="color-f center">Other stats</h3>
+
         <div class="icon-text">
             <img loading="lazy" src="/images/Emerald.webp" alt="Shop" width="30" height="30">
             <p class="color-a text-shadow">
@@ -180,6 +188,7 @@
                 </i>
             </p>
         </div>
+
         <div class="icon-text">
             <img loading="lazy" src="/images/Chocolate_Bar.webp" alt="Chocolate Bar" width="30" height="30">
             <p class="color-a text-shadow">
@@ -189,54 +198,79 @@
                 </span>
             </p>
         </div>
+
+        <div class="icon-text">
+            <img loading="lazy" src="/images/chocolate/Refined_Truffle.webp" alt="Refined Truffle" width="30" height="30">
+            <p class="color-a text-shadow">
+                Refined Dark Cacao Truffle
+                <span class="color-f">
+                    : {{ chocolate_data['misc']['truffle'] }}
+                </span>
+            </p>
+        </div>
+
+        <div class="icon-text">
+            <img loading="lazy" src="/images/Bow.webp" alt="Refined Truffle" width="30" height="30">
+            <p class="color-a text-shadow" data-tooltip="Collected with the Rabbit Hitman upgrade">
+                Available eggs
+                <span class="color-f">
+                    : {{ chocolate_data['misc']['missing_hitmen_egg'] }}
+                </span>
+            </p>
+        </div>
     </div>
+
     <div id="factory-prod" class="blurry-bg">
-    <h3 class="color-f center">Estimated Production</h3>
-    <div class="icon-text">
-        <img loading="lazy" src="/images/Cookie.webp" alt="Cookie" width="30" height="30">
-        <p class="color-6 text-shadow">
-            Chocolate per second
-            <span class="color-f bold">: {{ chocolate_data['production']['per_sec'] }}</span>
-        </p>
-    </div>
-    <div class="icon-text">
-        <img loading="lazy" src="/images/Cookie.webp" alt="Cookie" width="30" height="30">
-        <p class="color-6 text-shadow">
-            Calculation breakdown
-            <span class="color-f bold">:</span>
-        </p>
-    </div>
-    <div id="chocolate-prod-breakdown">
-        <span class="color-6"> --- Production ({{ chocolate_data['production']['total_prod'] }}) --- </span>
-        {% for prod_source in chocolate_data['production']['production'] %}
+        <h3 class="color-f center">Estimated Production</h3>
+
+        <div class="icon-text">
+            <img loading="lazy" src="/images/Cookie.webp" alt="Cookie" width="30" height="30">
+            <p class="color-6 text-shadow">
+                Chocolate per second
+                <span class="color-f bold">: {{ chocolate_data['production']['per_sec'] }}</span>
+            </p>
+        </div>
+
+        <div class="icon-text">
+            <img loading="lazy" src="/images/Cookie.webp" alt="Cookie" width="30" height="30">
+            <p class="color-6 text-shadow">
+                Calculation breakdown
+                <span class="color-f bold">:</span>
+            </p>
+        </div>
+
+        <div id="chocolate-prod-breakdown">
+            <span class="color-6"> --- Production ({{ chocolate_data['production']['total_prod'] }}) --- </span>
+            {% for prod_source in chocolate_data['production']['production'] %}
+                <br>
+                {% if prod_source['comment'] %}
+                    <span class="color-a" data-tooltip="{{ prod_source['comment'] }}">{{ prod_source.keys() | first }}</span>
+                {% else %}
+                    <span class="color-a">{{ prod_source.keys() | first }}</span>
+                {% endif %}
+                <span class="color-f bold">: {{ prod_source.values() | first }}</span>
+            {% endfor %}
             <br>
-            {% if prod_source['comment'] %}
-            	<span class="color-a" data-tooltip="{{ prod_source['comment'] }}">{{ prod_source.keys() | first }}</span>
-            {% else %}
-                <span class="color-a">{{ prod_source.keys() | first }}</span>
-            {% endif %}
-            <span class="color-f bold">: {{ prod_source.values() | first }}</span>
-        {% endfor %}
-        <br>
-        <span class="color-6"> --- Multiplier ({{ chocolate_data['production']['total_mul'] }}) --- </span>
-        {% for prod_source in chocolate_data['production']['multiplier'] %}
-            <br>
-            {% if prod_source['comment'] %}
-            	<span class="color-a" data-tooltip="{{ prod_source['comment'] }}">{{ prod_source.keys() | first }}</span>
-            {% else %}
-                <span class="color-a">{{ prod_source.keys() | first }}</span>
-            {% endif %}
-            <span class="color-f bold">: x{{ prod_source.values() | first }}</span>
-        {% endfor %}
+            <span class="color-6"> --- Multiplier ({{ chocolate_data['production']['total_mul'] }}) --- </span>
+            {% for prod_source in chocolate_data['production']['multiplier'] %}
+                <br>
+                {% if prod_source['comment'] %}
+                    <span class="color-a" data-tooltip="{{ prod_source['comment'] }}">{{ prod_source.keys() | first }}</span>
+                {% else %}
+                    <span class="color-a">{{ prod_source.keys() | first }}</span>
+                {% endif %}
+                <span class="color-f bold">: x{{ prod_source.values() | first }}</span>
+            {% endfor %}
+        </div>
+
+        <div class="icon-text">
+            <img loading="lazy" src="/images/Cookie.webp" alt="Cookie" width="30" height="30">
+            <p class="color-6 text-shadow">
+                Chocolate per second (with Tower)
+                <span class="color-f bold">: {{ chocolate_data['production']['per_sec_with_tower'] }}</span>
+            </p>
+        </div>
     </div>
-    <div class="icon-text">
-        <img loading="lazy" src="/images/Cookie.webp" alt="Cookie" width="30" height="30">
-        <p class="color-6 text-shadow">
-            Chocolate per second (with Tower)
-            <span class="color-f bold">: {{ chocolate_data['production']['per_sec_with_tower'] }}</span>
-        </p>
-    </div>
-</div>
 </div>
 <br>
 <div class="stats-div">

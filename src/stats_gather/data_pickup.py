@@ -271,7 +271,6 @@ class Profile:
             # (Timecharm name, unlocked at visit)
             for trophy in trophies:
                 trophy['icon_path'] = f"/images/rift/{trophy['type']}.png"
-                print(trophy['type'])
                 trophy['type'] = trophy['type'].replace("_", " ")
                 del trophy['timestamp']
                 found_trophies.append(trophy)
@@ -531,6 +530,7 @@ class Profile:
             "tower": cf.get("time_tower", {}).get("level", 0),
             "shrine": cf.get("rabbit_rarity_upgrades", 0),
             "jackrabbit": cf.get("chocolate_multiplier_upgrades", 0),
+            "hitmen": cf.get("rabbit_hitmen", {}).get("rabbit_hitmen_slots", 0)
         }
         upgrades["barn_slots"] = utils.get_barn_capacity(upgrades['barn'])
 
@@ -547,7 +547,9 @@ class Profile:
             "chocolate_bar_counter": cf.get("supreme_chocolate_bars", 0),
             "shop_spent": cf.get("shop", {}).get("chocolate_spent", 0),
             "unique_rabbit": f"{len(collection.keys()):,.0f}",
-            "total_rabbit": f"{sum(collection.values()):,.0f}"
+            "total_rabbit": f"{sum(collection.values()):,.0f}",
+            "missing_hitmen_egg": f"{cf.get("rabbit_hitmen", {}).get("missed_uncollected_eggs", 0):,.0f}",
+            "truffle": f"{cf.get("refined_dark_cacao_truffles", 0):.0f}"
         }
         misc['shop_milestone'] = utils.get_shop_milestone(misc['shop_spent'])
         misc['chocolate_bar_counter'] = f"{misc['chocolate_bar_counter']:,.0f}"
