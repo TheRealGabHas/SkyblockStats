@@ -273,7 +273,6 @@
     </div>
 </div>
 <br>
-<div class="stats-div">
 {% set rabbit_rarity_colors = dict({
     "COMMON": "#ffffff",
     "UNCOMMON": "#3ffe3f",
@@ -283,6 +282,43 @@
     "MYTHIC": "#fe3ffe",
     "DIVINE": "#3ffefe",
 }) %}
+
+<div id="rabbit-repartition" class="blurry-bg">
+    <h3 class="color-f center">Rabbit rarity repartition</h3>
+    {% if (chocolate_data['misc']['total_rabbit'].replace(",", "") | int) <= 0 %}
+    	<h4 class="color-c center">This player hasn't found any rabbit yet.</h4>
+    {% else %}
+
+    <div id="rabbit-repartition-bar" rabbit-count="{{ chocolate_data['misc']['total_rabbit'] }}">
+        {% for rarity in chocolate_data['collection_data'] %}
+            <div class="rabbit-bar-{{ rarity }}" style="background-color: {{ rabbit_rarity_colors[rarity] }}"
+                 rabbit-count="{{ chocolate_data['collection_data'][rarity]['total_found'] }}"></div>
+        {% endfor %}
+    </div>
+
+    {% for rarity in chocolate_data['collection_data'] %}
+        <p style="color: {{ rabbit_rarity_colors[rarity] }}" class="center">
+            [{{ rarity | title | first }}]
+            <span class="color-f">: {{ chocolate_data['collection_data'][rarity]['total_found'] }} </span>
+            {% set ratio = (((chocolate_data['collection_data'][rarity]['total_found'].replace(",", "") | int)
+                / (chocolate_data['misc']['total_rabbit'].replace(",", "") | int)) * 100) | round(2)
+            %}
+            <span class="parenthesis">{{ ratio }}%</span>
+        </p>
+    {% endfor %}
+
+    <p class="color-7 center">
+        Found Rabbits
+        <span class="color-f">
+            : {{ chocolate_data['misc']['total_rabbit'] }}
+        </span>
+    </p>
+    <p class="color-7 center" data-tooltip="[part]% of the rabbits found by this player are [rarity]">How to read this chart ?</p>
+{% endif %}
+</div>
+
+<br>
+<div class="stats-div">
 
 <div id="rabbit-collection-dashboard" class="blurry-bg">
     <h3 class="color-f bold text-shadow center">Select which rarity to display</h3>

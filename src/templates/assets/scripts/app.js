@@ -33,6 +33,33 @@ document.querySelectorAll(".medal-title > p").forEach(element => {
     element.style.color = rarityColor[element.innerHTML.toString()]
 })
 
+
+// Rabbit rarity repartition bar
+const rabbitBarContainer = document.getElementById("rabbit-repartition-bar")
+
+if (rabbitBarContainer != null) {
+    const totalRabbit = Number(rabbitBarContainer.attributes.getNamedItem("rabbit-count").value.replace(",", ""))
+
+    function computeRabbitBar() {
+        const rabbitBarWidth = rabbitBarContainer.clientWidth;
+
+        let barOffset = 0
+
+        rabbitBarContainer.querySelectorAll("div").forEach((rabbitDiv) => {
+            const rabbitCount = Number(rabbitDiv.attributes.getNamedItem("rabbit-count").value.replace(",", ""))
+            if (rabbitCount > 0) {
+                const part = ((rabbitCount/totalRabbit) * rabbitBarWidth); // get occupied size in px
+
+                rabbitDiv.style.width = `${(rabbitBarWidth - barOffset)}px`
+                barOffset += part
+            }
+        })
+    }
+
+    computeRabbitBar()
+    window.addEventListener("resize", computeRabbitBar)
+}
+
 // Script for the detailed rabbit collection dashboard
 const dashboardBtn = document.getElementById("rabbit-dashboard-btn")
 const rabbitRarities = ["COMMON", "UNCOMMON", "RARE", "EPIC", "LEGENDARY", "MYTHIC", "DIVINE"]

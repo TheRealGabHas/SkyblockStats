@@ -520,7 +520,8 @@ class Profile:
 
             collection_data[rarity] = {
                 "total_unique": len(rabbit_list),
-                "found_unique": sum(1 for rb in rabbit_list if rb['amount'] > 0),  # Adds 1 if the rabbit has been found at least 1 time
+                "found_unique": sum(1 for rb in rabbit_list if rb.get('amount', 0) > 0),  # Adds 1 if the rabbit has been found at least 1 time
+                "total_found": f"{sum(rb.get('amount', 0) for rb in rabbit_list):,.0f}",
             }
 
         # Fetch the chocolate factory upgrades level
