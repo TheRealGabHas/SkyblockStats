@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-	<meta charset="UTF-8">
-	<title>{{ player_name }} | SBStats</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>{{ player_name }} | SBStats</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex">
-	<link rel="icon" href="{{ skin_link }}">
+    <link rel="icon" href="{{ skin_link }}">
     <link href="/style/style.css" rel="stylesheet">
     <link href="/style/tooltip.css" rel="stylesheet">
 
@@ -25,6 +25,10 @@
 
 <div id="head-section">
     {% include "components/profile.html" %}
+</div>
+
+<div id="navbar" role="navigation">
+    {% include "components/navbar.html" %}
 </div>
 
 <div id="skills-stats" class="stats-div">

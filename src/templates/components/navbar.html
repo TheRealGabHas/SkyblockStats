@@ -1,0 +1,5 @@
+{% set div_list = ["skills-stats", "slayer-stats", "rift-stats", "misc-stats",
+                        "trophy-stats", "chocolate-stats", "jacob-stats"] %}
+{% for div in div_list %}
+    <a href="#{{ div }}" class="nav-btn blurry-bg">{{ div | replace("-", " ") | title }}</a>
+{% endfor %}
