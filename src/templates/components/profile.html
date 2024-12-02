@@ -71,20 +71,20 @@
 {% endif %}
 {% if leveling_data != None %}
     <div class="icon-text text-shadow">
-    <img loading="lazy" src="{{ leveling_data['Global']['icon_path'] }}" alt="{{ skill }} Icon" width="30" height="30">
-    <p class="center color-b">Skyblock Level
-        <span class="color-f bold">
-            : {{ leveling_data['Global']['xp'] / 100 }}
-        </span>
-    </p>
-</div>
+        <img loading="lazy" src="{{ leveling_data['Global']['icon_path'] }}" alt="{{ skill }} Icon" width="30" height="30">
+        <p class="center color-b">Skyblock Level
+            <span class="color-f bold">
+                : {{ leveling_data['Global']['xp'] / 100 }}
+            </span>
+        </p>
+    </div>
 {% else %}
     <div class="icon-text text-shadow">
-    <img loading="lazy" src="/images/Skyblock_Levels.webp" alt="{{ skill }} Icon" width="30" height="30">
-    <p class="center color-b">
-        Skyblock Level:
-        <span class="color-c"> -</span>
-    </p>
-</div>
+        <img loading="lazy" src="/images/Skyblock_Levels.webp" alt="{{ skill }} Icon" width="30" height="30">
+        <p class="center color-b">
+            Skyblock Level:
+            <span class="color-c"> -</span>
+        </p>
+    </div>
 {% endif %}
 </div>
