@@ -59,6 +59,7 @@ see the [docker deployment](#docker-deployment-recommended) section.
 ## Configuration file and API Key
 
 The project configuration file is `config/settings.json`. It must be manually created and follow this format :
+
 The Hypixel API key must be replaced with a real one.
 A copy of this configuration can be found in [`config/default_settings.json`](src/config/default_settings.json).
 ```json
@@ -250,7 +251,7 @@ For security purpose, consider using a reverse proxy. Here is minimal example wi
 
 ### Logging
 
-To enabled request logging, the `enabled` value in the `config/settings.json` must be set to `true` as shown here:
+To enable request logging, the `enabled` value in the `config/settings.json` must be set to `true` as shown here:
 ```json
 {
   "hypixel-api-key": "00000000-0000-0000-0000-000000000000",
