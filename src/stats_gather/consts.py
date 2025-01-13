@@ -79,7 +79,7 @@ SLAYER_BOSS_ICONS: dict = {
 # --- RIFT ---
 
 TIMECHARMS: list = ["Wyldly Supreme", "Mirrored", "Chicken N Egg",
-                    "Citizen", "Lazy Living", "Slime", "Vampiric"]
+                    "Citizen", "Lazy Living", "Slime", "Vampiric", "Mountain"]
 
 # --- TROPHY FISHING ---
 
