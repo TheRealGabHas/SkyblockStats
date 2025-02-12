@@ -39,7 +39,8 @@ with open("config/settings.json", "r") as config_file:
 db: redis.Redis = redis.Redis(REDIS_HOST, port=REDIS_PORT, decode_responses=True)
 
 # Disabling the default routes
-app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None, swagger_ui_oauth2_redirect_url=None)
+app = FastAPI(title="SkyblockStats", docs_url=None, redoc_url=None,
+              openapi_url=None, swagger_ui_oauth2_redirect_url=None)
 
 
 # Add a logging middleware before processing the requests
