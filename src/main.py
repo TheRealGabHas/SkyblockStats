@@ -70,12 +70,12 @@ templates = Jinja2Templates(directory="templates", trim_blocks=True, lstrip_bloc
 
 
 @app.get("/")
-async def root(request: Request) -> templates.TemplateResponse:
+async def root(request: Request):
     return templates.TemplateResponse("home.html", {"request": request})
 
 
 @app.get("/{page}")
-async def wrong_scheme(request: Request, page: str) -> templates.TemplateResponse:
+async def wrong_scheme(request: Request, page: str):
     if page == "info":
         return templates.TemplateResponse("info.html", {"request": request})
     if page == "robots.txt":
@@ -87,7 +87,7 @@ async def wrong_scheme(request: Request, page: str) -> templates.TemplateRespons
 
 
 @app.get("/p/{name}")
-async def stats(request: Request, name: str, profile: str = "selected") -> templates.TemplateResponse:
+async def stats(request: Request, name: str, profile: str = "selected"):
     """
     Return the page with the player's statistics for its currently selected profile
     :param request: Request data
